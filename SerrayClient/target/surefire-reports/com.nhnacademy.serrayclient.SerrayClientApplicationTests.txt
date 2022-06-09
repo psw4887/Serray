@@ -1,0 +1,7 @@
+-------------------------------------------------------------------------------
+Test set: com.nhnacademy.serrayclient.SerrayClientApplicationTests
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 6.471 s <<< FAILURE! - in com.nhnacademy.serrayclient.SerrayClientApplicationTests
+contextLoads  Time elapsed: 2.989 s  <<< ERROR!
+java.lang.StackOverflowError
+
