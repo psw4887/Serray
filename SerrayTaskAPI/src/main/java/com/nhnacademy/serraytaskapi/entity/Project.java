@@ -14,13 +14,17 @@ public class Project {
     @Column(name = "project_no")
     private Integer projectNo;
 
+    @MapsId
+    @ManyToOne
+    @JoinColumn(name = "project_admin")
+    private Member admin;
+
     @Column(name = "project_title")
     private String title;
 
     @Column(name = "project_state")
     private String state;
 
-    @Column(name = "project_admin")
-    private String admin;
+
 
 }

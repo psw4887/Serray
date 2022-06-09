@@ -1,4 +1,4 @@
-package com.example.serrayaccountapi;
+package com.nhnacademy.serrayaccountapi;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

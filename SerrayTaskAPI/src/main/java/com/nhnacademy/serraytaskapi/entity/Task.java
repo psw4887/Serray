@@ -1,45 +1,34 @@
 package com.nhnacademy.serraytaskapi.entity;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.io.Serializable;
 
+@NoArgsConstructor
 @Data
 @Entity
 @Table(name = "task")
 public class Task {
 
-    @EmbeddedId
-    private TaskPK taskPK;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "task_no")
+    private Integer taskNo;
 
-    @MapsId("projectNo")
+    @MapsId
     @ManyToOne
-    @JoinColumn(name = "project_no")
+    @JoinColumn(name = "task_project_no")
     private Project project;
+
+    @MapsId
+    @ManyToOne
+    @JoinColumn(name = "task_admin")
+    private Member admin;
 
     @Column(name = "task_title")
     private String title;
 
     @Column(name = "task_content")
     private String content;
-
-    @Column(name = "task_admin")
-    private String admin;
-
-    @Data
-    @Embeddable
-    @EqualsAndHashCode
-    public static class TaskPK implements Serializable {
-
-        @GeneratedValue(strategy = GenerationType.IDENTITY)
-        @Column(name = "task_no")
-        private Integer taskNo;
-
-        @Column(name = "project_no")
-        private Integer projectNo;
-    }
 }
