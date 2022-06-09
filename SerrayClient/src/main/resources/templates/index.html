@@ -5,6 +5,14 @@
     <title>Serray Main</title>
 </head>
 <body>
-<span th:text="hello"></span>
+<div style="text-align: center">
+    <h1>Serray!</h1>
+    <br />
+    <a th:href="'/auth/login'" th:text="로그인"></a>
+    <br />
+    <a th:href="'/join'" th:text="회원가입"></a>
+    <br />
+    <a th:href="'/auth/logout'" th:text="로그아웃"></a>
+</div>
 </body>
 </html>

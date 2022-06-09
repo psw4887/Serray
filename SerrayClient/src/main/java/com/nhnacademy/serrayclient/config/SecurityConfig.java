@@ -9,7 +9,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
-@EnableWebSecurity(debug = true)
+@EnableWebSecurity
 public class SecurityConfig {
 
     @Bean
@@ -22,14 +22,27 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
 
         return httpSecurity
-                .httpBasic().disable()
-                .csrf().disable()
-                .cors().and()
-                .headers().frameOptions().sameOrigin().and()
+                .csrf()
+                .disable()
+                .cors()
+                .and()
+                .headers()
+                .frameOptions()
+                .sameOrigin()
+                .and()
                 .authorizeRequests()
+                .antMatchers("/", "/index", "/login", "/join").permitAll()
                 .anyRequest().permitAll()
+                .and()
+                .formLogin()
+                .usernameParameter("id")
+                .passwordParameter("pw")
+                .loginPage("/auth/login")
+                .loginProcessingUrl("/login")
+                .and()
+                .logout()
+                .logoutUrl("/logout")
                 .and()
                 .build();
     }
-
 }
