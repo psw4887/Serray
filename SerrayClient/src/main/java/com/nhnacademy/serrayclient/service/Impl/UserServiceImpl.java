@@ -19,7 +19,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class UserServiceImpl implements UserService {
 
-    private final RestTemplate template;
+    private final RestTemplate restTemplate;
     private final ObjectMapper mapper;
 
     @Override
@@ -35,7 +35,7 @@ public class UserServiceImpl implements UserService {
         }
 
         HttpEntity<String> requestEntity = new HttpEntity<>(request, httpHeaders);
-        template.exchange("http://localhost:5050/user/register",
+        restTemplate.exchange("http://localhost:5050/user/register",
                 HttpMethod.POST,
                 requestEntity,
                 new ParameterizedTypeReference<>() {

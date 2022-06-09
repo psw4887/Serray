@@ -1,6 +1,8 @@
 package com.nhnacademy.serrayaccountapi.service.impl;
 
+import com.nhnacademy.serrayaccountapi.data.dto.ForLoginDTO;
 import com.nhnacademy.serrayaccountapi.data.response.UserRegisterResponse;
+import com.nhnacademy.serrayaccountapi.data.vo.ForLoginVO;
 import com.nhnacademy.serrayaccountapi.entity.User;
 import com.nhnacademy.serrayaccountapi.repository.UserRepository;
 import com.nhnacademy.serrayaccountapi.service.UserService;
@@ -21,5 +23,13 @@ public class UserServiceImpl implements UserService {
         User user = new User(response.getId(), response.getPw(), response.getEmail(), "가입");
 
         uRepository.save(user);
+    }
+
+    @Override
+    public ForLoginVO findUserById(String id) {
+
+        ForLoginDTO dto = uRepository.getUserForLogin(id);
+
+        return new ForLoginVO(dto.getUserId(), dto.getUserPw(), dto.getUserEmail());
     }
 }
