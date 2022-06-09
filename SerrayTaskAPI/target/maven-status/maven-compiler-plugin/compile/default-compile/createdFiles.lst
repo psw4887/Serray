@@ -1,0 +1,10 @@
+com\nhnacademy\serraytaskapi\entity\Milestone$MilestonePK.class
+com\nhnacademy\serraytaskapi\entity\Project.class
+com\nhnacademy\serraytaskapi\entity\Comment.class
+com\nhnacademy\serraytaskapi\entity\Tag.class
+com\nhnacademy\serraytaskapi\entity\Comment$CommentPK.class
+com\nhnacademy\serraytaskapi\entity\Task.class
+com\nhnacademy\serraytaskapi\SerrayTaskApiApplication.class
+com\nhnacademy\serraytaskapi\entity\Tag$TagPK.class
+com\nhnacademy\serraytaskapi\entity\Member.class
+com\nhnacademy\serraytaskapi\entity\Milestone.class

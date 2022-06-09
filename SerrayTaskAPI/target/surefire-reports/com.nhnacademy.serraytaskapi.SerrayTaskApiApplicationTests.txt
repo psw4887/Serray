@@ -1,0 +1,9 @@
+-------------------------------------------------------------------------------
+Test set: com.nhnacademy.serraytaskapi.SerrayTaskApiApplicationTests
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 2.904 s <<< FAILURE! - in com.nhnacademy.serraytaskapi.SerrayTaskApiApplicationTests
+contextLoads  Time elapsed: 0 s  <<< ERROR!
+java.lang.IllegalStateException: Failed to load ApplicationContext
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'entityManagerFactory' defined in class path resource [org/springframework/boot/autoconfigure/orm/jpa/HibernateJpaConfiguration.class]: Invocation of init method failed; nested exception is org.hibernate.AssertionFailure: Unexpected identifier type on the referenced entity when mapping a @MapsId: com.nhnacademy.serraytaskapi.entity.Member
+Caused by: org.hibernate.AssertionFailure: Unexpected identifier type on the referenced entity when mapping a @MapsId: com.nhnacademy.serraytaskapi.entity.Member
+

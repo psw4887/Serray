@@ -19,15 +19,11 @@ public class Comment {
     @JoinColumn(name = "comment_task_no")
     private Task task;
 
-    @MapsId
-    @ManyToOne
-    @JoinColumn(name = "comment_admin")
-    private Member admin;
+    @Column(name = "comment_admin")
+    private String admin;
 
     @Column(name = "comment_content")
     private String content;
-
-
 
     @Data
     @Embeddable

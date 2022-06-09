@@ -20,10 +20,8 @@ public class Tag {
     @JoinColumn(name = "tag_task_no")
     private Task task;
 
-    @MapsId
-    @ManyToOne
-    @JoinColumn(name = "tag_admin")
-    private Member admin;
+    @Column(name = "tag_admin")
+    private String admin;
 
     @Column(name = "tag_content")
     private String content;

@@ -20,8 +20,8 @@ public class Milestone {
     @JoinColumn(name = "mile_task_no")
     private Task task;
 
-    @Column(name = "milestone_progress")
-    private String progress;
+    @Column(name = "mile_content")
+    private String content;
 
     @Column(name = "mile_start")
     private LocalDate startDate;

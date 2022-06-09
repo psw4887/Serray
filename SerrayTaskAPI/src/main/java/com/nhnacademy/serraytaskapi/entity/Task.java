@@ -21,10 +21,8 @@ public class Task {
     @JoinColumn(name = "task_project_no")
     private Project project;
 
-    @MapsId
-    @ManyToOne
-    @JoinColumn(name = "task_admin")
-    private Member admin;
+    @Column(name = "task_admin")
+    private String admin;
 
     @Column(name = "task_title")
     private String title;
