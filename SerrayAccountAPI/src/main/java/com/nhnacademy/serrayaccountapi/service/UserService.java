@@ -9,4 +9,6 @@ public interface UserService {
     void userRegister(UserRegisterResponse response);
 
     ForLoginVO findUserById(String id);
+
+    void userStateModify(String id, String state);
 }

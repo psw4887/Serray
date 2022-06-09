@@ -12,4 +12,6 @@ public class ForLoginVO {
     private String pw;
 
     private String email;
+
+    private String state;
 }

@@ -26,4 +26,11 @@ public class UserController {
 
         return service.findUserById(id);
     }
+
+    @PutMapping("/modify/{user}/{state}")
+    public void modifyUserState(@PathVariable("user") String user,
+                                @PathVariable("state") String state) {
+
+        service.userStateModify(user, state);
+    }
 }

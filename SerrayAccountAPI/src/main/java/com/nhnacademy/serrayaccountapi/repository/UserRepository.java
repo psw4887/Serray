@@ -9,4 +9,6 @@ public interface UserRepository extends JpaRepository<User, Integer> {
 
     @Query("select u from User u where u.userId = ?1")
     ForLoginDTO getUserForLogin(String id);
+
+    User getUserByUserId(String id);
 }

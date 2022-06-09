@@ -7,4 +7,6 @@ public interface ForLoginDTO {
     String getUserPw();
 
     String getUserEmail();
+
+    String getUserState();
 }

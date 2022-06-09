@@ -14,4 +14,6 @@ public class UserInfoResponse {
     private String pw;
 
     private String email;
+
+    private String state;
 }

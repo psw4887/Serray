@@ -30,6 +30,22 @@ public class UserServiceImpl implements UserService {
 
         ForLoginDTO dto = uRepository.getUserForLogin(id);
 
-        return new ForLoginVO(dto.getUserId(), dto.getUserPw(), dto.getUserEmail());
+        return new ForLoginVO(dto.getUserId(), dto.getUserPw(), dto.getUserEmail(), dto.getUserState());
+    }
+
+    @Transactional
+    @Override
+    public void userStateModify(String id, String state) {
+
+        User user = uRepository.getUserByUserId(id);
+
+        if(state.equals("탈퇴")) {
+            uRepository.deleteById(user.getUserNo());
+            return;
+        }
+
+        user.setUserState(state);
+
+        uRepository.save(user);
     }
 }
