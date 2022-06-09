@@ -36,11 +36,14 @@ public class UserController {
         return "redirect:/index";
     }
 
-    @GetMapping("/modify")
-    public String changeState(@RequestParam("state") String state,
+    @GetMapping("/modify/{now}")
+    public String changeState(@PathVariable("now") String now,
+                              @RequestParam("state") String state,
                               Principal principal) {
 
-        service.modifyUserState(principal.getName(), state);
+        if (!now.equals("비회원")) {
+            service.modifyUserState(principal.getName(), state);
+        }
 
         return "redirect:/index";
     }
