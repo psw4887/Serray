@@ -26,7 +26,6 @@ public class UserServiceImpl implements UserService {
     public void RegisterUser(UserRegisterRequest userRegisterRequest) {
 
         HttpHeaders httpHeaders = buildHeaders("");
-
         String request = "";
 
         try {

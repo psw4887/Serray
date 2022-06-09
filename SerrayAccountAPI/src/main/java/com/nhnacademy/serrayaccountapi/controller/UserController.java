@@ -14,7 +14,7 @@ public class UserController {
     private final UserService service;
 
     @ResponseStatus(HttpStatus.CREATED)
-    @PostMapping
+    @PostMapping("/register")
     public void RegisterUser(@RequestBody UserRegisterResponse response) {
 
         service.userRegister(response);

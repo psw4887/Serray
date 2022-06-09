@@ -20,8 +20,11 @@ public class JoinController {
     }
 
     @PostMapping
-    public String doJoin(@RequestBody UserRegisterRequest request) {
+    public String doJoin(@RequestParam("id") String id,
+                         @RequestParam("pw") String pw,
+                         @RequestParam("email") String email) {
 
+        UserRegisterRequest request = new UserRegisterRequest(id, pw, email);
         service.RegisterUser(request);
 
         return "redirect:/index";
