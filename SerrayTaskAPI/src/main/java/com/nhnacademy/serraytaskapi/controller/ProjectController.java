@@ -38,4 +38,11 @@ public class ProjectController {
 
         return service.getDetailProject(page, projectNo);
     }
+
+    @GetMapping("/state/{projectNo}/{state}")
+    public void modifyProjectState(@PathVariable("projectNo") Integer projectNo,
+                                   @PathVariable("state") String state) {
+
+        service.modifyStateProject(projectNo, state);
+    }
 }

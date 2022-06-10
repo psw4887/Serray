@@ -28,7 +28,6 @@ public class ProjectServiceImpl implements ProjectService {
     public List<ProjectForListResponse> getProjectList(Integer page) {
 
         HttpHeaders httpHeaders = buildHeaders();
-
         HttpEntity<String> requestEntity = new HttpEntity<>(httpHeaders);
         ResponseEntity<List<ProjectForListResponse>>
             response = restTemplate.exchange("http://localhost:9090/project/view/" + page,
@@ -56,24 +55,33 @@ public class ProjectServiceImpl implements ProjectService {
         restTemplate.exchange("http://localhost:9090/project/register",
             HttpMethod.POST,
             requestEntity,
-            new ParameterizedTypeReference<>() {
-            });
+            Void.class);
     }
 
     @Override
     public ProjectForDetailResponse detailProject(Integer projectNo, Integer page) {
 
         HttpHeaders httpHeaders = buildHeaders();
-
         HttpEntity<String> requestEntity = new HttpEntity<>(httpHeaders);
         ResponseEntity<ProjectForDetailResponse> response = restTemplate.exchange(
             "http://localhost:9090/project/detail/" + projectNo + "/" + page,
             HttpMethod.GET,
             requestEntity,
-            new ParameterizedTypeReference<>() {
-            });
+            ProjectForDetailResponse.class);
 
         return response.getBody();
+    }
+
+    @Override
+    public void ProjectModifyState(Integer projectNo, String state) {
+
+        HttpHeaders httpHeaders = buildHeaders();
+        HttpEntity<String> requestEntity = new HttpEntity<>(httpHeaders);
+        restTemplate.exchange(
+                "http://localhost:9090/project/state/" + projectNo + "/" + state,
+                HttpMethod.GET,
+                requestEntity,
+                Void.class);
     }
 
     private HttpHeaders buildHeaders() {

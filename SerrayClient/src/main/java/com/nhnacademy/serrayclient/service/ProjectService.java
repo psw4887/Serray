@@ -12,4 +12,6 @@ public interface ProjectService {
     void registerProject(ProjectRegisterRequest projectRegisterRequest);
 
     ProjectForDetailResponse detailProject(Integer projectNo, Integer page);
+
+    void ProjectModifyState(Integer projectNo, String state);
 }

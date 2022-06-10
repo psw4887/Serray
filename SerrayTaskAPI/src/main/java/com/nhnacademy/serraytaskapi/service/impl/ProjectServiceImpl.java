@@ -85,4 +85,14 @@ public class ProjectServiceImpl implements ProjectService {
         return new ProjectDetailResponse(dto.getAdmin(), dto.getTitle(),
             dto.getContent(), dto.getState(), responses);
     }
+
+    @Transactional
+    @Override
+    public void modifyStateProject(Integer projectNo, String state) {
+
+        Project project = pRepository.findById(projectNo).orElseThrow(ProjectNotFoundException::new);
+        project.setState(state);
+
+        pRepository.save(project);
+    }
 }

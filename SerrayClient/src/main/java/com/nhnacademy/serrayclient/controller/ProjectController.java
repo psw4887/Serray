@@ -83,4 +83,13 @@ public class ProjectController {
 
         return "project/projectDetail";
     }
+
+    @GetMapping("/state/{projectNo}")
+    public String modifyProjectState(@PathVariable("projectNo") Integer projectNo,
+                                     @RequestParam("state") String state) {
+
+        service.ProjectModifyState(projectNo, state);
+
+        return "redirect:/project/detail/" + projectNo + "?page=0";
+    }
 }
