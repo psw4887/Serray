@@ -88,7 +88,7 @@ public class ProjectController {
     public String modifyProjectState(@PathVariable("projectNo") Integer projectNo,
                                      @RequestParam("state") String state) {
 
-        service.ProjectModifyState(projectNo, state);
+        service.projectModifyState(projectNo, state);
 
         return "redirect:/project/detail/" + projectNo + "?page=0";
     }

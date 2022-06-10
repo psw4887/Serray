@@ -7,7 +7,12 @@
 <body>
 <div style="text-align: center">
 <h2>[프로젝트 제목] <span th:text=" ${project.title}"></span></h2>
-<h4>[프로젝트 상태]<span th:text=" ${project.state}"></span>  [프로젝트 관리자]<span th:text="${project.id}"></span></h4>
+    <h4>[프로젝트 상태]<span th:text=" ${project.state}"></span></h4>
+    프로젝트 상태 변경 :
+    <a th:if="${!project.state.toString().equals('활성')}" th:href="'/project/state/' + ${projectNo} + '?state=활성'">활성</a>
+    <a th:if="${!project.state.toString().equals('휴면')}" th:href="'/project/state/' + ${projectNo} + '?state=휴면'">휴면</a>
+    <a th:if="${!project.state.toString().equals('종료')}" th:href="'/project/state/' + ${projectNo} + '?state=종료'">종료</a>
+    <h4>[프로젝트 관리자]<span th:text="${project.id}"></span></h4>
 <h4>[내용]</h4>
 </div>
 <div style="text-align: center; display: flex; justify-content: center">
@@ -38,6 +43,8 @@
     <a th:href="'/project/detail/'+ ${projectNo} + '?page=' + ${page - 1}" th:if="${page} != 0" th:text="prev"></a>
     <span th:text="'('+ ${page} + 'page)'"></span>
     <a th:href="'/project/detail/'+ ${projectNo} + '?page=' + ${page + 1}" th:if="${isEnd} == 0" th:text="next"></a>
+    <br /><br />
+    <a href="/project/view?page=0">프로젝트목록</a>
 </div>
 </body>
 </html>

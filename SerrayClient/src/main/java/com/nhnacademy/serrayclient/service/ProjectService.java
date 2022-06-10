@@ -13,5 +13,5 @@ public interface ProjectService {
 
     ProjectForDetailResponse detailProject(Integer projectNo, Integer page);
 
-    void ProjectModifyState(Integer projectNo, String state);
+    void projectModifyState(Integer projectNo, String state);
 }

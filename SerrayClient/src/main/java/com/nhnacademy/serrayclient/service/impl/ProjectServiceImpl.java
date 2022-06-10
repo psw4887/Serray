@@ -73,12 +73,12 @@ public class ProjectServiceImpl implements ProjectService {
     }
 
     @Override
-    public void ProjectModifyState(Integer projectNo, String state) {
+    public void projectModifyState(Integer projectNo, String state) {
 
         HttpHeaders httpHeaders = buildHeaders();
         HttpEntity<String> requestEntity = new HttpEntity<>(httpHeaders);
         restTemplate.exchange(
-                "http://localhost:9090/project/state/" + projectNo + "/" + state,
+                "http://localhost:9090/project/state/" + projectNo + "?state=" + state,
                 HttpMethod.GET,
                 requestEntity,
                 Void.class);

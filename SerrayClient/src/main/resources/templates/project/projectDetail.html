@@ -43,6 +43,8 @@
     <a th:href="'/project/detail/'+ ${projectNo} + '?page=' + ${page - 1}" th:if="${page} != 0" th:text="prev"></a>
     <span th:text="'('+ ${page} + 'page)'"></span>
     <a th:href="'/project/detail/'+ ${projectNo} + '?page=' + ${page + 1}" th:if="${isEnd} == 0" th:text="next"></a>
+    <br /><br />
+    <a href="/project/view?page=0">프로젝트목록</a>
 </div>
 </body>
 </html>
