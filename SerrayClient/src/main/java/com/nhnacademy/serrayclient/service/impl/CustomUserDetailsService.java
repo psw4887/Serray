@@ -2,7 +2,6 @@ package com.nhnacademy.serrayclient.service.impl;
 
 import com.nhnacademy.serrayclient.data.response.UserInfoResponse;
 import lombok.RequiredArgsConstructor;
-import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -24,6 +23,8 @@ public class CustomUserDetailsService implements UserDetailsService {
 
     private final RestTemplate restTemplate;
 
+
+
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
@@ -33,8 +34,7 @@ public class CustomUserDetailsService implements UserDetailsService {
         ResponseEntity<UserInfoResponse> response = restTemplate.exchange("http://localhost:5050/user/get/" + username,
                 HttpMethod.GET,
                 requestEntity,
-                new ParameterizedTypeReference<>() {
-                });
+                UserInfoResponse.class);
 
         if(Objects.requireNonNull(response.getBody()).getId().equals(username)) {
 

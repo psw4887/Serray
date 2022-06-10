@@ -8,6 +8,7 @@ import com.nhnacademy.serraytaskapi.data.vo.ProjectRegisterVO;
 import com.nhnacademy.serraytaskapi.entity.Project;
 import com.nhnacademy.serraytaskapi.exception.ProjectNotFoundException;
 import com.nhnacademy.serraytaskapi.repository.ProjectRepository;
+import com.nhnacademy.serraytaskapi.repository.TaskRepository;
 import com.nhnacademy.serraytaskapi.service.ProjectService;
 import java.util.ArrayList;
 import java.util.List;
@@ -21,6 +22,7 @@ import org.springframework.transaction.annotation.Transactional;
 public class ProjectServiceImpl implements ProjectService {
 
     private final ProjectRepository pRepository;
+    private final TaskRepository tRepository;
 
     @Override
     public List<PageableProjectResponse> getPageableProjectList(Integer page) {
@@ -56,6 +58,7 @@ public class ProjectServiceImpl implements ProjectService {
     public ProjectDetailResponse getDetailProject(Integer projectNo) {
 
         ProjectDetailDTO dto = pRepository.findByProjectNo(projectNo).orElseThrow(ProjectNotFoundException::new);
+        tRepository.findByProjectNo();
 
         return new ProjectDetailResponse(dto.getAdmin(), dto.getTitle(), dto.getContent(), dto.getState());
     }

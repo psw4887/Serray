@@ -37,7 +37,7 @@ public class SecurityConfig {
                 .and()
                 .authorizeRequests()
                 .antMatchers("/", "/index", "/login", "/join").permitAll()
-                .antMatchers("/project/*").authenticated()
+                .antMatchers("/project/*", "/logout").authenticated()
                 .anyRequest().permitAll()
                 .and()
                 .formLogin()
