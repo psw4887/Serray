@@ -1,7 +1,7 @@
 package com.nhnacademy.serraytaskapi.service.impl;
 
 import com.nhnacademy.serraytaskapi.data.dto.TaskModifyDataDTO;
-import com.nhnacademy.serraytaskapi.data.response.TaskModifyDataResponse;
+import com.nhnacademy.serraytaskapi.data.response.TaskDataResponse;
 import com.nhnacademy.serraytaskapi.data.vo.TaskModifyVo;
 import com.nhnacademy.serraytaskapi.data.vo.TaskRegisterVO;
 import com.nhnacademy.serraytaskapi.entity.Project;
@@ -23,11 +23,11 @@ public class TaskServiceImpl implements TaskService {
     private final TaskRepository tRepository;
 
     @Override
-    public TaskModifyDataResponse getTaskTitleAndContent(Integer taskNo) {
+    public TaskDataResponse getTaskData(Integer taskNo) {
 
         TaskModifyDataDTO dto = tRepository.findByProjectNoForModifyData(taskNo);
 
-        return new TaskModifyDataResponse(
+        return new TaskDataResponse(
                 dto.getTaskNo(), dto.getAdmin(), dto.getTitle(), dto.getContent());
     }
 

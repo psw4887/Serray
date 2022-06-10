@@ -1,10 +1,10 @@
 package com.nhnacademy.serrayclient.service;
 
-import com.nhnacademy.serrayclient.data.response.TaskModifyDataResponse;
+import com.nhnacademy.serrayclient.data.response.TaskDataResponse;
 
 public interface TaskService {
 
-    TaskModifyDataResponse getTaskForModifyData(Integer taskNo);
+    TaskDataResponse getTaskData(Integer taskNo);
 
     void registerTask(Integer projectNo, String id, String title, String content);
 

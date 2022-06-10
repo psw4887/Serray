@@ -1,6 +1,6 @@
 package com.nhnacademy.serraytaskapi.controller;
 
-import com.nhnacademy.serraytaskapi.data.response.TaskModifyDataResponse;
+import com.nhnacademy.serraytaskapi.data.response.TaskDataResponse;
 import com.nhnacademy.serraytaskapi.data.vo.TaskModifyVo;
 import com.nhnacademy.serraytaskapi.data.vo.TaskRegisterVO;
 import com.nhnacademy.serraytaskapi.service.TaskService;
@@ -15,9 +15,9 @@ public class TaskController {
     private final TaskService service;
 
     @GetMapping
-    public TaskModifyDataResponse getTitleAndContent(@RequestParam("taskNo") Integer taskNo) {
+    public TaskDataResponse getDataByTask(@RequestParam("taskNo") Integer taskNo) {
 
-        return service.getTaskTitleAndContent(taskNo);
+        return service.getTaskData(taskNo);
     }
 
     @PostMapping("/register")

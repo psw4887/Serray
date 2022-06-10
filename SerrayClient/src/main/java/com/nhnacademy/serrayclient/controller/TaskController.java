@@ -1,6 +1,6 @@
 package com.nhnacademy.serrayclient.controller;
 
-import com.nhnacademy.serrayclient.data.response.TaskModifyDataResponse;
+import com.nhnacademy.serrayclient.data.response.TaskDataResponse;
 import com.nhnacademy.serrayclient.service.TaskService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -40,7 +40,7 @@ public class TaskController {
                                   Principal principal,
                                   Model model) {
 
-        TaskModifyDataResponse response = service.getTaskForModifyData(taskNo);
+        TaskDataResponse response = service.getTaskData(taskNo);
 
         if(!principal.getName().equals(response.getAdmin())) {
             return "redirect:/project/detail/" + projectNo + "?page=0";
@@ -68,7 +68,7 @@ public class TaskController {
                              @RequestParam("taskNo") Integer taskNo,
                              Principal principal) {
 
-        TaskModifyDataResponse response = service.getTaskForModifyData(taskNo);
+        TaskDataResponse response = service.getTaskData(taskNo);
 
         if(principal.getName().equals(response.getAdmin())) {
             service.deleteTask(taskNo);

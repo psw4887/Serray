@@ -26,31 +26,32 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
 
-        return httpSecurity
+        httpSecurity
                 .csrf()
-                .disable()
-                .cors()
-                .and()
-                .headers()
-                .frameOptions()
-                .sameOrigin()
-                .and()
+                .disable();
+        httpSecurity
                 .authorizeRequests()
                 .antMatchers("/", "/index", "/login", "/join").permitAll()
                 .antMatchers("/project/*", "/logout").authenticated()
-                .anyRequest().permitAll()
-                .and()
+                .anyRequest().permitAll();
+        httpSecurity
                 .formLogin()
                 .usernameParameter("id")
                 .passwordParameter("pw")
                 .loginPage("/auth/login")
-                .loginProcessingUrl("/login")
-                .and()
+                .loginProcessingUrl("/login");
+        httpSecurity
                 .logout()
-                .logoutUrl("/logout")
-                .and()
-                .authenticationProvider(authenticationProvider(null))
-                .build();
+                .logoutUrl("/logout");
+        httpSecurity
+                .headers()
+                .defaultsDisabled()
+                .frameOptions()
+                .sameOrigin();
+        httpSecurity
+                .authenticationProvider(authenticationProvider(null));
+
+        return httpSecurity.build();
     }
 
     @Bean

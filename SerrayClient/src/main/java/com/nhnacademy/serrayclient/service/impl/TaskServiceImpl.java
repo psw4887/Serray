@@ -4,7 +4,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.nhnacademy.serrayclient.data.request.TaskModifyRequest;
 import com.nhnacademy.serrayclient.data.request.TaskRegisterRequest;
-import com.nhnacademy.serrayclient.data.response.TaskModifyDataResponse;
+import com.nhnacademy.serrayclient.data.response.TaskDataResponse;
 import com.nhnacademy.serrayclient.service.TaskService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.*;
@@ -21,16 +21,16 @@ public class TaskServiceImpl implements TaskService {
     private final ObjectMapper mapper;
 
     @Override
-    public TaskModifyDataResponse getTaskForModifyData(Integer taskNo) {
+    public TaskDataResponse getTaskData(Integer taskNo) {
 
         HttpHeaders httpHeaders = buildHeaders();
 
         HttpEntity<String> requestEntity = new HttpEntity<>(httpHeaders);
-        ResponseEntity<TaskModifyDataResponse> response =
+        ResponseEntity<TaskDataResponse> response =
                         template.exchange("http://localhost:9090/task?taskNo=" + taskNo,
                         HttpMethod.GET,
                         requestEntity,
-                        TaskModifyDataResponse.class);
+                        TaskDataResponse.class);
 
         return response.getBody();
     }

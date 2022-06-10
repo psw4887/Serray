@@ -1,4 +1,4 @@
-package com.nhnacademy.serrayclient.data.response;
+package com.nhnacademy.serraytaskapi.data.response;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -7,9 +7,9 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class TaskModifyDataResponse {
+public class TaskDataResponse {
 
-    private String taskNo;
+    private Integer taskNo;
 
     private String admin;
 
