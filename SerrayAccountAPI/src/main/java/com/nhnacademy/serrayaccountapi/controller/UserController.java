@@ -20,8 +20,8 @@ public class UserController {
         return service.findUserById(id);
     }
 
-    @GetMapping("/get/git/{email}")
-    public ForLoginUserVO getUserByEmail(@PathVariable("email") String email) {
+    @GetMapping("/get/git")
+    public ForLoginUserVO getUserByEmail(@RequestParam("email") String email) {
 
         return service.findUserByEmail(email);
     }

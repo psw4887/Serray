@@ -61,13 +61,13 @@ public class ProjectServiceImpl implements ProjectService {
     }
 
     @Override
-    public ProjectForDetailResponse detailProject(Integer projectNo) {
+    public ProjectForDetailResponse detailProject(Integer projectNo, Integer page) {
 
         HttpHeaders httpHeaders = buildHeaders();
 
         HttpEntity<String> requestEntity = new HttpEntity<>(httpHeaders);
         ResponseEntity<ProjectForDetailResponse> response = restTemplate.exchange(
-            "http://localhost:9090/project/detail/" + projectNo,
+            "http://localhost:9090/project/detail/" + projectNo + "/" + page,
             HttpMethod.GET,
             requestEntity,
             new ParameterizedTypeReference<>() {

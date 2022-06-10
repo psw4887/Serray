@@ -32,9 +32,10 @@ public class ProjectController {
         service.registerProject(vo);
     }
 
-    @GetMapping("/detail/{projectNo}")
-    public ProjectDetailResponse getProjectDetail(@PathVariable("projectNo") Integer projectNo) {
+    @GetMapping("/detail/{projectNo}/{page}")
+    public ProjectDetailResponse getProjectDetail(@PathVariable("projectNo") Integer projectNo,
+                                                  @PathVariable("page") Integer page) {
 
-        return service.getDetailProject(projectNo);
+        return service.getDetailProject(page, projectNo);
     }
 }

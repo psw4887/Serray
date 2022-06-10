@@ -2,6 +2,7 @@ package com.nhnacademy.serrayclient.controller;
 
 import com.nhnacademy.serrayclient.data.request.ProjectRegisterRequest;
 import com.nhnacademy.serrayclient.data.response.ProjectForDetailResponse;
+import com.nhnacademy.serrayclient.data.response.ProjectForDetailTaskResponse;
 import com.nhnacademy.serrayclient.data.response.ProjectForListResponse;
 import com.nhnacademy.serrayclient.service.ProjectService;
 import java.security.Principal;
@@ -55,12 +56,24 @@ public class ProjectController {
 
     @GetMapping("/detail/{projectNo}")
     public String projectDetail(@PathVariable("projectNo") Integer projectNo,
+                                @RequestParam("page") Integer page,
                                 Model model) {
 
-        ProjectForDetailResponse project = service.detailProject(projectNo);
+        ProjectForDetailResponse project = service.detailProject(projectNo, page);
 
         model.addAttribute("project", project);
         model.addAttribute("projectNo", projectNo);
+        List<ProjectForDetailTaskResponse> list = project.getTasks();
+        model.addAttribute("lists", list);
+        model.addAttribute("isEnd", 0);
+
+
+        if(list.size() < 10) {
+            model.addAttribute("isEnd", 1);
+        }
+
+        model.addAttribute("lists", list);
+        model.addAttribute("page", page);
 
         return "project/projectDetail";
     }

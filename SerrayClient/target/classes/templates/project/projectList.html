@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Project List</title>
+</head>
+<body>
+<h2 style="text-align: center">[프로젝트 목록]</h2>
+<div style="text-align: center; display: flex; justify-content: center">
+    <table style="text-align: center; border: 1px solid black">
+        <tr>
+            <th style="text-align: center; border: 1px solid black">No</th>
+            <th style="text-align: center; border: 1px solid black">Title</th>
+            <th style="text-align: center; border: 1px solid black">Admin</th>
+            <th style="text-align: center; border: 1px solid black">state</th>
+        </tr>
+        <tr th:each="project : ${lists}">
+            <td style="text-align: center; border: 1px solid black" th:text="${project.no}"></td>
+            <td style="text-align: center; border: 1px solid black">
+                <a th:href="'/project/detail/' + ${project.no} + '?page=0'" th:text="${project.title}"></a>
+            </td>
+            <td style="text-align: center; border: 1px solid black" th:text="${project.admin}"></td>
+            <td style="text-align: center; border: 1px solid black" th:text="${project.state}"></td>
+        </tr>
+    </table>
+</div>
+<br />
+<div style="text-align: center">
+    <a th:href="'/project/view?page=' + ${page - 1}" th:if="${page} != 0" th:text="prev"></a>
+    <span th:text="'('+ ${page} + 'page)'"></span>
+    <a th:href="'/project/view?page=' + ${page + 1}" th:if="${isEnd} == 0" th:text="next"></a>
+</div>
+
+<div style="text-align: center">
+    <a th:href="'/project/register'">Project Register</a>
+    <a th:href="'/board/recover?page=0'">Post Recover</a>
+    <a th:href="'/boardLikes'">My Likes</a>
+    <h3><a href="/">Go Home</a></h3>
+</div>
+</body>
+</html>

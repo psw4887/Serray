@@ -5,7 +5,7 @@
     <title>Project List</title>
 </head>
 <body>
-<h2 style="text-align: center">[Project List]</h2>
+<h2 style="text-align: center">[프로젝트 목록]</h2>
 <div style="text-align: center; display: flex; justify-content: center">
     <table style="text-align: center; border: 1px solid black">
         <tr>
@@ -17,7 +17,7 @@
         <tr th:each="project : ${lists}">
             <td style="text-align: center; border: 1px solid black" th:text="${project.no}"></td>
             <td style="text-align: center; border: 1px solid black">
-                <a th:href="'/project/detail/' + ${project.no}" th:text="${project.title}"></a>
+                <a th:href="'/project/detail/' + ${project.no} + '?page=0'" th:text="${project.title}"></a>
             </td>
             <td style="text-align: center; border: 1px solid black" th:text="${project.admin}"></td>
             <td style="text-align: center; border: 1px solid black" th:text="${project.state}"></td>

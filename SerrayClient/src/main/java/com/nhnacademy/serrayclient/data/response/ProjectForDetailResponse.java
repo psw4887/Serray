@@ -1,5 +1,6 @@
 package com.nhnacademy.serrayclient.data.response;
 
+import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -16,4 +17,6 @@ public class ProjectForDetailResponse {
     private String content;
 
     private String state;
+
+    private List<ProjectForDetailTaskResponse> tasks;
 }

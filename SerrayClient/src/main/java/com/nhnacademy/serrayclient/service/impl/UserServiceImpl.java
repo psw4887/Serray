@@ -30,8 +30,7 @@ public class UserServiceImpl implements UserService {
         ResponseEntity<UserInfoResponse> response = restTemplate.exchange("http://localhost:5050/user/get/" + id,
                 HttpMethod.GET,
                 requestEntity,
-                new ParameterizedTypeReference<>() {
-                });
+                UserInfoResponse.class);
 
         return response.getBody();
     }
@@ -42,11 +41,10 @@ public class UserServiceImpl implements UserService {
         HttpHeaders httpHeaders = buildHeaders();
 
         HttpEntity<String> requestEntity = new HttpEntity<>(httpHeaders);
-        ResponseEntity<UserInfoResponse> response = restTemplate.exchange("http://localhost:5050/user/get/git/" + email,
+        ResponseEntity<UserInfoResponse> response = restTemplate.exchange("http://localhost:5050/user/get/git?email=" + email,
             HttpMethod.GET,
             requestEntity,
-            new ParameterizedTypeReference<>() {
-            });
+            UserInfoResponse.class);
 
         return response.getBody();
     }

@@ -11,5 +11,5 @@ public interface ProjectService {
 
     void registerProject(ProjectRegisterRequest projectRegisterRequest);
 
-    ProjectForDetailResponse detailProject(Integer projectNo);
+    ProjectForDetailResponse detailProject(Integer projectNo, Integer page);
 }
