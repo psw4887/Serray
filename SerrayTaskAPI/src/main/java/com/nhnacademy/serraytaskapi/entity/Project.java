@@ -20,6 +20,9 @@ public class Project {
     @Column(name = "project_title")
     private String title;
 
+    @Column(name = "project_content")
+    private String content;
+
     @Column(name = "project_state")
     private String state;
 
