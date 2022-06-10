@@ -5,7 +5,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.nhnacademy.serrayclient.data.request.UserRegisterRequest;
 import com.nhnacademy.serrayclient.data.response.UserInfoResponse;
 import com.nhnacademy.serrayclient.service.UserService;
-import java.util.Optional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.*;

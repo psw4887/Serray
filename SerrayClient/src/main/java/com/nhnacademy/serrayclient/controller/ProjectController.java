@@ -41,6 +41,12 @@ public class ProjectController {
         return "project/projectList";
     }
 
+    @GetMapping("/register")
+    public String readyProjectRegister() {
+
+        return "project/projectRegisterForm";
+    }
+
     @PostMapping("/register")
     public String projectRegister(@RequestParam("title") String title,
                                   @RequestParam("content") String content,

@@ -7,8 +7,10 @@ import com.nhnacademy.serraytaskapi.data.response.PageableProjectResponse;
 import com.nhnacademy.serraytaskapi.data.response.ProjectDetailResponse;
 import com.nhnacademy.serraytaskapi.data.response.ProjectDetailTaskResponse;
 import com.nhnacademy.serraytaskapi.data.vo.ProjectRegisterVO;
+import com.nhnacademy.serraytaskapi.entity.Member;
 import com.nhnacademy.serraytaskapi.entity.Project;
 import com.nhnacademy.serraytaskapi.exception.ProjectNotFoundException;
+import com.nhnacademy.serraytaskapi.repository.MemberRepository;
 import com.nhnacademy.serraytaskapi.repository.ProjectRepository;
 import com.nhnacademy.serraytaskapi.repository.TaskRepository;
 import com.nhnacademy.serraytaskapi.service.ProjectService;
@@ -24,6 +26,7 @@ import org.springframework.transaction.annotation.Transactional;
 @RequiredArgsConstructor
 public class ProjectServiceImpl implements ProjectService {
 
+    private final MemberRepository mRepository;
     private final ProjectRepository pRepository;
     private final TaskRepository tRepository;
 
@@ -55,6 +58,12 @@ public class ProjectServiceImpl implements ProjectService {
         Project project = new Project(vo.getId(), vo.getTitle(), vo.getContent(), "활성");
 
         pRepository.save(project);
+
+        Member.MemberPK memberPK = new Member.MemberPK(vo.getId(), project.getProjectNo());
+        Member member = new Member(memberPK);
+        member.setProject(project);
+
+        mRepository.save(member);
     }
 
     @Override

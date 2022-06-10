@@ -18,8 +18,6 @@ public class WebConfiguration extends WebMvcConfigurationSupport {
     protected void addViewControllers(ViewControllerRegistry registry) {
         registry.addViewController("/auth/login").setViewName("login");
         registry.addViewController("/auth/logout").setViewName("logout");
-        registry.addViewController("/user/join").setViewName("join");
-        registry.addViewController("/project/register").setViewName("project/projectList");
     }
 
     @Bean

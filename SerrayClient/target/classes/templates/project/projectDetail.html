@@ -6,10 +6,8 @@
 </head>
 <body>
 <div style="text-align: center">
-<h2>[프로젝트 제목] <span th:text="${project.title}"></span></h2>
-<h3>[프로젝트 상태] <span th:text="${project.state}"></span></h3>
-<h4>[프로젝트 관리자] <span th:text="${project.id}"></span></h4>
-<br />
+<h2>[프로젝트 제목] <span th:text=" ${project.title}"></span></h2>
+<h4>[프로젝트 상태]<span th:text=" ${project.state}"></span>  [프로젝트 관리자]<span th:text="${project.id}"></span></h4>
 <h4>[내용]</h4>
 </div>
 <div style="text-align: center; display: flex; justify-content: center">

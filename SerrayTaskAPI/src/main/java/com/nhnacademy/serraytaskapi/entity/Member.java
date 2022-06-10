@@ -2,6 +2,7 @@ package com.nhnacademy.serraytaskapi.entity;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -9,6 +10,7 @@ import java.io.Serializable;
 @Data
 @Entity
 @Table(name = "members")
+@NoArgsConstructor
 public class Member {
 
     @EmbeddedId
@@ -19,19 +21,27 @@ public class Member {
     @JoinColumn(name = "project_no")
     private Project project;
 
-    @Column(name = "member_id")
-    private String memberId;
+    public Member(MemberPK memberPK) {
+
+        this.memberPK = memberPK;
+    }
 
     @Data
     @Embeddable
     @EqualsAndHashCode
+    @NoArgsConstructor
     public static class MemberPK implements Serializable {
 
-        @GeneratedValue(strategy = GenerationType.IDENTITY)
-        @Column(name = "member_no")
-        private Integer memberNo;
+        @Column(name = "member_id")
+        private String memberId;
 
         @Column(name = "project_no")
         private Integer projectNo;
+
+        public MemberPK(String id, Integer projectNo) {
+
+            this.memberId = id;
+            this.projectNo = projectNo;
+        }
     }
 }

@@ -96,10 +96,10 @@ public class CustomGitLoginService {
     public GitProfile getGithubProfile(AuthToken authToken) throws JsonProcessingException {
         RestTemplate requestTemplate = new RestTemplate();
         ResponseEntity<String> profileResponse = requestTemplate.exchange(
-             "https://api.github.com/user",
-             HttpMethod.GET,
-             getProfileRequestEntity(authToken),
-             String.class
+                "https://api.github.com/user",
+                HttpMethod.GET,
+                getProfileRequestEntity(authToken),
+                String.class
         );
 
         ObjectMapper objectMapper = new ObjectMapper();
