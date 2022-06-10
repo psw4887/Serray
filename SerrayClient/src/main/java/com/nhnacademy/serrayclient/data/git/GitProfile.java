@@ -1,4 +1,4 @@
-package com.nhnacademy.serrayclient.git;
+package com.nhnacademy.serrayclient.data.git;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Map;

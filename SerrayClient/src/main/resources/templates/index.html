@@ -15,11 +15,11 @@
     <br /><br />
     <a href="/project/view?page=0">프로젝트목록</a>
     <br /><br />
-    <a th:href="'/auth/login'" th:text="로그인"></a>
+    <a th:if="${user.state.toString().equals('비회원')}" th:href="'/auth/login'" th:text="로그인"></a>
     <br /><br />
     <a th:href="'/user/join'" th:text="회원가입"></a>
     <br /><br />
-    <a th:href="'/auth/logout'" th:text="로그아웃"></a>
+    <a th:if="${!user.state.toString().equals('비회원')}" th:href="'/auth/logout'" th:text="로그아웃"></a>
 </div>
 </body>
 </html>

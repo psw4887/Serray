@@ -5,6 +5,7 @@ import com.nhnacademy.serraytaskapi.data.vo.TaskModifyVo;
 import com.nhnacademy.serraytaskapi.data.vo.TaskRegisterVO;
 import com.nhnacademy.serraytaskapi.service.TaskService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -20,6 +21,7 @@ public class TaskController {
         return service.getTaskData(taskNo);
     }
 
+    @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("/register")
     public void taskRegister(@RequestBody TaskRegisterVO vo) {
 

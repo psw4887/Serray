@@ -14,4 +14,6 @@ public interface ProjectRepository extends JpaRepository<Project, Integer> {
     Page<PageableProjectDTO> getAllBy(Pageable pageable);
 
     Optional<ProjectDetailDTO> findByProjectNo(Integer projectNo);
+
+    Boolean existsProjectByAdminAndProjectNo(String id, Integer projectNo);
 }

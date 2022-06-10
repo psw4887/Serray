@@ -1,7 +1,7 @@
 package com.nhnacademy.serrayclient.controller;
 
-import com.nhnacademy.serrayclient.git.StateCookie;
-import com.nhnacademy.serrayclient.service.impl.CustomGitLoginService;
+import com.nhnacademy.serrayclient.data.git.StateCookie;
+import com.nhnacademy.serrayclient.service.CustomGitLoginService;
 import java.io.IOException;
 import javax.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;

@@ -1,4 +1,4 @@
-package com.nhnacademy.serrayclient.service.impl;
+package com.nhnacademy.serrayclient.service;
 
 import com.nhnacademy.serrayclient.data.RedisSession;
 import com.nhnacademy.serrayclient.repository.RedisRepository;

@@ -6,6 +6,7 @@ import com.nhnacademy.serraytaskapi.data.vo.ProjectRegisterVO;
 import com.nhnacademy.serraytaskapi.service.ProjectService;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -21,6 +22,7 @@ public class ProjectController {
         return service.getPageableProjectList(page);
     }
 
+    @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("/register")
     public void projectRegister(@RequestBody ProjectRegisterVO vo) {
 

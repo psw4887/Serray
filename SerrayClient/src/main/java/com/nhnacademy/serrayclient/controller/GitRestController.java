@@ -1,10 +1,10 @@
 package com.nhnacademy.serrayclient.controller;
 
 import com.nhnacademy.serrayclient.data.response.UserInfoResponse;
-import com.nhnacademy.serrayclient.git.AuthToken;
-import com.nhnacademy.serrayclient.git.CodeGit;
-import com.nhnacademy.serrayclient.git.GitProfile;
-import com.nhnacademy.serrayclient.service.impl.CustomGitLoginService;
+import com.nhnacademy.serrayclient.data.git.AuthToken;
+import com.nhnacademy.serrayclient.data.git.CodeGit;
+import com.nhnacademy.serrayclient.data.git.GitProfile;
+import com.nhnacademy.serrayclient.service.CustomGitLoginService;
 import java.io.IOException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
