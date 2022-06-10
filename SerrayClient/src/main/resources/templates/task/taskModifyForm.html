@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Task Modify</title>
+</head>
+<body>
+<h3 style="text-align: center"> 업무 수정 </h3>
+<div style="text-align: center; display: flex; justify-content: center">
+    <form th:method="post" th:action="'/task/modify?projectNo=' + ${projectNo} + '&taskNo=' + ${task.taskNo}">
+        <span>업무 제목 : </span><input type="text" name="title" th:value="${task.title}"><br /><br />
+        <span>[업무 내용]</span><br />
+        <textarea cols = "50" rows = "10" name="content" th:text="${task.content}"></textarea><br/>
+        <input type="submit" value="Modify">
+    </form>
+</div>
+</body>
+</html>

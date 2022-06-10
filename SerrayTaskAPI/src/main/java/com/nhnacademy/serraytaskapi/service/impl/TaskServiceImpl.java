@@ -1,9 +1,13 @@
 package com.nhnacademy.serraytaskapi.service.impl;
 
+import com.nhnacademy.serraytaskapi.data.dto.TaskModifyDataDTO;
+import com.nhnacademy.serraytaskapi.data.response.TaskModifyDataResponse;
+import com.nhnacademy.serraytaskapi.data.vo.TaskModifyVo;
 import com.nhnacademy.serraytaskapi.data.vo.TaskRegisterVO;
 import com.nhnacademy.serraytaskapi.entity.Project;
 import com.nhnacademy.serraytaskapi.entity.Task;
 import com.nhnacademy.serraytaskapi.exception.ProjectNotFoundException;
+import com.nhnacademy.serraytaskapi.exception.TaskNotFoundException;
 import com.nhnacademy.serraytaskapi.repository.ProjectRepository;
 import com.nhnacademy.serraytaskapi.repository.TaskRepository;
 import com.nhnacademy.serraytaskapi.service.TaskService;
@@ -18,6 +22,15 @@ public class TaskServiceImpl implements TaskService {
     private final ProjectRepository pRepository;
     private final TaskRepository tRepository;
 
+    @Override
+    public TaskModifyDataResponse getTaskTitleAndContent(Integer taskNo) {
+
+        TaskModifyDataDTO dto = tRepository.findByProjectNoForModifyData(taskNo);
+
+        return new TaskModifyDataResponse(
+                dto.getTaskNo(), dto.getAdmin(), dto.getTitle(), dto.getContent());
+    }
+
     @Transactional
     @Override
     public void registerTask(TaskRegisterVO vo) {
@@ -27,5 +40,24 @@ public class TaskServiceImpl implements TaskService {
         Task task = new Task(project, vo.getId(), vo.getTitle(), vo.getContent());
 
         tRepository.save(task);
+    }
+
+    @Transactional
+    @Override
+    public void modifyTask(TaskModifyVo vo) {
+
+        Task task = tRepository.findById(vo.getTaskNo()).orElseThrow(TaskNotFoundException::new);
+
+        task.setTitle(vo.getTitle());
+        task.setContent(vo.getContent());
+
+        tRepository.save(task);
+    }
+
+    @Transactional
+    @Override
+    public void deleteTask(Integer taskNo) {
+
+        tRepository.deleteById(taskNo);
     }
 }
