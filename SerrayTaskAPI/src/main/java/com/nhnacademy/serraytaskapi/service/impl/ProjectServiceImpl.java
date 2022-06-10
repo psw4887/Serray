@@ -58,7 +58,6 @@ public class ProjectServiceImpl implements ProjectService {
     public ProjectDetailResponse getDetailProject(Integer projectNo) {
 
         ProjectDetailDTO dto = pRepository.findByProjectNo(projectNo).orElseThrow(ProjectNotFoundException::new);
-        tRepository.findByProjectNo();
 
         return new ProjectDetailResponse(dto.getAdmin(), dto.getTitle(), dto.getContent(), dto.getState());
     }
