@@ -20,6 +20,12 @@ public class UserController {
         return service.findUserById(id);
     }
 
+    @GetMapping("/get/git/{email}")
+    public ForLoginUserVO getUserByEmail(@PathVariable("email") String email) {
+
+        return service.findUserByEmail(email);
+    }
+
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("/register")
     public void RegisterUser(@RequestBody UserRegisterResponse response) {

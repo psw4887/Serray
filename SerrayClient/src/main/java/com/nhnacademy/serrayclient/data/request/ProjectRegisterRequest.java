@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class PostRegisterRequest {
+public class ProjectRegisterRequest {
 
     private String id;
 

@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.nhnacademy.serrayclient.data.request.UserRegisterRequest;
 import com.nhnacademy.serrayclient.data.response.UserInfoResponse;
 import com.nhnacademy.serrayclient.service.UserService;
+import java.util.Optional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.*;
@@ -31,6 +32,21 @@ public class UserServiceImpl implements UserService {
                 requestEntity,
                 new ParameterizedTypeReference<>() {
                 });
+
+        return response.getBody();
+    }
+
+    @Override
+    public UserInfoResponse findByUserEmail(String email) {
+
+        HttpHeaders httpHeaders = buildHeaders();
+
+        HttpEntity<String> requestEntity = new HttpEntity<>(httpHeaders);
+        ResponseEntity<UserInfoResponse> response = restTemplate.exchange("http://localhost:5050/user/get/git/" + email,
+            HttpMethod.GET,
+            requestEntity,
+            new ParameterizedTypeReference<>() {
+            });
 
         return response.getBody();
     }

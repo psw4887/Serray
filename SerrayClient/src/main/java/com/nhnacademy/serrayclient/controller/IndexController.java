@@ -1,6 +1,5 @@
 package com.nhnacademy.serrayclient.controller;
 
-import com.nhnacademy.serrayclient.data.request.UserRegisterRequest;
 import com.nhnacademy.serrayclient.data.response.UserInfoResponse;
 import com.nhnacademy.serrayclient.service.UserService;
 import lombok.RequiredArgsConstructor;

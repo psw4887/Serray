@@ -2,7 +2,8 @@ package com.nhnacademy.serrayclient.service.impl;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.nhnacademy.serrayclient.data.request.PostRegisterRequest;
+import com.nhnacademy.serrayclient.data.request.ProjectRegisterRequest;
+import com.nhnacademy.serrayclient.data.response.ProjectForDetailResponse;
 import com.nhnacademy.serrayclient.data.response.ProjectForListResponse;
 import com.nhnacademy.serrayclient.service.ProjectService;
 import java.util.List;
@@ -40,13 +41,13 @@ public class ProjectServiceImpl implements ProjectService {
     }
 
     @Override
-    public void registerProject(PostRegisterRequest postRegisterRequest) {
+    public void registerProject(ProjectRegisterRequest projectRegisterRequest) {
 
         HttpHeaders httpHeaders = buildHeaders();
         String request = "";
 
         try {
-            request = mapper.writeValueAsString(postRegisterRequest);
+            request = mapper.writeValueAsString(projectRegisterRequest);
         } catch (JsonProcessingException e) {
             throw new RuntimeException(e);
         }
@@ -57,6 +58,22 @@ public class ProjectServiceImpl implements ProjectService {
             requestEntity,
             new ParameterizedTypeReference<>() {
             });
+    }
+
+    @Override
+    public ProjectForDetailResponse detailProject(Integer projectNo) {
+
+        HttpHeaders httpHeaders = buildHeaders();
+
+        HttpEntity<String> requestEntity = new HttpEntity<>(httpHeaders);
+        ResponseEntity<ProjectForDetailResponse> response = restTemplate.exchange(
+            "http://localhost:9090/project/detail/" + projectNo,
+            HttpMethod.GET,
+            requestEntity,
+            new ParameterizedTypeReference<>() {
+            });
+
+        return response.getBody();
     }
 
     private HttpHeaders buildHeaders() {

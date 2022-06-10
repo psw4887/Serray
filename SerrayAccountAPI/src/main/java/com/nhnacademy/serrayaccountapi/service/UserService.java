@@ -10,4 +10,6 @@ public interface UserService {
     ForLoginUserVO findUserById(String id);
 
     void userStateModify(String id, String state);
+
+    ForLoginUserVO findUserByEmail(String email);
 }

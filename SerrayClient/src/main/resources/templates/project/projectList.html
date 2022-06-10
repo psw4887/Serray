@@ -16,7 +16,9 @@
         </tr>
         <tr th:each="project : ${lists}">
             <td style="text-align: center; border: 1px solid black" th:text="${project.no}"></td>
-            <td style="text-align: center; border: 1px solid black"><a th:href="'/'" th:text="${project.title}"></a></td>
+            <td style="text-align: center; border: 1px solid black">
+                <a th:href="'/project/detail/' + ${project.no}" th:text="${project.title}"></a>
+            </td>
             <td style="text-align: center; border: 1px solid black" th:text="${project.admin}"></td>
             <td style="text-align: center; border: 1px solid black" th:text="${project.state}"></td>
         </tr>

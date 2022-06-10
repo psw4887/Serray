@@ -33,6 +33,14 @@ public class UserServiceImpl implements UserService {
         return new ForLoginUserVO(dto.getUserId(), dto.getUserPw(), dto.getUserEmail(), dto.getUserState());
     }
 
+    @Override
+    public ForLoginUserVO findUserByEmail(String email) {
+
+        ForLoginDTO dto = uRepository.getUserForGitLogin(email);
+
+        return new ForLoginUserVO(dto.getUserId(), dto.getUserPw(), dto.getUserEmail(), dto.getUserState());
+    }
+
     @Transactional
     @Override
     public void userStateModify(String id, String state) {

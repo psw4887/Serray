@@ -1,6 +1,7 @@
 package com.nhnacademy.serraytaskapi.controller;
 
 import com.nhnacademy.serraytaskapi.data.response.PageableProjectResponse;
+import com.nhnacademy.serraytaskapi.data.response.ProjectDetailResponse;
 import com.nhnacademy.serraytaskapi.data.vo.ProjectRegisterVO;
 import com.nhnacademy.serraytaskapi.service.ProjectService;
 import java.util.List;
@@ -29,5 +30,11 @@ public class ProjectController {
     public void projectRegister(@RequestBody ProjectRegisterVO vo) {
 
         service.registerProject(vo);
+    }
+
+    @GetMapping("/detail/{projectNo}")
+    public ProjectDetailResponse getProjectDetail(@PathVariable("projectNo") Integer projectNo) {
+
+        return service.getDetailProject(projectNo);
     }
 }

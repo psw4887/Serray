@@ -1,9 +1,12 @@
 package com.nhnacademy.serraytaskapi.service.impl;
 
 import com.nhnacademy.serraytaskapi.data.dto.PageableProjectDTO;
+import com.nhnacademy.serraytaskapi.data.dto.ProjectDetailDTO;
 import com.nhnacademy.serraytaskapi.data.response.PageableProjectResponse;
+import com.nhnacademy.serraytaskapi.data.response.ProjectDetailResponse;
 import com.nhnacademy.serraytaskapi.data.vo.ProjectRegisterVO;
 import com.nhnacademy.serraytaskapi.entity.Project;
+import com.nhnacademy.serraytaskapi.exception.ProjectNotFoundException;
 import com.nhnacademy.serraytaskapi.repository.ProjectRepository;
 import com.nhnacademy.serraytaskapi.service.ProjectService;
 import java.util.ArrayList;
@@ -47,5 +50,13 @@ public class ProjectServiceImpl implements ProjectService {
         Project project = new Project(vo.getId(), vo.getTitle(), vo.getContent(), "활성");
 
         pRepository.save(project);
+    }
+
+    @Override
+    public ProjectDetailResponse getDetailProject(Integer projectNo) {
+
+        ProjectDetailDTO dto = pRepository.findByProjectNo(projectNo).orElseThrow(ProjectNotFoundException::new);
+
+        return new ProjectDetailResponse(dto.getAdmin(), dto.getTitle(), dto.getContent(), dto.getState());
     }
 }

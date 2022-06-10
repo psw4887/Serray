@@ -17,12 +17,6 @@ public class UserController {
     private final UserService service;
     private final PasswordEncoder encoder;
 
-    @GetMapping("/join")
-    public String readyJoin() {
-
-        return "Join";
-    }
-
     @PostMapping("/join")
     public String doJoin(@RequestParam("id") String id,
                          @RequestParam("pw") String pw,
