@@ -10,6 +10,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Objects;
+
 @Service
 @RequiredArgsConstructor
 public class UserServiceImpl implements UserService {
@@ -19,6 +21,10 @@ public class UserServiceImpl implements UserService {
     @Transactional
     @Override
     public void userRegister(UserRegisterResponse response) {
+
+        if(Objects.nonNull(uRepository.getUserByUserId(response.getId()))) {
+            return;
+        }
 
         User user = new User(response.getId(), response.getPw(), response.getEmail(), "가입");
 
