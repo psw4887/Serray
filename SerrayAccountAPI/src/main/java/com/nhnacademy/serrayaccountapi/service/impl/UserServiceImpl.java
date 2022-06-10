@@ -4,6 +4,7 @@ import com.nhnacademy.serrayaccountapi.data.dto.ForLoginDTO;
 import com.nhnacademy.serrayaccountapi.data.response.UserRegisterResponse;
 import com.nhnacademy.serrayaccountapi.data.vo.ForLoginUserVO;
 import com.nhnacademy.serrayaccountapi.entity.User;
+import com.nhnacademy.serrayaccountapi.exception.UserNotFoundException;
 import com.nhnacademy.serrayaccountapi.repository.UserRepository;
 import com.nhnacademy.serrayaccountapi.service.UserService;
 import lombok.RequiredArgsConstructor;
@@ -34,7 +35,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public ForLoginUserVO findUserById(String id) {
 
-        ForLoginDTO dto = uRepository.getUserForLogin(id);
+        ForLoginDTO dto = uRepository.getUserForLogin(id).orElseThrow(UserNotFoundException::new);
 
         return new ForLoginUserVO(dto.getUserId(), dto.getUserPw(), dto.getUserEmail(), dto.getUserState());
     }

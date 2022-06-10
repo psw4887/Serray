@@ -5,10 +5,12 @@ import com.nhnacademy.serrayaccountapi.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
+import java.util.Optional;
+
 public interface UserRepository extends JpaRepository<User, Integer> {
 
     @Query("select u from User u where u.userId = ?1")
-    ForLoginDTO getUserForLogin(String id);
+    Optional<ForLoginDTO> getUserForLogin(String id);
 
     User getUserByUserId(String id);
 
