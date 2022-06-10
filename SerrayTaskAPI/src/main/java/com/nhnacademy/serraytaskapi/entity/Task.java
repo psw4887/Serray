@@ -29,4 +29,12 @@ public class Task {
 
     @Column(name = "task_content")
     private String content;
+
+    public Task(Project project, String id, String title, String content) {
+
+        this.project = project;
+        this.admin = id;
+        this.title = title;
+        this.content = content;
+    }
 }

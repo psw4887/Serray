@@ -11,4 +11,6 @@ public interface TaskRepository extends JpaRepository<Task, Integer> {
 
     @Query("select t from Task t where t.project.projectNo = ?1")
     Page<ProjectDetailTaskDTO> findByProjectNo(Pageable pageable, Integer projectNo);
+
+
 }
