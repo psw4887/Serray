@@ -25,7 +25,4 @@ public class Project {
 
     @Column(name = "project_state")
     private String state;
-
-
-
 }

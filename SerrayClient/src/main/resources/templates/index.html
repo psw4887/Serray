@@ -13,6 +13,8 @@
     <a th:if="${!user.state.toString().equals('휴면')}" th:href="'/user/modify/' + ${user.state} + '?state=휴면'" th:text="휴면">--</a>
     <a th:if="${!user.state.toString().equals('탈퇴')}" th:href="'/user/modify/' + ${user.state} + '?state=탈퇴'" th:text="탈퇴"></a>
     <br />
+    <a th:href="'/project/view?page=0'" th:text="프로젝트 목록"></a>
+    <br />
     <a th:href="'/auth/login'" th:text="로그인"></a>
     <br />
     <a th:href="'/user/join'" th:text="회원가입"></a>

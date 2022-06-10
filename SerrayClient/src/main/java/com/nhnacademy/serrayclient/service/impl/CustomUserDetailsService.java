@@ -1,4 +1,4 @@
-package com.nhnacademy.serrayclient.service.Impl;
+package com.nhnacademy.serrayclient.service.impl;
 
 import com.nhnacademy.serrayclient.data.response.UserInfoResponse;
 import lombok.RequiredArgsConstructor;
@@ -27,7 +27,7 @@ public class CustomUserDetailsService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
-        HttpHeaders httpHeaders = buildHeaders("");
+        HttpHeaders httpHeaders = buildHeaders();
 
         HttpEntity<String> requestEntity = new HttpEntity<>(httpHeaders);
         ResponseEntity<UserInfoResponse> response = restTemplate.exchange("http://localhost:5050/user/get/" + username,
@@ -50,14 +50,11 @@ public class CustomUserDetailsService implements UserDetailsService {
         throw new UsernameNotFoundException(username + "not found");
     }
 
-    private HttpHeaders buildHeaders(String type) {
+    private HttpHeaders buildHeaders() {
 
         HttpHeaders httpHeaders = new HttpHeaders();
         httpHeaders.setContentType(MediaType.APPLICATION_JSON);
-
-        if(type.equals("list")) {
-            httpHeaders.setAccept(List.of(MediaType.APPLICATION_JSON));
-        }
+        httpHeaders.setAccept(List.of(MediaType.APPLICATION_JSON));
 
         return httpHeaders;
     }

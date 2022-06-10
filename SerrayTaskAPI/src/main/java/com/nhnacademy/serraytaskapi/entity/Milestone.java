@@ -12,33 +12,16 @@ import java.time.LocalDate;
 @Table(name = "milestone")
 public class Milestone {
 
-    @EmbeddedId
-    private Milestone.MilestonePK milestonePK;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "mile_no")
+    private Integer mileNo;
 
-    @MapsId("mileTaskNo")
+    @MapsId
     @OneToOne
-    @JoinColumn(name = "mile_task_no")
-    private Task task;
+    @JoinColumn(name = "mile_project_no")
+    private Project project;
 
     @Column(name = "mile_content")
     private String content;
-
-    @Column(name = "mile_start")
-    private LocalDate startDate;
-
-    @Column(name = "mile_end")
-    private LocalDate endDate;
-
-    @Data
-    @Embeddable
-    @EqualsAndHashCode
-    public static class MilestonePK implements Serializable {
-
-        @GeneratedValue(strategy = GenerationType.IDENTITY)
-        @Column(name = "milestone_no")
-        private Integer milestoneNo;
-
-        @Column(name = "mile_task_no")
-        private Integer mileTaskNo;
-    }
 }

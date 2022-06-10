@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Project List</title>
+</head>
+<body>
+<h2 style="text-align: center">[Project List]</h2>
+<div style="text-align: center; display: flex; justify-content: center">
+    <table style="text-align: center; border: 1px solid black">
+        <tr>
+            <th>No</th>
+            <th>Title</th>
+            <th>Admin</th>
+            <th>state</th>
+        </tr>
+        <tr th:each="project : ${lists}">
+            <td th:text="${project.no}"></td>
+            <td><a th:href="'/'" th:text="${project.title}"></a></td>
+            <td th:text="${project.admin}"></td>
+            <td th:text="${project.state}"></td>
+        </tr>
+    </table>
+</div>
+<br />
+<div style="text-align: center">
+    <a th:href="'/board/view?page=' + ${page - 1}" th:if="${page} != 0" th:text="prev"></a>
+    <span th:text="'('+ ${page} + 'page)'"></span>
+    <a th:href="'/board/view?page=' + ${page + 1}" th:if="${isEnd} == 0" th:text="next"></a>
+</div>
+
+<div style="text-align: center">
+    <a th:href="'/board/register'">Post Register</a>
+    <a th:href="'/board/recover?page=0'">Post Recover</a>
+    <a th:href="'/boardLikes'">My Likes</a>
+    <h3><a href="/">Go Home</a></h3>
+</div>
+</body>
+</html>

@@ -1,4 +1,4 @@
-package com.nhnacademy.serrayclient.service.Impl;
+package com.nhnacademy.serrayclient.service.impl;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -23,7 +23,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public UserInfoResponse getUser(String id) {
 
-        HttpHeaders httpHeaders = buildHeaders("");
+        HttpHeaders httpHeaders = buildHeaders();
 
         HttpEntity<String> requestEntity = new HttpEntity<>(httpHeaders);
         ResponseEntity<UserInfoResponse> response = restTemplate.exchange("http://localhost:5050/user/get/" + id,
@@ -38,7 +38,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public void RegisterUser(UserRegisterRequest userRegisterRequest) {
 
-        HttpHeaders httpHeaders = buildHeaders("");
+        HttpHeaders httpHeaders = buildHeaders();
         String request = "";
 
         try {
@@ -57,7 +57,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void modifyUserState(String user, String state) {
-        HttpHeaders httpHeaders = buildHeaders("");
+        HttpHeaders httpHeaders = buildHeaders();
 
         HttpEntity<String> requestEntity = new HttpEntity<>(httpHeaders);
         restTemplate.exchange("http://localhost:5050/user/modify/" + user + "/" + state,
@@ -67,14 +67,11 @@ public class UserServiceImpl implements UserService {
                 });
     }
 
-    private HttpHeaders buildHeaders(String type) {
+    private HttpHeaders buildHeaders() {
 
         HttpHeaders httpHeaders = new HttpHeaders();
         httpHeaders.setContentType(MediaType.APPLICATION_JSON);
-
-        if(type.equals("list")) {
-            httpHeaders.setAccept(List.of(MediaType.APPLICATION_JSON));
-        }
+        httpHeaders.setAccept(List.of(MediaType.APPLICATION_JSON));
 
         return httpHeaders;
     }

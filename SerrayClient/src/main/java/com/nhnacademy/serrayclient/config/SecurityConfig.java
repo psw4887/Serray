@@ -1,6 +1,6 @@
 package com.nhnacademy.serrayclient.config;
 
-import com.nhnacademy.serrayclient.service.Impl.CustomUserDetailsService;
+import com.nhnacademy.serrayclient.service.impl.CustomUserDetailsService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
