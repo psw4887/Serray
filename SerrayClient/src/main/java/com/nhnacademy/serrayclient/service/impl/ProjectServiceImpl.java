@@ -1,6 +1,8 @@
 package com.nhnacademy.serrayclient.service.impl;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.nhnacademy.serrayclient.data.request.PostRegisterRequest;
 import com.nhnacademy.serrayclient.data.response.ProjectForListResponse;
 import com.nhnacademy.serrayclient.service.ProjectService;
 import java.util.List;
@@ -35,6 +37,26 @@ public class ProjectServiceImpl implements ProjectService {
             });
 
         return response.getBody();
+    }
+
+    @Override
+    public void registerProject(PostRegisterRequest postRegisterRequest) {
+
+        HttpHeaders httpHeaders = buildHeaders();
+        String request = "";
+
+        try {
+            request = mapper.writeValueAsString(postRegisterRequest);
+        } catch (JsonProcessingException e) {
+            throw new RuntimeException(e);
+        }
+
+        HttpEntity<String> requestEntity = new HttpEntity<>(request, httpHeaders);
+        restTemplate.exchange("http://localhost:9090/project/register",
+            HttpMethod.POST,
+            requestEntity,
+            new ParameterizedTypeReference<>() {
+            });
     }
 
     private HttpHeaders buildHeaders() {

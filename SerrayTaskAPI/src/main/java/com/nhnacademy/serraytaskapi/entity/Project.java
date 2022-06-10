@@ -3,10 +3,12 @@ package com.nhnacademy.serraytaskapi.entity;
 import lombok.Data;
 
 import javax.persistence.*;
+import lombok.NoArgsConstructor;
 
 @Data
 @Entity
 @Table(name = "project")
+@NoArgsConstructor
 public class Project {
 
     @Id
@@ -25,4 +27,12 @@ public class Project {
 
     @Column(name = "project_state")
     private String state;
+
+    public Project(String id, String title, String content, String state) {
+
+        this.admin = id;
+        this.title = title;
+        this.content = content;
+        this.state = state;
+    }
 }

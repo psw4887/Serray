@@ -9,28 +9,28 @@
 <div style="text-align: center; display: flex; justify-content: center">
     <table style="text-align: center; border: 1px solid black">
         <tr>
-            <th>No</th>
-            <th>Title</th>
-            <th>Admin</th>
-            <th>state</th>
+            <th style="text-align: center; border: 1px solid black">No</th>
+            <th style="text-align: center; border: 1px solid black">Title</th>
+            <th style="text-align: center; border: 1px solid black">Admin</th>
+            <th style="text-align: center; border: 1px solid black">state</th>
         </tr>
         <tr th:each="project : ${lists}">
-            <td th:text="${project.no}"></td>
-            <td><a th:href="'/'" th:text="${project.title}"></a></td>
-            <td th:text="${project.admin}"></td>
-            <td th:text="${project.state}"></td>
+            <td style="text-align: center; border: 1px solid black" th:text="${project.no}"></td>
+            <td style="text-align: center; border: 1px solid black"><a th:href="'/'" th:text="${project.title}"></a></td>
+            <td style="text-align: center; border: 1px solid black" th:text="${project.admin}"></td>
+            <td style="text-align: center; border: 1px solid black" th:text="${project.state}"></td>
         </tr>
     </table>
 </div>
 <br />
 <div style="text-align: center">
-    <a th:href="'/board/view?page=' + ${page - 1}" th:if="${page} != 0" th:text="prev"></a>
+    <a th:href="'/project/view?page=' + ${page - 1}" th:if="${page} != 0" th:text="prev"></a>
     <span th:text="'('+ ${page} + 'page)'"></span>
-    <a th:href="'/board/view?page=' + ${page + 1}" th:if="${isEnd} == 0" th:text="next"></a>
+    <a th:href="'/project/view?page=' + ${page + 1}" th:if="${isEnd} == 0" th:text="next"></a>
 </div>
 
 <div style="text-align: center">
-    <a th:href="'/board/register'">Post Register</a>
+    <a th:href="'/project/register'">Project Register</a>
     <a th:href="'/board/recover?page=0'">Post Recover</a>
     <a th:href="'/boardLikes'">My Likes</a>
     <h3><a href="/">Go Home</a></h3>
