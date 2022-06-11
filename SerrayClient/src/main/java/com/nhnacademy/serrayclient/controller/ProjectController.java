@@ -77,24 +77,15 @@ public class ProjectController {
 
         model.addAttribute("project", project);
         model.addAttribute("projectNo", projectNo);
-
-        List<ProjectForDetailTaskResponse> taskList = project.getTasks();
-        List<ProjectForDetailMemberResponse> memberList = project.getMembers();
-        List<ProjectForDetailTagResponse> tagList = project.getTags();
-        List<ProjectForDetailMileResponse> mileList = project.getMiles();
-        List<UserIdResponse> userList = userService.getUsersForStateOK();
-
-
-        model.addAttribute("lists", taskList);
-        model.addAttribute("members", memberList);
-        model.addAttribute("users", userList);
-        model.addAttribute("tags", tagList);
-        model.addAttribute("miles", mileList);
+        model.addAttribute("lists", project.getTasks());
+        model.addAttribute("members", project.getMembers());
+        model.addAttribute("users", userService.getUsersForStateOK());
+        model.addAttribute("tags", project.getTags());
+        model.addAttribute("miles", project.getMiles());
         model.addAttribute("nowUser", principal.getName());
         model.addAttribute("isEnd", 0);
-
-
-        if(taskList.size() < 6) {
+        
+        if(project.getTasks().size() < 6) {
             model.addAttribute("isEnd", 1);
         }
 

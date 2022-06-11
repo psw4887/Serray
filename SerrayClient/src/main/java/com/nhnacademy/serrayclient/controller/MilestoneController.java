@@ -2,6 +2,7 @@ package com.nhnacademy.serrayclient.controller;
 
 import com.nhnacademy.serrayclient.service.MilestoneService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.security.Principal;
+import java.time.LocalDate;
 
 @Controller
 @RequiredArgsConstructor
@@ -58,5 +60,19 @@ public class MilestoneController {
         service.deleteMilestone(mileNo);
 
         return "redirect:/project/detail/" + projectNo + "?page=0";
+    }
+
+    @PostMapping("/task/register")
+    public String taskMileRegister(@RequestParam("projectNo") Integer projectNo,
+                                  @RequestParam("taskNo") Integer taskNo,
+                                  @RequestParam("mileNo") Integer mileNo,
+                                  @RequestParam("start")
+                                       @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate start,
+                                  @RequestParam("end")
+                                       @DateTimeFormat(pattern = "yyyy-MM-dd")LocalDate end) {
+
+        service.addTaskMile(mileNo, taskNo, start, end);
+
+        return "redirect:/task/detail?taskNo=" + taskNo + "&projectNo=" + projectNo;
     }
 }

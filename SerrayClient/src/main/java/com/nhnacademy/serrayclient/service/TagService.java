@@ -7,4 +7,6 @@ public interface TagService {
     void modifyTag(Integer tagNo, String content);
 
     void deleteTag(Integer tagNo);
+
+    void addTaskTag(Integer taskNo, Integer tagNo);
 }

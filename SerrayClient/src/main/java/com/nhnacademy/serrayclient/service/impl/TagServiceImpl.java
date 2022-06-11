@@ -80,6 +80,18 @@ public class TagServiceImpl implements TagService {
                 Void.class);
     }
 
+    @Override
+    public void addTaskTag(Integer taskNo, Integer tagNo) {
+
+        HttpHeaders httpHeaders = buildHeaders();
+        HttpEntity<String> requestEntity = new HttpEntity<>(httpHeaders);
+        template.exchange(
+                "http://localhost:9090/tag/task/register?taskNo=" + taskNo + "&tagNo=" + tagNo,
+                HttpMethod.POST,
+                requestEntity,
+                Void.class);
+    }
+
     private HttpHeaders buildHeaders() {
 
         HttpHeaders httpHeaders = new HttpHeaders();

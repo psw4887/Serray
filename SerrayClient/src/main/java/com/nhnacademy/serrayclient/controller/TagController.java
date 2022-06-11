@@ -59,4 +59,14 @@ public class TagController {
 
         return "redirect:/project/detail/" + projectNo + "?page=0";
     }
+
+    @PostMapping("/task/register")
+    public String taskTagRegister(@RequestParam("projectNo") Integer projectNo,
+                                  @RequestParam("taskNo") Integer taskNo,
+                                  @RequestParam("tagNo") Integer tagNo) {
+
+        tagService.addTaskTag(taskNo, tagNo);
+
+        return "redirect:/task/detail?taskNo=" + taskNo + "&projectNo=" + projectNo;
+    }
 }

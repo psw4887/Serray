@@ -4,6 +4,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.nhnacademy.serrayclient.data.request.MileModifyRequest;
 import com.nhnacademy.serrayclient.data.request.MileRegisterRequest;
+import com.nhnacademy.serrayclient.data.request.TaskMileRegisterRequest;
 import com.nhnacademy.serrayclient.service.MilestoneService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpEntity;
@@ -13,6 +14,7 @@ import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Service
@@ -73,6 +75,29 @@ public class MilestoneServiceImpl implements MilestoneService {
         template.exchange(
                 "http://localhost:9090/mile/delete?mileNo=" + mileNo,
                 HttpMethod.DELETE,
+                requestEntity,
+                Void.class);
+    }
+
+    @Override
+    public void addTaskMile(Integer mileNo, Integer taskNo, LocalDate start, LocalDate end) {
+
+        TaskMileRegisterRequest registerRequest = new TaskMileRegisterRequest(
+                taskNo, mileNo, start, end
+        );
+        String request = "";
+
+        try {
+            request = mapper.writeValueAsString(registerRequest);
+        } catch (JsonProcessingException e) {
+            throw new RuntimeException(e);
+        }
+
+        HttpHeaders httpHeaders = buildHeaders();
+        HttpEntity<String> requestEntity = new HttpEntity<>(request, httpHeaders);
+        template.exchange(
+                "http://localhost:9090/mile/task/register",
+                HttpMethod.POST,
                 requestEntity,
                 Void.class);
     }

@@ -20,4 +20,12 @@ public class TaskDataResponse {
     private String content;
 
     private List<CommentDataResponse> comments;
+
+    private List<ProjectTagDataResponse> tags;
+
+    private List<ProjectMilestoneDataResponse> miles;
+
+    private List<TagDataResponse> taskTags;
+
+    private MilestoneDataResponse taskMile;
 }

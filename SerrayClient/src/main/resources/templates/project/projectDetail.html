@@ -79,8 +79,6 @@
             <th style="text-align: center; border: 1px solid black">번호</th>
             <th style="text-align: center; border: 1px solid black">제목</th>
             <th style="text-align: center; border: 1px solid black">관리자</th>
-            <th style="text-align: center; border: 1px solid black">태그</th>
-            <th style="text-align: center; border: 1px solid black">마일스톤</th>
             <th style="text-align: center; border: 1px solid black">수정</th>
             <th style="text-align: center; border: 1px solid black">삭제</th>
         </tr>
@@ -89,8 +87,6 @@
             <td style="text-align: center; border: 1px solid black">
                 <a th:href="'/task/detail?taskNo=' + ${task.taskNo} + '&projectNo=' + ${projectNo}" th:text="${task.title}"></a>
             </td>
-            <td style="text-align: center; border: 1px solid black" th:text="${task.admin}"></td>
-            <td style="text-align: center; border: 1px solid black" th:text="${task.admin}"></td>
             <td style="text-align: center; border: 1px solid black" th:text="${task.admin}"></td>
             <td style="text-align: center; border: 1px solid black"><a th:href="'/task/modify?taskNo=' + ${task.taskNo} + '&projectNo=' + ${projectNo}">수정</a></td>
             <td style="text-align: center; border: 1px solid black"><a th:href="'/task/delete?taskNo=' + ${task.taskNo} + '&projectNo=' + ${projectNo}">삭제</a></td>

@@ -10,4 +10,6 @@ public interface TagService {
     void projectTagModify(TagModifyVO vo);
 
     void projectTagDelete(Integer tagNo);
+
+    void TaskTagRegister(Integer taskNo, Integer tagNo);
 }

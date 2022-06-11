@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
+import java.util.Objects;
 
 @Controller
 @RequiredArgsConstructor
@@ -27,6 +28,14 @@ public class TaskController {
         model.addAttribute("projectNo", projectNo);
         model.addAttribute("task", taskDataResponse);
         model.addAttribute("lists", taskDataResponse.getComments());
+        model.addAttribute("projectTags", taskDataResponse.getTags());
+        model.addAttribute("projectMiles",taskDataResponse.getMiles());
+        model.addAttribute("taskTags", taskDataResponse.getTaskTags());
+        model.addAttribute("taskMile", taskDataResponse.getTaskMile());
+
+        if(Objects.isNull(taskDataResponse.getTaskMile())) {
+            model.addAttribute("taskMile", 0);
+        }
 
         return "task/taskDetail";
     }
