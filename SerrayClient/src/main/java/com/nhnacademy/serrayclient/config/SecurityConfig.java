@@ -1,8 +1,10 @@
 package com.nhnacademy.serrayclient.config;
 
+import com.nhnacademy.serrayclient.handler.LoginSuccessHandler;
 import com.nhnacademy.serrayclient.service.impl.CustomUserDetailsService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
@@ -12,6 +14,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 
 @Configuration
 @EnableWebSecurity
@@ -39,7 +42,8 @@ public class SecurityConfig {
                 .usernameParameter("id")
                 .passwordParameter("pw")
                 .loginPage("/auth/login")
-                .loginProcessingUrl("/login");
+                .loginProcessingUrl("/login")
+                .successHandler(loginSuccessHandler(null));
         httpSecurity
                 .logout()
                 .logoutUrl("/logout");
@@ -66,5 +70,10 @@ public class SecurityConfig {
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
+    }
+
+    @Bean
+    public AuthenticationSuccessHandler loginSuccessHandler(RedisTemplate<String, String> redisTemplate) {
+        return new LoginSuccessHandler(redisTemplate);
     }
 }

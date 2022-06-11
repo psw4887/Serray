@@ -48,7 +48,7 @@ MileStone : Project 진척 상황을 나타내는 이정표입니다. Task 에 �
 
 ❤️ gateway 는 사용자의 인증을 담당합니다.
 
-❤️‍🩹 인증 세션은 gateway 서버에서 redis 를 사용하여 관리합니다.
+❤️ 인증 세션은 gateway 서버에서 redis 를 사용하여 관리합니다.
 
 ❤️ 인증 데이터는 Account-Api 를 사용합니다.
 
