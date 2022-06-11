@@ -24,8 +24,7 @@
 
     <details><summary>프로젝트 멤버 추가하기</summary>
         <div th:each="user : ${users}">
-            <span th:if="${#lists.contains(members, user.id)}"></span>
-            <form th:unless="${#lists.contains(members, user.id)}" th:method="post" th:action="'/members/register?projectNo=' + ${projectNo} + '&id=' + ${user.id}">
+            <form th:method="post" th:action="'/members/register?projectNo=' + ${projectNo} + '&id=' + ${user.id}">
                 <span th:text="${user.id}"></span>
                 <input type="submit" value="add">
             </form>
@@ -56,13 +55,13 @@
         <tr th:each="task : ${lists}">
             <td style="text-align: center; border: 1px solid black" th:text="${task.taskNo}"></td>
             <td style="text-align: center; border: 1px solid black">
-                <a th:href="'/project/detail/' + ${task.taskNo}" th:text="${task.title}"></a>
+                <a th:href="'/task/detail?taskNo=' + ${task.taskNo} + '&projectNo=' + ${projectNo}" th:text="${task.title}"></a>
             </td>
             <td style="text-align: center; border: 1px solid black" th:text="${task.admin}"></td>
             <td style="text-align: center; border: 1px solid black" th:text="${task.admin}"></td>
             <td style="text-align: center; border: 1px solid black" th:text="${task.admin}"></td>
-            <td style="text-align: center; border: 1px solid black"><a th:href="'/task/modify?taskNo=' + ${task.taskNo} + '&projectNo=' + ${projectNo}">업무수정</a></td>
-            <td style="text-align: center; border: 1px solid black"><a th:href="'/task/delete?taskNo=' + ${task.taskNo} + '&projectNo=' + ${projectNo}">업무삭제</a></td>
+            <td style="text-align: center; border: 1px solid black"><a th:href="'/task/modify?taskNo=' + ${task.taskNo} + '&projectNo=' + ${projectNo}">수정</a></td>
+            <td style="text-align: center; border: 1px solid black"><a th:href="'/task/delete?taskNo=' + ${task.taskNo} + '&projectNo=' + ${projectNo}">삭제</a></td>
         </tr>
     </table>
 </div>

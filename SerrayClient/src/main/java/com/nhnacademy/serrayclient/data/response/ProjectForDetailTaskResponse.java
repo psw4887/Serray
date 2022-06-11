@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class ProjectForDetailTaskResponse {
 
-    private int taskNo;
+    private Integer taskNo;
 
     private String admin;
 

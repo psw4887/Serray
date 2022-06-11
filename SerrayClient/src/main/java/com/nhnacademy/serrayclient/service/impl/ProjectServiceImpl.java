@@ -79,7 +79,7 @@ public class ProjectServiceImpl implements ProjectService {
         HttpEntity<String> requestEntity = new HttpEntity<>(httpHeaders);
         restTemplate.exchange(
                 "http://localhost:9090/project/state/" + projectNo + "?state=" + state,
-                HttpMethod.GET,
+                HttpMethod.PUT,
                 requestEntity,
                 Void.class);
     }

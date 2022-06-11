@@ -17,7 +17,6 @@ public class Milestone {
     @Column(name = "mile_no")
     private Integer mileNo;
 
-    @MapsId
     @OneToOne
     @JoinColumn(name = "mile_project_no")
     private Project project;

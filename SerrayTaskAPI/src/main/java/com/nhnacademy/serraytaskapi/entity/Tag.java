@@ -21,7 +21,6 @@ public class Tag {
     @Column(name = "tag_no")
     private Integer tagNo;
 
-    @MapsId
     @ManyToOne
     @JoinColumn(name = "tag_project_no")
     private Project project;
