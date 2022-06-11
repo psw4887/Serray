@@ -19,4 +19,6 @@ public class ProjectForDetailResponse {
     private String state;
 
     private List<ProjectForDetailTaskResponse> tasks;
+
+    private List<ProjectForDetailMemberResponse> members;
 }

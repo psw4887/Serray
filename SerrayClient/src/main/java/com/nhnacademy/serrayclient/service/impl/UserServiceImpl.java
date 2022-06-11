@@ -3,7 +3,9 @@ package com.nhnacademy.serrayclient.service.impl;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.nhnacademy.serrayclient.data.request.UserRegisterRequest;
+import com.nhnacademy.serrayclient.data.response.UserIdResponse;
 import com.nhnacademy.serrayclient.data.response.UserInfoResponse;
+import com.nhnacademy.serrayclient.service.ProjectService;
 import com.nhnacademy.serrayclient.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.core.ParameterizedTypeReference;
@@ -19,6 +21,22 @@ public class UserServiceImpl implements UserService {
 
     private final RestTemplate restTemplate;
     private final ObjectMapper mapper;
+
+    @Override
+    public List<UserIdResponse> getUsersForStateOK() {
+        HttpHeaders httpHeaders = buildHeaders();
+
+        HttpEntity<String> requestEntity = new HttpEntity<>(httpHeaders);
+        ResponseEntity<List<UserIdResponse>> response = restTemplate.exchange("http://localhost:5050/user",
+                HttpMethod.GET,
+                requestEntity,
+                new ParameterizedTypeReference<>() {
+                });
+
+
+
+        return response.getBody();
+    }
 
     @Override
     public UserInfoResponse getUser(String id) {
@@ -64,8 +82,7 @@ public class UserServiceImpl implements UserService {
         restTemplate.exchange("http://localhost:5050/user/register",
                 HttpMethod.POST,
                 requestEntity,
-                new ParameterizedTypeReference<>() {
-                });
+                Void.class);
     }
 
     @Override
@@ -76,8 +93,7 @@ public class UserServiceImpl implements UserService {
         restTemplate.exchange("http://localhost:5050/user/modify/" + user + "/" + state,
                 HttpMethod.PUT,
                 requestEntity,
-                new ParameterizedTypeReference<>() {
-                });
+                Void.class);
     }
 
     private HttpHeaders buildHeaders() {

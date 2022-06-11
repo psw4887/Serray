@@ -1,6 +1,8 @@
 package com.nhnacademy.serrayaccountapi.service.impl;
 
 import com.nhnacademy.serrayaccountapi.data.dto.ForLoginDTO;
+import com.nhnacademy.serrayaccountapi.data.dto.OnlyUserIdDTO;
+import com.nhnacademy.serrayaccountapi.data.response.OnlyUserIdResponse;
 import com.nhnacademy.serrayaccountapi.data.response.UserRegisterResponse;
 import com.nhnacademy.serrayaccountapi.data.vo.ForLoginUserVO;
 import com.nhnacademy.serrayaccountapi.entity.User;
@@ -11,6 +13,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 @Service
@@ -18,6 +22,19 @@ import java.util.Objects;
 public class UserServiceImpl implements UserService {
 
     private final UserRepository uRepository;
+
+    @Override
+    public List<OnlyUserIdResponse> getUserListStateOK() {
+
+        List<OnlyUserIdDTO> DTOs = uRepository.getUserIdsByStateIsOK();
+        List<OnlyUserIdResponse> responses = new ArrayList<>();
+
+        for(OnlyUserIdDTO dto : DTOs) {
+            responses.add(new OnlyUserIdResponse(dto.getUserId()));
+        }
+
+        return responses;
+    }
 
     @Transactional
     @Override

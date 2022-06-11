@@ -12,7 +12,26 @@
     <a th:if="${!project.state.toString().equals('활성')}" th:href="'/project/state/' + ${projectNo} + '?state=활성'">활성</a>
     <a th:if="${!project.state.toString().equals('휴면')}" th:href="'/project/state/' + ${projectNo} + '?state=휴면'">휴면</a>
     <a th:if="${!project.state.toString().equals('종료')}" th:href="'/project/state/' + ${projectNo} + '?state=종료'">종료</a>
-    <h4>[프로젝트 관리자]<span th:text="${project.id}"></span></h4>
+    <h4>
+        [프로젝트 관리자]<span th:text="${project.id}"></span>
+    </h4>
+    <details><summary>[프로젝트 멤버]</summary>
+        <div th:each="member : ${members}">
+            <span th:text="${member.id}"></span>
+            <a th:if="${!member.id.toString().equals(project.id)}" th:href="'/members/delete?projectNo=' + ${projectNo} + '&id=' + ${member.id}">멤버삭제</a>
+        </div>
+    </details>
+
+    <details><summary>프로젝트 멤버 추가하기</summary>
+        <div th:each="user : ${users}">
+            <span th:if="${#lists.contains(members, user.id)}"></span>
+            <form th:unless="${#lists.contains(members, user.id)}" th:method="post" th:action="'/members/register?projectNo=' + ${projectNo} + '&id=' + ${user.id}">
+                <span th:text="${user.id}"></span>
+                <input type="submit" value="add">
+            </form>
+        </div>
+    </details>
+
 <h4>[내용]</h4>
 </div>
 <div style="text-align: center; display: flex; justify-content: center">

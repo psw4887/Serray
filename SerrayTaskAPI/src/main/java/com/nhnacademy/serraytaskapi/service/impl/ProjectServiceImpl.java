@@ -1,9 +1,11 @@
 package com.nhnacademy.serraytaskapi.service.impl;
 
+import com.nhnacademy.serraytaskapi.data.dto.OnlyMemberIdDTO;
 import com.nhnacademy.serraytaskapi.data.dto.PageableProjectDTO;
 import com.nhnacademy.serraytaskapi.data.dto.ProjectDetailDTO;
 import com.nhnacademy.serraytaskapi.data.dto.ProjectDetailTaskDTO;
 import com.nhnacademy.serraytaskapi.data.response.PageableProjectResponse;
+import com.nhnacademy.serraytaskapi.data.response.ProjectDetailMemberResponse;
 import com.nhnacademy.serraytaskapi.data.response.ProjectDetailResponse;
 import com.nhnacademy.serraytaskapi.data.response.ProjectDetailTaskResponse;
 import com.nhnacademy.serraytaskapi.data.vo.ProjectRegisterVO;
@@ -69,20 +71,29 @@ public class ProjectServiceImpl implements ProjectService {
     public ProjectDetailResponse getDetailProject(Integer page, Integer projectNo) {
 
         PageRequest pageRequest = PageRequest.of(page, 5);
-
         ProjectDetailDTO dto = pRepository.findByProjectNo(projectNo).orElseThrow(ProjectNotFoundException::new);
+
         List<ProjectDetailTaskDTO> taskDTOs = tRepository.findByProjectNo(pageRequest, projectNo).getContent();
-        List<ProjectDetailTaskResponse> responses = new ArrayList<>();
+        List<OnlyMemberIdDTO> members = mRepository.findByProjectNo(projectNo);
+
+        List<ProjectDetailTaskResponse> tResponses = new ArrayList<>();
+        List<ProjectDetailMemberResponse> mResponses = new ArrayList<>();
+
 
         for (ProjectDetailTaskDTO taskDTO:taskDTOs) {
-            ProjectDetailTaskResponse response = new ProjectDetailTaskResponse(
-                taskDTO.getTaskNo(), taskDTO.getAdmin(), taskDTO.getTitle()
-            );
-            responses.add(response);
+            tResponses.add(new ProjectDetailTaskResponse(
+                    taskDTO.getTaskNo(), taskDTO.getAdmin(), taskDTO.getTitle()
+            ));
+        }
+
+        for (OnlyMemberIdDTO memberDTO:members) {
+            mResponses.add(new ProjectDetailMemberResponse(
+                    memberDTO.getMemberId()
+            ));
         }
 
         return new ProjectDetailResponse(dto.getAdmin(), dto.getTitle(),
-            dto.getContent(), dto.getState(), responses);
+            dto.getContent(), dto.getState(), tResponses, mResponses);
     }
 
     @Transactional

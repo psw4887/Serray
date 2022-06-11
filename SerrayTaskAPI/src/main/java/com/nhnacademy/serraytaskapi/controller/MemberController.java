@@ -1,9 +1,12 @@
 package com.nhnacademy.serraytaskapi.controller;
 
+import com.nhnacademy.serraytaskapi.entity.Member;
 import com.nhnacademy.serraytaskapi.service.MemberService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequiredArgsConstructor

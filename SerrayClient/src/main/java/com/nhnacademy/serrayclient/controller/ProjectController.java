@@ -1,12 +1,12 @@
 package com.nhnacademy.serrayclient.controller;
 
 import com.nhnacademy.serrayclient.data.request.ProjectRegisterRequest;
-import com.nhnacademy.serrayclient.data.response.ProjectForDetailResponse;
-import com.nhnacademy.serrayclient.data.response.ProjectForDetailTaskResponse;
-import com.nhnacademy.serrayclient.data.response.ProjectForListResponse;
+import com.nhnacademy.serrayclient.data.response.*;
 import com.nhnacademy.serrayclient.service.ProjectService;
 import java.security.Principal;
 import java.util.List;
+
+import com.nhnacademy.serrayclient.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class ProjectController {
 
     private final ProjectService service;
+    private final UserService userService;
 
     @GetMapping("/view")
     public String projectListView(@RequestParam("page") Integer page,
@@ -69,16 +70,21 @@ public class ProjectController {
 
         model.addAttribute("project", project);
         model.addAttribute("projectNo", projectNo);
-        List<ProjectForDetailTaskResponse> list = project.getTasks();
-        model.addAttribute("lists", list);
+
+        List<ProjectForDetailTaskResponse> taskList = project.getTasks();
+        List<ProjectForDetailMemberResponse> memberList = project.getMembers();
+        List<UserIdResponse> userList = userService.getUsersForStateOK();
+
+        model.addAttribute("lists", taskList);
+        model.addAttribute("members", memberList);
+        model.addAttribute("users", userList);
         model.addAttribute("isEnd", 0);
 
 
-        if(list.size() < 10) {
+        if(taskList.size() < 10) {
             model.addAttribute("isEnd", 1);
         }
 
-        model.addAttribute("lists", list);
         model.addAttribute("page", page);
 
         return "project/projectDetail";
