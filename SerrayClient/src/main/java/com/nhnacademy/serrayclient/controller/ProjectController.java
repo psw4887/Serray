@@ -34,7 +34,7 @@ public class ProjectController {
 
         model.addAttribute("isEnd", 0);
 
-        if(list.size() < 10) {
+        if(list.size() < 11) {
             model.addAttribute("isEnd", 1);
         }
 
@@ -88,7 +88,7 @@ public class ProjectController {
         model.addAttribute("isEnd", 0);
 
 
-        if(taskList.size() < 10) {
+        if(taskList.size() < 6) {
             model.addAttribute("isEnd", 1);
         }
 

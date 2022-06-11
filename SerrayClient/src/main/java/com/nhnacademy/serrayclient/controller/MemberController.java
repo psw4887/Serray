@@ -1,4 +1,4 @@
-package com.nhnacademy.serrayclient.config;
+package com.nhnacademy.serrayclient.controller;
 
 import com.nhnacademy.serrayclient.service.MemberService;
 import lombok.RequiredArgsConstructor;

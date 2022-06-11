@@ -10,7 +10,8 @@ import org.springframework.data.jpa.repository.Query;
 
 public interface TaskRepository extends JpaRepository<Task, Integer> {
 
-    @Query("select t from Task t where t.project.projectNo = ?1")
+    @Query("select t.taskNo as taskNo, t.admin as admin, t.title as title from Task t " +
+            "where t.project.projectNo = ?1")
     Page<ProjectDetailTaskDTO> findByProjectNo(Pageable pageable, Integer projectNo);
 
     @Query("select t from Task t where t.taskNo = ?1")

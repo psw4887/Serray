@@ -24,4 +24,7 @@ public class Milestone {
 
     @Column(name = "mile_content")
     private String content;
+
+    @Column(name = "mile_admin")
+    private String admin;
 }

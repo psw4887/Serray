@@ -24,9 +24,6 @@ public class TaskTag {
     @JoinColumn(name = "task_no")
     private Task task;
 
-    @Column(name = "task_tag_admin")
-    private String admin;
-
     @Data
     @Embeddable
     @EqualsAndHashCode

@@ -28,4 +28,7 @@ public class Tag {
 
     @Column(name = "tag_content")
     private String content;
+
+    @Column(name = "tag_admin")
+    private String admin;
 }
