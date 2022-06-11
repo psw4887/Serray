@@ -2,6 +2,7 @@ package com.nhnacademy.serrayclient.controller;
 
 import com.nhnacademy.serrayclient.data.request.ProjectRegisterRequest;
 import com.nhnacademy.serrayclient.data.response.*;
+import com.nhnacademy.serrayclient.service.MemberService;
 import com.nhnacademy.serrayclient.service.ProjectService;
 import java.security.Principal;
 import java.util.List;
@@ -21,14 +22,15 @@ import org.springframework.web.bind.annotation.RequestParam;
 @RequiredArgsConstructor
 public class ProjectController {
 
-    private final ProjectService service;
+    private final ProjectService projectService;
     private final UserService userService;
+    private final MemberService memberService;
 
     @GetMapping("/view")
     public String projectListView(@RequestParam("page") Integer page,
                                   Model model) {
 
-        List<ProjectForListResponse> list = service.getProjectList(page);
+        List<ProjectForListResponse> list = projectService.getProjectList(page);
 
         model.addAttribute("isEnd", 0);
 
@@ -56,7 +58,7 @@ public class ProjectController {
         ProjectRegisterRequest
             request = new ProjectRegisterRequest(principal.getName(), title, content);
 
-        service.registerProject(request);
+        projectService.registerProject(request);
 
         return "redirect:/project/view?page=0";
     }
@@ -64,9 +66,14 @@ public class ProjectController {
     @GetMapping("/detail/{projectNo}")
     public String projectDetail(@PathVariable("projectNo") Integer projectNo,
                                 @RequestParam("page") Integer page,
+                                Principal principal,
                                 Model model) {
 
-        ProjectForDetailResponse project = service.detailProject(projectNo, page);
+        if(!memberService.isProjectMember(projectNo, principal.getName())) {
+            return "redirect:/project/view?page=0";
+        }
+
+        ProjectForDetailResponse project = projectService.detailProject(projectNo, page);
 
         model.addAttribute("project", project);
         model.addAttribute("projectNo", projectNo);
@@ -92,9 +99,12 @@ public class ProjectController {
 
     @GetMapping("/state/{projectNo}")
     public String modifyProjectState(@PathVariable("projectNo") Integer projectNo,
-                                     @RequestParam("state") String state) {
+                                     @RequestParam("state") String state,
+                                     Principal principal) {
 
-        service.projectModifyState(projectNo, state);
+        if(memberService.isProjectAdmin(projectNo, principal.getName())) {
+            projectService.projectModifyState(projectNo, state);
+        }
 
         return "redirect:/project/detail/" + projectNo + "?page=0";
     }

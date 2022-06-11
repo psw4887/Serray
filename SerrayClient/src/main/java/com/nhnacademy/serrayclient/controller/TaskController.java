@@ -16,6 +16,21 @@ public class TaskController {
 
     private final TaskService service;
 
+    @GetMapping("/detail")
+    public String taskDetail(@RequestParam("taskNo") Integer taskNo,
+                             @RequestParam("projectNo") Integer projectNo,
+                             Model model) {
+
+        TaskDataResponse taskDataResponse = service.getTaskData(taskNo);
+
+        model.addAttribute("taskNo", taskNo);
+        model.addAttribute("projectNo", projectNo);
+        model.addAttribute("task", taskDataResponse);
+        model.addAttribute("lists", taskDataResponse.getComments());
+
+        return "task/taskDetail";
+    }
+
     @GetMapping("/register")
     public String readyTaskRegister(@RequestParam("projectNo") Integer projectNo,
                                     Model model) {
@@ -59,7 +74,6 @@ public class TaskController {
                              @RequestParam("content") String content) {
 
         service.modifyTask(taskNo, title, content);
-
         return "redirect:/project/detail/" + projectNo + "?page=0";
     }
 
