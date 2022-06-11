@@ -26,4 +26,11 @@ public class Milestone {
 
     @Column(name = "mile_admin")
     private String admin;
+
+    public Milestone(Project project, String content, String admin) {
+
+        this.project = project;
+        this.content = content;
+        this.admin = admin;
+    }
 }

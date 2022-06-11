@@ -85,6 +85,7 @@ public class ProjectController {
         model.addAttribute("lists", taskList);
         model.addAttribute("members", memberList);
         model.addAttribute("users", userList);
+        model.addAttribute("nowUser", principal.getName());
         model.addAttribute("isEnd", 0);
 
 
