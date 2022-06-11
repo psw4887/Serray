@@ -80,11 +80,16 @@ public class ProjectController {
 
         List<ProjectForDetailTaskResponse> taskList = project.getTasks();
         List<ProjectForDetailMemberResponse> memberList = project.getMembers();
+        List<ProjectForDetailTagResponse> tagList = project.getTags();
+        List<ProjectForDetailMileResponse> mileList = project.getMiles();
         List<UserIdResponse> userList = userService.getUsersForStateOK();
+
 
         model.addAttribute("lists", taskList);
         model.addAttribute("members", memberList);
         model.addAttribute("users", userList);
+        model.addAttribute("tags", tagList);
+        model.addAttribute("miles", mileList);
         model.addAttribute("nowUser", principal.getName());
         model.addAttribute("isEnd", 0);
 

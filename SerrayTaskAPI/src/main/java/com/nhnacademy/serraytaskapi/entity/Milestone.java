@@ -2,6 +2,7 @@ package com.nhnacademy.serraytaskapi.entity;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -10,6 +11,7 @@ import java.time.LocalDate;
 @Data
 @Entity
 @Table(name = "milestone")
+@NoArgsConstructor
 public class Milestone {
 
     @Id

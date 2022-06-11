@@ -3,6 +3,7 @@ package com.nhnacademy.serrayclient.controller;
 import com.nhnacademy.serrayclient.service.MilestoneService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -27,6 +28,19 @@ public class MilestoneController {
         return "redirect:/project/detail/" + projectNo + "?page=0";
     }
 
+    @GetMapping("/modify")
+    public String readyTagModify(@RequestParam("projectNo") Integer projectNo,
+                                 @RequestParam("mileNo") Integer mileNo,
+                                 @RequestParam("content") String content,
+                                 Model model) {
+
+        model.addAttribute("projectNo", projectNo);
+        model.addAttribute("mileNo", mileNo);
+        model.addAttribute("content", content);
+
+        return "/milestone/milestoneModify";
+    }
+
     @PostMapping("/modify")
     public String mileModify(@RequestParam("projectNo") Integer projectNo,
                             @RequestParam("mileNo") Integer mileNo,
@@ -37,7 +51,7 @@ public class MilestoneController {
         return "redirect:/project/detail/" + projectNo + "?page=0";
     }
 
-    @PostMapping("/delete")
+    @GetMapping("/delete")
     public String mileDelete(@RequestParam("projectNo") Integer projectNo,
                             @RequestParam("mileNo") Integer mileNo) {
 

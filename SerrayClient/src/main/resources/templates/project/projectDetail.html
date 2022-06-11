@@ -22,7 +22,7 @@
         </div>
     </details>
 
-    <div th:if="${!nowuser.toString().equals(project.id)}">
+    <div th:if="${nowUser.toString().equals(project.id)}">
     <details><summary>프로젝트 멤버 추가하기</summary>
         <div th:each="user : ${users}">
             <form th:method="post" th:action="'/members/register?projectNo=' + ${projectNo} + '&id=' + ${user.id}">
@@ -36,8 +36,8 @@
     <details><summary>[프로젝트 태그]</summary>
         <div th:each="tag : ${tags}">
             <span th:text="${tag.content}"></span>
-            <a th:if="${!nowuser.toString().equals(tag.admin)}" th:href="'/tag/modify?projectNo=' + ${projectNo} + '&id=' + ${member.id}">수정</a>
-            <a th:if="${!nowuser.toString().equals(tag.admin)}" th:href="'/tag/delete?projectNo=' + ${projectNo} + '&id=' + ${member.id}">삭제</a>
+            <a th:if="${nowUser.toString().equals(tag.admin)}" th:href="'/tag/modify?projectNo=' + ${projectNo} + '&tagNo=' + ${tag.tagNo} + '&content=' + ${tag.content}">수정</a>
+            <a th:if="${nowUser.toString().equals(tag.admin)}" th:href="'/tag/delete?projectNo=' + ${projectNo} + '&tagNo=' + ${tag.tagNo}">삭제</a>
         </div>
     </details>
 
@@ -51,13 +51,13 @@
     <details><summary>[프로젝트 마일스톤]</summary>
         <div th:each="mile : ${miles}">
             <span th:text="${mile.content}"></span>
-            <a th:if="${!nowuser.toString().equals(mile.admin)}" th:href="'/mile/modify?projectNo=' + ${projectNo} + '&id=' + ${member.id}">수정</a>
-            <a th:if="${!nowuser.toString().equals(mile.admin)}" th:href="'/mile/delete?projectNo=' + ${projectNo} + '&id=' + ${member.id}">삭제</a>
+            <a th:if="${nowUser.toString().equals(mile.admin)}" th:href="'/mile/modify?projectNo=' + ${projectNo} + '&mileNo=' + ${mile.mileNo} + '&content=' + ${mile.content}">수정</a>
+            <a th:if="${nowUser.toString().equals(mile.admin)}" th:href="'/mile/delete?projectNo=' + ${projectNo} + '&mileNo=' + ${mile.mileNo}">삭제</a>
         </div>
     </details>
 
     <details><summary>프로젝트 마일스톤 추가하기</summary>
-        <form th:method="post" th:action="'/mile/ragister?projectNo=' + ${projectNo}'">
+        <form th:method="post" th:action="'/mile/register?projectNo=' + ${projectNo}">
             <input type="text" name="content">
             <input type="submit" value="add">
         </form>

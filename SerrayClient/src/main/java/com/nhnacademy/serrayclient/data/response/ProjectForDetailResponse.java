@@ -21,4 +21,8 @@ public class ProjectForDetailResponse {
     private List<ProjectForDetailTaskResponse> tasks;
 
     private List<ProjectForDetailMemberResponse> members;
+
+    private List<ProjectForDetailTagResponse> tags;
+
+    private List<ProjectForDetailMileResponse> miles;
 }

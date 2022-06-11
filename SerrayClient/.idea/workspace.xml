@@ -5,24 +5,36 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="aa1d0562-46bb-4c3c-9ee5-e45f43ba48c7" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/../SerrayTaskAPI/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../SerrayAccountAPI/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../SerrayAccountAPI/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/nhnacademy/serrayclient/controller/MilestoneController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/nhnacademy/serrayclient/controller/MilestoneController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/nhnacademy/serrayclient/controller/ProjectController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/nhnacademy/serrayclient/controller/ProjectController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/nhnacademy/serrayclient/service/impl/MilestoneServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/nhnacademy/serrayclient/service/impl/MilestoneServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/nhnacademy/serrayclient/service/impl/TagServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/nhnacademy/serrayclient/service/impl/TagServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/nhnacademy/serrayclient/controller/TagController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/nhnacademy/serrayclient/controller/TagController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/nhnacademy/serrayclient/data/response/ProjectForDetailResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/nhnacademy/serrayclient/data/response/ProjectForDetailResponse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/comment/commentModify.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/comment/commentModify.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/templates/project/projectDetail.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/project/projectDetail.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/nhnacademy/serrayclient/controller/MilestoneController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/nhnacademy/serrayclient/controller/MilestoneController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/nhnacademy/serrayclient/controller/ProjectController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/nhnacademy/serrayclient/controller/ProjectController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/nhnacademy/serrayclient/controller/TagController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/nhnacademy/serrayclient/controller/TagController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/nhnacademy/serrayclient/service/MilestoneService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/nhnacademy/serrayclient/service/MilestoneService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/nhnacademy/serrayclient/service/TagService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/nhnacademy/serrayclient/service/TagService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/nhnacademy/serrayclient/data/response/ProjectForDetailResponse.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/nhnacademy/serrayclient/data/response/ProjectForDetailResponse.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/comment/commentModify.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/comment/commentModify.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/templates/project/projectDetail.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/project/projectDetail.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../SerrayTaskAPI/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../SerrayTaskAPI/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SerrayTaskAPI/src/main/java/com/nhnacademy/serraytaskapi/data/response/ProjectDetailResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/../SerrayTaskAPI/src/main/java/com/nhnacademy/serraytaskapi/data/response/ProjectDetailResponse.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../SerrayTaskAPI/src/main/java/com/nhnacademy/serraytaskapi/entity/Milestone.java" beforeDir="false" afterPath="$PROJECT_DIR$/../SerrayTaskAPI/src/main/java/com/nhnacademy/serraytaskapi/entity/Milestone.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../SerrayTaskAPI/src/main/java/com/nhnacademy/serraytaskapi/entity/Tag.java" beforeDir="false" afterPath="$PROJECT_DIR$/../SerrayTaskAPI/src/main/java/com/nhnacademy/serraytaskapi/entity/Tag.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SerrayTaskAPI/target/classes/com/nhnacademy/serraytaskapi/controller/ProjectController.class" beforeDir="false" afterPath="$PROJECT_DIR$/../SerrayTaskAPI/target/classes/com/nhnacademy/serraytaskapi/controller/ProjectController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SerrayTaskAPI/src/main/java/com/nhnacademy/serraytaskapi/repository/MilestoneRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/../SerrayTaskAPI/src/main/java/com/nhnacademy/serraytaskapi/repository/MilestoneRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SerrayTaskAPI/src/main/java/com/nhnacademy/serraytaskapi/repository/TagRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/../SerrayTaskAPI/src/main/java/com/nhnacademy/serraytaskapi/repository/TagRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SerrayTaskAPI/src/main/java/com/nhnacademy/serraytaskapi/service/impl/ProjectServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/../SerrayTaskAPI/src/main/java/com/nhnacademy/serraytaskapi/service/impl/ProjectServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SerrayTaskAPI/target/classes/com/nhnacademy/serraytaskapi/controller/MilestoneController.class" beforeDir="false" afterPath="$PROJECT_DIR$/../SerrayTaskAPI/target/classes/com/nhnacademy/serraytaskapi/controller/MilestoneController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SerrayTaskAPI/target/classes/com/nhnacademy/serraytaskapi/data/response/ProjectDetailResponse.class" beforeDir="false" afterPath="$PROJECT_DIR$/../SerrayTaskAPI/target/classes/com/nhnacademy/serraytaskapi/data/response/ProjectDetailResponse.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SerrayTaskAPI/target/classes/com/nhnacademy/serraytaskapi/entity/Milestone.class" beforeDir="false" afterPath="$PROJECT_DIR$/../SerrayTaskAPI/target/classes/com/nhnacademy/serraytaskapi/entity/Milestone.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../SerrayTaskAPI/target/classes/com/nhnacademy/serraytaskapi/entity/Tag.class" beforeDir="false" afterPath="$PROJECT_DIR$/../SerrayTaskAPI/target/classes/com/nhnacademy/serraytaskapi/entity/Tag.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SerrayTaskAPI/target/classes/com/nhnacademy/serraytaskapi/repository/MilestoneRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/../SerrayTaskAPI/target/classes/com/nhnacademy/serraytaskapi/repository/MilestoneRepository.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SerrayTaskAPI/target/classes/com/nhnacademy/serraytaskapi/repository/TagRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/../SerrayTaskAPI/target/classes/com/nhnacademy/serraytaskapi/repository/TagRepository.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SerrayTaskAPI/target/classes/com/nhnacademy/serraytaskapi/service/impl/MilestoneServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/../SerrayTaskAPI/target/classes/com/nhnacademy/serraytaskapi/service/impl/MilestoneServiceImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SerrayTaskAPI/target/classes/com/nhnacademy/serraytaskapi/service/impl/ProjectServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/../SerrayTaskAPI/target/classes/com/nhnacademy/serraytaskapi/service/impl/ProjectServiceImpl.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -33,6 +45,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Class" />
+        <option value="HTML File" />
       </list>
     </option>
   </component>
@@ -58,17 +71,28 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "DefaultHtmlFileTemplate": "HTML File",
     "RequestMappingsPanelOrder0": "0",
     "RequestMappingsPanelOrder1": "1",
     "RequestMappingsPanelWidth0": "75",
     "RequestMappingsPanelWidth1": "75",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false"
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "E:/fork/Serray/SerrayClient/src/main/java/com/nhnacademy/serrayclient/data/response"
   }
 }]]></component>
   <component name="ReactorSettings">
     <option name="notificationShown" value="true" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\fork\Serray\SerrayClient\src\main\java\com\nhnacademy\serrayclient\data\response" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="E:\fork\Serray\SerrayClient\src\main\resources\templates\milestone" />
+    </key>
   </component>
   <component name="RunManager">
     <configuration name="SerrayClientApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
@@ -87,11 +111,22 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1654933728940</updated>
-      <workItem from="1654933730154" duration="8289000" />
+      <workItem from="1654933730154" duration="11458000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
 </project>

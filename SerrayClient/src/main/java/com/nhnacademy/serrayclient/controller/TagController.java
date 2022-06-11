@@ -3,6 +3,7 @@ package com.nhnacademy.serrayclient.controller;
 import com.nhnacademy.serrayclient.service.TagService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -27,6 +28,19 @@ public class TagController {
         return "redirect:/project/detail/" + projectNo + "?page=0";
     }
 
+    @GetMapping("/modify")
+    public String readyTagModify(@RequestParam("projectNo") Integer projectNo,
+                                 @RequestParam("tagNo") Integer tagNo,
+                                 @RequestParam("content") String content,
+                                 Model model) {
+
+        model.addAttribute("projectNo", projectNo);
+        model.addAttribute("tagNo", tagNo);
+        model.addAttribute("content", content);
+
+        return "tag/tagModify";
+    }
+
     @PostMapping("/modify")
     public String tagModify(@RequestParam("projectNo") Integer projectNo,
                             @RequestParam("tagNo") Integer tagNo,
@@ -37,7 +51,7 @@ public class TagController {
         return "redirect:/project/detail/" + projectNo + "?page=0";
     }
 
-    @PostMapping("/delete")
+    @GetMapping("/delete")
     public String tagDelete(@RequestParam("projectNo") Integer projectNo,
                             @RequestParam("tagNo") Integer tagNo) {
 
