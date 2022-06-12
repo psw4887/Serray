@@ -54,6 +54,8 @@ public class MilestoneServiceImpl implements MilestoneService {
     @Override
     public void projectMileDelete(Integer mileNo) {
 
+        taskMileRepository.deleteByMileNo(mileNo);
+
         mileRepository.deleteById(mileNo);
     }
 

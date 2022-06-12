@@ -4,7 +4,25 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="67b4c4cd-e27d-4aa6-8ff0-498c96d92cf6" name="Changes" comment="" />
+    <list default="true" id="67b4c4cd-e27d-4aa6-8ff0-498c96d92cf6" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/checkstyle-idea.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SerrayAccountAPI/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../SerrayAccountAPI/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SerrayAccountAPI/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../SerrayAccountAPI/.idea/encodings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SerrayClient.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SerrayTaskAPI/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../SerrayTaskAPI/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SerrayTaskAPI/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../SerrayTaskAPI/.idea/encodings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SerrayTaskAPI/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../SerrayTaskAPI/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SerrayTaskAPI/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../SerrayTaskAPI/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SerrayTaskAPI/src/main/java/com/nhnacademy/serraytaskapi/repository/CommentRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/../SerrayTaskAPI/src/main/java/com/nhnacademy/serraytaskapi/repository/CommentRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SerrayTaskAPI/src/main/java/com/nhnacademy/serraytaskapi/repository/TaskMilestoneRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/../SerrayTaskAPI/src/main/java/com/nhnacademy/serraytaskapi/repository/TaskMilestoneRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SerrayTaskAPI/src/main/java/com/nhnacademy/serraytaskapi/repository/TaskTagRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/../SerrayTaskAPI/src/main/java/com/nhnacademy/serraytaskapi/repository/TaskTagRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SerrayTaskAPI/src/main/java/com/nhnacademy/serraytaskapi/service/impl/MilestoneServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/../SerrayTaskAPI/src/main/java/com/nhnacademy/serraytaskapi/service/impl/MilestoneServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SerrayTaskAPI/src/main/java/com/nhnacademy/serraytaskapi/service/impl/TagServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/../SerrayTaskAPI/src/main/java/com/nhnacademy/serraytaskapi/service/impl/TagServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SerrayTaskAPI/src/main/java/com/nhnacademy/serraytaskapi/service/impl/TaskServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/../SerrayTaskAPI/src/main/java/com/nhnacademy/serraytaskapi/service/impl/TaskServiceImpl.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -52,12 +70,14 @@
     "RequestMappingsPanelWidth1": "75",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "D:/frok_file/Serray/SerrayClient/src/main/java/com/nhnacademy/serrayclient/controller",
+    "last_opened_file_path": "D:/frok_file/Serray/SerrayClient",
     "nodejs_package_manager_path": "npm",
     "project.structure.last.edited": "Project",
     "project.structure.proportion": "0.0",
     "project.structure.side.proportion": "0.0",
+    "settings.editor.selected.configurable": "File.Encoding",
     "spring.configuration.checksum": "07fb80c4fda60d1d91d6d1a77082830c"
   }
 }]]></component>
@@ -96,7 +116,8 @@
       <workItem from="1654821113757" duration="22139000" />
       <workItem from="1654849974058" duration="4071000" />
       <workItem from="1654867961942" duration="430000" />
-      <workItem from="1655000207309" duration="799000" />
+      <workItem from="1655000207309" duration="992000" />
+      <workItem from="1655004028425" duration="1308000" />
     </task>
     <servers />
   </component>

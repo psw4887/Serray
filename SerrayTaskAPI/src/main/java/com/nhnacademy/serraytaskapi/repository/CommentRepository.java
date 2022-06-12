@@ -24,4 +24,8 @@ public interface CommentRepository extends JpaRepository<Comment, Comment.Commen
 
     @Query("select c from Comment c where c.commentPK.commentNo = ?1")
     Optional<Comment> selectCommentByCommentNo(Integer commentNo);
+
+    @Modifying
+    @Query("delete from Comment c where c.task.taskNo = ?1")
+    void deleteByTaskNo(Integer taskNo);
 }

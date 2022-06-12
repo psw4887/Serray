@@ -5,7 +5,23 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e9a89457-7fa6-47f9-b15a-534505949467" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/SerrayTaskAPI.iml" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SerrayClient/.idea/checkstyle-idea.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SerrayClient/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SerrayAccountAPI/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../SerrayAccountAPI/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SerrayAccountAPI/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../SerrayAccountAPI/.idea/encodings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SerrayClient/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../SerrayClient/.idea/encodings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SerrayClient/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../SerrayClient/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SerrayClient/SerrayClient.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/nhnacademy/serraytaskapi/repository/CommentRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/nhnacademy/serraytaskapi/repository/CommentRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/nhnacademy/serraytaskapi/repository/TaskMilestoneRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/nhnacademy/serraytaskapi/repository/TaskMilestoneRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/nhnacademy/serraytaskapi/repository/TaskTagRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/nhnacademy/serraytaskapi/repository/TaskTagRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/nhnacademy/serraytaskapi/service/impl/MilestoneServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/nhnacademy/serraytaskapi/service/impl/MilestoneServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/nhnacademy/serraytaskapi/service/impl/TagServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/nhnacademy/serraytaskapi/service/impl/TagServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/nhnacademy/serraytaskapi/service/impl/TaskServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/nhnacademy/serraytaskapi/service/impl/TaskServiceImpl.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -50,7 +66,11 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "D:/frok_file/Serray/SerrayTaskAPI",
+    "last_opened_file_path": "D:/frok_file/Serray/SerrayClient",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.0",
+    "settings.editor.selected.configurable": "File.Encoding",
     "spring.configuration.checksum": "4f780d3761609d5967807ec6e8416a8a"
   }
 }]]></component>
@@ -73,7 +93,7 @@
       <updated>1654753848711</updated>
       <workItem from="1654753850358" duration="269000" />
       <workItem from="1654821172926" duration="16319000" />
-      <workItem from="1655000347901" duration="701000" />
+      <workItem from="1655000347901" duration="2566000" />
     </task>
     <servers />
   </component>

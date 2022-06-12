@@ -65,7 +65,7 @@ public class TaskServiceImpl implements TaskService {
 
         MilestoneDataResponse mileResponse = null;
 
-        if(taskMilestoneRepository.existsByTask(task)) {
+        if(Boolean.TRUE.equals(taskMilestoneRepository.existsByTask(task))) {
             TaskMileDTO taskMileDTO = taskMilestoneRepository.findTaskMile(taskNo);
             mileResponse = new MilestoneDataResponse(
                     taskMileDTO.getMileNo(), taskMileDTO.getContent(), taskMileDTO.getStart(), taskMileDTO.getEnd());
@@ -103,6 +103,9 @@ public class TaskServiceImpl implements TaskService {
     @Override
     public void deleteTask(Integer taskNo) {
 
+        cRepository.deleteByTaskNo(taskNo);
+        taskTagRepository.deleteByTaskNo(taskNo);
+        taskMilestoneRepository.deleteByTaskNo(taskNo);
         tRepository.deleteById(taskNo);
     }
 }
