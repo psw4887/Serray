@@ -33,6 +33,7 @@ public class TagController {
         service.projectTagDelete(tagNo);
     }
 
+    @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("/task/register")
     public void addTaskTag(@RequestParam("taskNo") Integer taskNo,
                         @RequestParam("tagNo") Integer tagNo) {
