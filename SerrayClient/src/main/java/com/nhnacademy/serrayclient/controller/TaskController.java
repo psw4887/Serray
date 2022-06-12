@@ -1,10 +1,15 @@
 package com.nhnacademy.serrayclient.controller;
 
 import com.nhnacademy.serrayclient.data.response.TaskDataResponse;
+import com.nhnacademy.serrayclient.data.vo.TaskForm;
+import com.nhnacademy.serrayclient.exception.ValidException;
 import com.nhnacademy.serrayclient.service.TaskService;
+import javax.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.hibernate.validator.constraints.Length;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
@@ -50,11 +55,15 @@ public class TaskController {
 
     @PostMapping("/register")
     public String taskRegister(@RequestParam("projectNo") Integer projectNo,
-                               @RequestParam("title") String title,
-                               @RequestParam("content") String content,
+                               @ModelAttribute @Valid TaskForm taskForm,
+                               BindingResult bindingResult,
                                Principal principal) {
 
-        service.registerTask(projectNo, principal.getName(), title, content);
+        if(bindingResult.hasErrors()) {
+            throw new ValidException(bindingResult);
+        }
+
+        service.registerTask(projectNo, principal.getName(), taskForm.getTitle(), taskForm.getContent());
         return "redirect:/project/detail/" + projectNo + "?page=0";
     }
 
@@ -79,10 +88,14 @@ public class TaskController {
     @PostMapping("/modify")
     public String TaskModify(@RequestParam("projectNo") Integer projectNo,
                              @RequestParam("taskNo") Integer taskNo,
-                             @RequestParam("title") String title,
-                             @RequestParam("content") String content) {
+                             @ModelAttribute @Valid TaskForm taskForm,
+                             BindingResult bindingResult) {
 
-        service.modifyTask(taskNo, title, content);
+        if(bindingResult.hasErrors()) {
+            throw new ValidException(bindingResult);
+        }
+
+        service.modifyTask(taskNo, taskForm.getTitle(), taskForm.getTitle());
         return "redirect:/project/detail/" + projectNo + "?page=0";
     }
 

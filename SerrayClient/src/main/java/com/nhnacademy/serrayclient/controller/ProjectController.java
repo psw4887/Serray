@@ -2,16 +2,22 @@ package com.nhnacademy.serrayclient.controller;
 
 import com.nhnacademy.serrayclient.data.request.ProjectRegisterRequest;
 import com.nhnacademy.serrayclient.data.response.*;
+import com.nhnacademy.serrayclient.data.vo.ProjectForm;
+import com.nhnacademy.serrayclient.exception.ValidException;
 import com.nhnacademy.serrayclient.service.MemberService;
 import com.nhnacademy.serrayclient.service.ProjectService;
 import java.security.Principal;
 import java.util.List;
 
 import com.nhnacademy.serrayclient.service.UserService;
+import javax.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.hibernate.validator.constraints.Length;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -51,12 +57,16 @@ public class ProjectController {
     }
 
     @PostMapping("/register")
-    public String projectRegister(@RequestParam("title") String title,
-                                  @RequestParam("content") String content,
+    public String projectRegister(@ModelAttribute @Valid ProjectForm form,
+                                  BindingResult bindingResult,
                                   Principal principal) {
 
+        if(bindingResult.hasErrors()) {
+            throw new ValidException(bindingResult);
+        }
+
         ProjectRegisterRequest
-            request = new ProjectRegisterRequest(principal.getName(), title, content);
+            request = new ProjectRegisterRequest(principal.getName(), form.getTitle(), form.getContent());
 
         projectService.registerProject(request);
 

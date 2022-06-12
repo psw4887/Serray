@@ -3,9 +3,12 @@ package com.nhnacademy.serraytaskapi.controller;
 import com.nhnacademy.serraytaskapi.data.vo.MileModifyVO;
 import com.nhnacademy.serraytaskapi.data.vo.MileRegisterVO;
 import com.nhnacademy.serraytaskapi.data.vo.TaskMileRegisterVO;
+import com.nhnacademy.serraytaskapi.exception.ValidException;
 import com.nhnacademy.serraytaskapi.service.MilestoneService;
+import javax.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -17,13 +20,23 @@ public class MilestoneController {
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("/register")
-    public void registerProjectMile(@RequestBody MileRegisterVO vo) {
+    public void registerProjectMile(@RequestBody @Valid MileRegisterVO vo,
+                                    BindingResult bindingResult) {
+
+        if(bindingResult.hasErrors()) {
+            throw new ValidException(bindingResult);
+        }
 
         service.projectMileRegister(vo);
     }
 
     @PutMapping("/modify")
-    public void modifyProjectMile(@RequestBody MileModifyVO vo) {
+    public void modifyProjectMile(@RequestBody @Valid MileModifyVO vo,
+                                  BindingResult bindingResult) {
+
+        if(bindingResult.hasErrors()) {
+            throw new ValidException(bindingResult);
+        }
 
         service.projectMileModify(vo);
     }
@@ -35,7 +48,12 @@ public class MilestoneController {
     }
 
     @PostMapping("/task/register")
-    public void addTaskMile(@RequestBody TaskMileRegisterVO vo) {
+    public void addTaskMile(@RequestBody @Valid TaskMileRegisterVO vo,
+                            BindingResult bindingResult) {
+
+        if(bindingResult.hasErrors()) {
+            throw new ValidException(bindingResult);
+        }
 
         service.taskMileRegister(vo);
     }

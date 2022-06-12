@@ -55,6 +55,9 @@ public class SecurityConfig {
                 .sameOrigin();
         httpSecurity
                 .authenticationProvider(authenticationProvider(null));
+        httpSecurity
+                .exceptionHandling()
+                .accessDeniedPage("/error/403");
 
         return httpSecurity.build();
     }

@@ -1,11 +1,19 @@
 package com.nhnacademy.serrayclient.controller;
 
+import com.nhnacademy.serrayclient.data.vo.DateForm;
+import com.nhnacademy.serrayclient.data.vo.MileForm;
+import com.nhnacademy.serrayclient.exception.ValidException;
 import com.nhnacademy.serrayclient.service.MilestoneService;
+import javax.validation.Valid;
+import javax.validation.constraints.Min;
 import lombok.RequiredArgsConstructor;
+import org.hibernate.validator.constraints.Length;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -22,16 +30,21 @@ public class MilestoneController {
 
     @PostMapping("/register")
     public String mileRegister(@RequestParam("projectNo") Integer projectNo,
-                              @RequestParam("content") String content,
-                              Principal principal) {
+                               @ModelAttribute @Valid MileForm mileForm,
+                               BindingResult bindingResult,
+                               Principal principal) {
 
-        service.registerMilestone(projectNo, content, principal.getName());
+        if(bindingResult.hasErrors()) {
+            throw new ValidException(bindingResult);
+        }
+
+        service.registerMilestone(projectNo, mileForm.getContent(), principal.getName());
 
         return "redirect:/project/detail/" + projectNo + "?page=0";
     }
 
     @GetMapping("/modify")
-    public String readyTagModify(@RequestParam("projectNo") Integer projectNo,
+    public String readyMileModify(@RequestParam("projectNo") Integer projectNo,
                                  @RequestParam("mileNo") Integer mileNo,
                                  @RequestParam("content") String content,
                                  Model model) {
@@ -45,10 +58,15 @@ public class MilestoneController {
 
     @PostMapping("/modify")
     public String mileModify(@RequestParam("projectNo") Integer projectNo,
-                            @RequestParam("mileNo") Integer mileNo,
-                            @RequestParam("content") String content) {
+                             @RequestParam("mileNo") Integer mileNo,
+                             @ModelAttribute @Valid MileForm mileForm,
+                             BindingResult bindingResult) {
 
-        service.modifyMilestone(mileNo, content);
+        if(bindingResult.hasErrors()) {
+            throw new ValidException(bindingResult);
+        }
+
+        service.modifyMilestone(mileNo, mileForm.getContent());
 
         return "redirect:/project/detail/" + projectNo + "?page=0";
     }
@@ -64,14 +82,16 @@ public class MilestoneController {
 
     @PostMapping("/task/register")
     public String taskMileRegister(@RequestParam("projectNo") Integer projectNo,
-                                  @RequestParam("taskNo") Integer taskNo,
-                                  @RequestParam("mileNo") Integer mileNo,
-                                  @RequestParam("start")
-                                       @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate start,
-                                  @RequestParam("end")
-                                       @DateTimeFormat(pattern = "yyyy-MM-dd")LocalDate end) {
+                                   @RequestParam("taskNo") Integer taskNo,
+                                   @RequestParam("mileNo") Integer mileNo,
+                                   @ModelAttribute @Valid DateForm dateForm,
+                                   BindingResult bindingResult) {
 
-        service.addTaskMile(mileNo, taskNo, start, end);
+        if(bindingResult.hasErrors()) {
+            throw new ValidException(bindingResult);
+        }
+
+        service.addTaskMile(mileNo, taskNo, dateForm.getStart(), dateForm.getEnd());
 
         return "redirect:/task/detail?taskNo=" + taskNo + "&projectNo=" + projectNo;
     }

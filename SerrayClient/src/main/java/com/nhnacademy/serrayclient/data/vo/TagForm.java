@@ -1,4 +1,4 @@
-package com.nhnacademy.serraytaskapi.data.vo;
+package com.nhnacademy.serrayclient.data.vo;
 
 import javax.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
@@ -7,11 +7,9 @@ import org.hibernate.validator.constraints.Length;
 
 @Getter
 @AllArgsConstructor
-public class CommentModifyVO {
-
-    private Integer commentNo;
+public class TagForm {
 
     @NotBlank(message = "내용은 공백일 수 없습니다.")
-    @Length(min=1, max=10, message = "내용은 1~50글자 사이여야합니다.")
+    @Length(min=1, max=10, message = "내용은 1~10글자 사이여야합니다.")
     private String content;
 }

@@ -2,9 +2,12 @@ package com.nhnacademy.serraytaskapi.controller;
 
 import com.nhnacademy.serraytaskapi.data.vo.CommentModifyVO;
 import com.nhnacademy.serraytaskapi.data.vo.CommentRegisterVO;
+import com.nhnacademy.serraytaskapi.exception.ValidException;
 import com.nhnacademy.serraytaskapi.service.CommentService;
+import javax.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -22,13 +25,23 @@ public class CommentController {
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("/register")
-    void commentRegister(@RequestBody CommentRegisterVO vo) {
+    void commentRegister(@RequestBody @Valid CommentRegisterVO vo,
+                         BindingResult bindingResult) {
+
+        if(bindingResult.hasErrors()) {
+            throw new ValidException(bindingResult);
+        }
 
         service.registerComment(vo);
     }
 
     @PutMapping("/modify")
-    void commentModify(@RequestBody CommentModifyVO vo) {
+    void commentModify(@RequestBody @Valid CommentModifyVO vo,
+                       BindingResult bindingResult) {
+
+        if(bindingResult.hasErrors()) {
+            throw new ValidException(bindingResult);
+        }
 
         service.modifyComment(vo);
     }

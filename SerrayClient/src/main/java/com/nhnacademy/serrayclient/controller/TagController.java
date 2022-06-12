@@ -1,10 +1,16 @@
 package com.nhnacademy.serrayclient.controller;
 
+import com.nhnacademy.serrayclient.data.vo.TagForm;
+import com.nhnacademy.serrayclient.exception.ValidException;
 import com.nhnacademy.serrayclient.service.TagService;
+import javax.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.hibernate.validator.constraints.Length;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -20,10 +26,15 @@ public class TagController {
 
     @PostMapping("/register")
     public String tagRegister(@RequestParam("projectNo") Integer projectNo,
-                              @RequestParam("content") String content,
+                              @ModelAttribute @Valid TagForm tagForm,
+                              BindingResult bindingResult,
                               Principal principal) {
 
-        tagService.registerTag(projectNo, content, principal.getName());
+        if(bindingResult.hasErrors()) {
+            throw new ValidException(bindingResult);
+        }
+
+        tagService.registerTag(projectNo, tagForm.getContent(), principal.getName());
 
         return "redirect:/project/detail/" + projectNo + "?page=0";
     }
@@ -44,9 +55,14 @@ public class TagController {
     @PostMapping("/modify")
     public String tagModify(@RequestParam("projectNo") Integer projectNo,
                             @RequestParam("tagNo") Integer tagNo,
-                            @RequestParam("content") String content) {
+                            @ModelAttribute @Valid TagForm tagForm,
+                            BindingResult bindingResult) {
 
-        tagService.modifyTag(tagNo, content);
+        if(bindingResult.hasErrors()) {
+            throw new ValidException(bindingResult);
+        }
+
+        tagService.modifyTag(tagNo, tagForm.getContent());
 
         return "redirect:/project/detail/" + projectNo + "?page=0";
     }

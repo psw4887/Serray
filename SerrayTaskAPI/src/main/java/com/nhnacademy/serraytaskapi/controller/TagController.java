@@ -2,9 +2,12 @@ package com.nhnacademy.serraytaskapi.controller;
 
 import com.nhnacademy.serraytaskapi.data.vo.TagModifyVO;
 import com.nhnacademy.serraytaskapi.data.vo.TagRegisterVO;
+import com.nhnacademy.serraytaskapi.exception.ValidException;
 import com.nhnacademy.serraytaskapi.service.TagService;
+import javax.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -16,13 +19,23 @@ public class TagController {
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("/register")
-    public void registerProjectTag(@RequestBody TagRegisterVO vo) {
+    public void registerProjectTag(@RequestBody @Valid TagRegisterVO vo,
+                                   BindingResult bindingResult) {
+
+        if(bindingResult.hasErrors()) {
+            throw new ValidException(bindingResult);
+        }
 
         service.projectTagRegister(vo);
     }
 
     @PutMapping("/modify")
-    public void modifyProjectTag(@RequestBody TagModifyVO vo) {
+    public void modifyProjectTag(@RequestBody @Valid TagModifyVO vo,
+                                 BindingResult bindingResult) {
+
+        if(bindingResult.hasErrors()) {
+            throw new ValidException(bindingResult);
+        }
 
         service.projectTagModify(vo);
     }
