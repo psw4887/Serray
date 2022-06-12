@@ -35,7 +35,8 @@ public class SecurityConfig {
         httpSecurity
                 .authorizeRequests()
                 .antMatchers("/", "/index", "/login", "/join").permitAll()
-                .antMatchers("/project/*", "/logout").authenticated()
+                .antMatchers("/project/*", "/logout", "/members/*", "/comment/*"
+                , "/mile/*", "/tag/*", "/task/*").authenticated()
                 .anyRequest().permitAll();
         httpSecurity
                 .formLogin()
