@@ -26,10 +26,10 @@ public class UserServiceImpl implements UserService {
     @Override
     public List<OnlyUserIdResponse> getUserListStateOK() {
 
-        List<OnlyUserIdDTO> DTOs = uRepository.getUserIdsByStateIsOK();
+        List<OnlyUserIdDTO> dtoS = uRepository.getUserIdsByStateIsOK();
         List<OnlyUserIdResponse> responses = new ArrayList<>();
 
-        for(OnlyUserIdDTO dto : DTOs) {
+        for(OnlyUserIdDTO dto : dtoS) {
             responses.add(new OnlyUserIdResponse(dto.getUserId()));
         }
 
