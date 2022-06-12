@@ -1,7 +1,9 @@
 package com.nhnacademy.serraytaskapi.entity;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -10,6 +12,8 @@ import java.time.LocalDate;
 @Data
 @Entity
 @Table(name = "task_milestone")
+@NoArgsConstructor
+@AllArgsConstructor
 public class TaskMilestone {
 
     @EmbeddedId
@@ -34,9 +38,10 @@ public class TaskMilestone {
     @Data
     @Embeddable
     @EqualsAndHashCode
+    @NoArgsConstructor
+    @AllArgsConstructor
     public static class TaskMilestonePK implements Serializable {
 
-        @GeneratedValue(strategy = GenerationType.IDENTITY)
         @Column(name = "mile_no")
         private Integer mileNo;
 

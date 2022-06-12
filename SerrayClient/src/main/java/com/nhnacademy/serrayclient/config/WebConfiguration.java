@@ -16,17 +16,18 @@ public class WebConfiguration extends WebMvcConfigurationSupport {
 
     @Override
     protected void addViewControllers(ViewControllerRegistry registry) {
+
         registry.addViewController("/auth/login").setViewName("login");
         registry.addViewController("/auth/logout").setViewName("logout");
+        registry.addViewController("/error/403").setViewName("error403");
     }
 
     @Bean
     public RestTemplate restTemplate(RestTemplateBuilder builder) {
+
         return builder
                 .setReadTimeout(Duration.ofSeconds(5L))
                 .setConnectTimeout(Duration.ofSeconds(3L))
                 .build();
     }
-
-
 }

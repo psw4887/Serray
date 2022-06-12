@@ -23,8 +23,6 @@ public class CustomUserDetailsService implements UserDetailsService {
 
     private final RestTemplate restTemplate;
 
-
-
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
@@ -43,7 +41,6 @@ public class CustomUserDetailsService implements UserDetailsService {
             authorities.add(authority);
 
             UserInfoResponse userInfo = response.getBody();
-
             return new User(Objects.requireNonNull(userInfo).getId(), userInfo.getPw(), authorities);
         }
 

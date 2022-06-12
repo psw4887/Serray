@@ -1,20 +1,12 @@
 package com.nhnacademy.serraytaskapi.service.impl;
 
-import com.nhnacademy.serraytaskapi.data.dto.OnlyMemberIdDTO;
-import com.nhnacademy.serraytaskapi.data.dto.PageableProjectDTO;
-import com.nhnacademy.serraytaskapi.data.dto.ProjectDetailDTO;
-import com.nhnacademy.serraytaskapi.data.dto.ProjectDetailTaskDTO;
-import com.nhnacademy.serraytaskapi.data.response.PageableProjectResponse;
-import com.nhnacademy.serraytaskapi.data.response.ProjectDetailMemberResponse;
-import com.nhnacademy.serraytaskapi.data.response.ProjectDetailResponse;
-import com.nhnacademy.serraytaskapi.data.response.ProjectDetailTaskResponse;
+import com.nhnacademy.serraytaskapi.data.dto.*;
+import com.nhnacademy.serraytaskapi.data.response.*;
 import com.nhnacademy.serraytaskapi.data.vo.ProjectRegisterVO;
 import com.nhnacademy.serraytaskapi.entity.Member;
 import com.nhnacademy.serraytaskapi.entity.Project;
 import com.nhnacademy.serraytaskapi.exception.ProjectNotFoundException;
-import com.nhnacademy.serraytaskapi.repository.MemberRepository;
-import com.nhnacademy.serraytaskapi.repository.ProjectRepository;
-import com.nhnacademy.serraytaskapi.repository.TaskRepository;
+import com.nhnacademy.serraytaskapi.repository.*;
 import com.nhnacademy.serraytaskapi.service.ProjectService;
 import java.util.ArrayList;
 import java.util.List;
@@ -30,6 +22,8 @@ public class ProjectServiceImpl implements ProjectService {
     private final MemberRepository mRepository;
     private final ProjectRepository pRepository;
     private final TaskRepository tRepository;
+    private final TagRepository tagRepository;
+    private final MilestoneRepository mileRepository;
 
     @Override
     public List<PageableProjectResponse> getPageableProjectList(Integer page) {
@@ -75,10 +69,13 @@ public class ProjectServiceImpl implements ProjectService {
 
         List<ProjectDetailTaskDTO> taskDTOs = tRepository.findByProjectNo(pageRequest, projectNo).getContent();
         List<OnlyMemberIdDTO> members = mRepository.findByProjectNo(projectNo);
+        List<ProjectTagDTO> tagDTOs = tagRepository.findTagListByProjectNo(projectNo);
+        List<ProjectMileDTO> mileDTOs = mileRepository.findMileListByProjectNo(projectNo);
 
         List<ProjectDetailTaskResponse> tResponses = new ArrayList<>();
         List<ProjectDetailMemberResponse> mResponses = new ArrayList<>();
-
+        List<ProjectDetailTagResponse> tags = new ArrayList<>();
+        List<ProjectDetailMileResponse> miles = new ArrayList<>();
 
         for (ProjectDetailTaskDTO taskDTO:taskDTOs) {
             tResponses.add(new ProjectDetailTaskResponse(
@@ -92,8 +89,20 @@ public class ProjectServiceImpl implements ProjectService {
             ));
         }
 
+        for (ProjectTagDTO tagDTO:tagDTOs) {
+            tags.add(new ProjectDetailTagResponse(
+                    tagDTO.getTagNo(), tagDTO.getContent(), tagDTO.getAdmin()
+            ));
+        }
+
+        for (ProjectMileDTO mileDTO:mileDTOs) {
+            miles.add(new ProjectDetailMileResponse(
+                    mileDTO.getMileNo(), mileDTO.getContent(), mileDTO.getAdmin()
+            ));
+        }
+
         return new ProjectDetailResponse(dto.getAdmin(), dto.getTitle(),
-            dto.getContent(), dto.getState(), tResponses, mResponses);
+            dto.getContent(), dto.getState(), tResponses, mResponses, tags, miles);
     }
 
     @Transactional

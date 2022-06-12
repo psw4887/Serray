@@ -2,6 +2,7 @@ package com.nhnacademy.serraytaskapi.entity;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -9,6 +10,7 @@ import java.io.Serializable;
 @Data
 @Entity
 @Table(name = "comments")
+@NoArgsConstructor
 public class Comment {
 
     @EmbeddedId
@@ -25,9 +27,18 @@ public class Comment {
     @Column(name = "comment_content")
     private String content;
 
+    public Comment(CommentPK commentPK, Task task, String admin, String content) {
+
+        this.commentPK = commentPK;
+        this.task = task;
+        this.admin = admin;
+        this.content = content;
+    }
+
     @Data
     @Embeddable
     @EqualsAndHashCode
+    @NoArgsConstructor
     public static class CommentPK implements Serializable {
 
         @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -36,5 +47,10 @@ public class Comment {
 
         @Column(name = "comment_task_no")
         private Integer commentTaskNo;
+
+        public CommentPK(Integer taskNo) {
+
+            this.commentTaskNo = taskNo;
+        }
     }
 }

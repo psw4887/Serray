@@ -1,9 +1,5 @@
 package com.nhnacademy.serrayclient.service.impl;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.nhnacademy.serrayclient.data.request.TaskRegisterRequest;
-import com.nhnacademy.serrayclient.data.response.TaskDataResponse;
 import com.nhnacademy.serrayclient.service.MemberService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.*;

@@ -16,7 +16,6 @@ public class Task {
     @Column(name = "task_no")
     private Integer taskNo;
 
-    @MapsId
     @ManyToOne
     @JoinColumn(name = "task_project_no")
     private Project project;

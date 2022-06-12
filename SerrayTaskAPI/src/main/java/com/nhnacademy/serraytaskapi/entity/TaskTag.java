@@ -1,7 +1,9 @@
 package com.nhnacademy.serraytaskapi.entity;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -9,6 +11,8 @@ import java.io.Serializable;
 @Data
 @Entity
 @Table(name = "task_tag")
+@NoArgsConstructor
+@AllArgsConstructor
 public class TaskTag {
 
     @EmbeddedId
@@ -24,20 +28,23 @@ public class TaskTag {
     @JoinColumn(name = "task_no")
     private Task task;
 
-    @Column(name = "task_tag_admin")
-    private String admin;
-
     @Data
     @Embeddable
     @EqualsAndHashCode
+    @NoArgsConstructor
     public static class TaskTagPK implements Serializable {
 
-        @GeneratedValue(strategy = GenerationType.IDENTITY)
         @Column(name = "tag_no")
         private Integer tagNo;
 
         @Column(name = "task_no")
         private Integer taskNo;
+
+        public TaskTagPK(Integer taskNo, Integer tagNo) {
+
+            this.taskNo = taskNo;
+            this.tagNo = tagNo;
+        }
     }
 
 }
