@@ -2,7 +2,6 @@ package com.nhnacademy.serraytaskapi.controller;
 
 import com.nhnacademy.serraytaskapi.service.MemberService;
 import lombok.RequiredArgsConstructor;
-import org.hibernate.validator.constraints.Length;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -30,14 +29,14 @@ public class MemberController {
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("/register")
     public void memberRegister(@RequestParam("projectNo") Integer projectNo,
-                                  @RequestParam("id") String id) {
+                               @RequestParam("id") String id) {
 
         service.registerMember(projectNo, id);
     }
 
     @DeleteMapping("/delete")
     public void memberDelete(@RequestParam("projectNo") Integer projectNo,
-                                @RequestParam("id") String id) {
+                             @RequestParam("id") String id) {
 
         service.deleteMember(projectNo, id);
     }

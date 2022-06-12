@@ -55,7 +55,7 @@ class UserControllerTest {
             .andExpect(jsonPath("$[0].id").value("user"));
     }
 
-    @DisplayName("/get/{id} 테스트")
+    @DisplayName("/user/get/{id} 테스트")
     @Test
     void getUserById() throws Exception {
 
@@ -71,7 +71,7 @@ class UserControllerTest {
 
     }
 
-    @DisplayName("/get/git/?email={email} 테스트")
+    @DisplayName("/user/get/git/?email={email} 테스트")
     @Test
     void getUserByEmail() throws Exception {
 

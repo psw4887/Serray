@@ -1,5 +1,6 @@
 package com.nhnacademy.serraytaskapi.entity;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -9,6 +10,7 @@ import lombok.NoArgsConstructor;
 @Entity
 @Table(name = "project")
 @NoArgsConstructor
+@AllArgsConstructor
 public class Project {
 
     @Id

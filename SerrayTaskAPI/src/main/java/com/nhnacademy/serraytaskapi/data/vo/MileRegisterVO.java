@@ -1,6 +1,7 @@
 package com.nhnacademy.serraytaskapi.data.vo;
 
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import org.hibernate.validator.constraints.Length;
@@ -9,6 +10,7 @@ import org.hibernate.validator.constraints.Length;
 @AllArgsConstructor
 public class MileRegisterVO {
 
+    @NotNull(message = "프로젝트번호는 NULL 일 수 없습니다.")
     private Integer projectNo;
 
     @NotBlank(message = "내용은 공백일 수 없습니다.")
