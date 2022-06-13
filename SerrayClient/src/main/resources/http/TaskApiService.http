@@ -6,7 +6,7 @@ POST http://localhost:9090/project/register
 Content-Type: application/json; charset="utf-8"
 
 {
-  "id": "admin",
+  "admin": "admin",
   "title": "두레이만들기",
   "content": "두레이를 만드는데에 있어서 얼마나 많은 시간과 노력과 열정이 필요한지 알아보는 좋은 시간이 되어보자"
 }

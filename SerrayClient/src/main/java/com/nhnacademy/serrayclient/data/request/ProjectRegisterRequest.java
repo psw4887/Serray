@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class ProjectRegisterRequest {
 
-    private String id;
+    private String admin;
 
     private String title;
 

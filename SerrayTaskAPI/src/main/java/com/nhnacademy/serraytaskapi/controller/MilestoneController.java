@@ -47,6 +47,7 @@ public class MilestoneController {
         service.projectMileDelete(mileNo);
     }
 
+    @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("/task/register")
     public void addTaskMile(@RequestBody @Valid TaskMileRegisterVO vo,
                             BindingResult bindingResult) {

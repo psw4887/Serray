@@ -51,6 +51,6 @@ public class TagController {
     public void addTaskTag(@RequestParam("taskNo") Integer taskNo,
                         @RequestParam("tagNo") Integer tagNo) {
 
-        service.TaskTagRegister(taskNo, tagNo);
+        service.taskTagRegister(taskNo, tagNo);
     }
 }

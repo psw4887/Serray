@@ -50,11 +50,11 @@ public class ProjectServiceImpl implements ProjectService {
     @Override
     public void registerProject(ProjectRegisterVO vo) {
 
-        Project project = new Project(vo.getId(), vo.getTitle(), vo.getContent(), "활성");
+        Project project = new Project(vo.getAdmin(), vo.getTitle(), vo.getContent(), "활성");
 
         pRepository.save(project);
 
-        Member.MemberPK memberPK = new Member.MemberPK(vo.getId(), project.getProjectNo());
+        Member.MemberPK memberPK = new Member.MemberPK(vo.getAdmin(), project.getProjectNo());
         Member member = new Member(memberPK);
         member.setProject(project);
 

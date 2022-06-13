@@ -1,5 +1,6 @@
 package com.nhnacademy.serraytaskapi.entity;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
@@ -39,6 +40,7 @@ public class Comment {
     @Embeddable
     @EqualsAndHashCode
     @NoArgsConstructor
+    @AllArgsConstructor
     public static class CommentPK implements Serializable {
 
         @GeneratedValue(strategy = GenerationType.IDENTITY)

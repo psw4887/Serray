@@ -6,7 +6,6 @@ import com.nhnacademy.serrayaccountapi.data.vo.ForLoginUserVO;
 import com.nhnacademy.serrayaccountapi.exception.ValidException;
 import com.nhnacademy.serrayaccountapi.service.UserService;
 import javax.validation.Valid;
-import javax.validation.ValidationException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.BindingResult;
@@ -41,14 +40,12 @@ public class UserController {
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("/register")
-    public void RegisterUser(@RequestBody @Valid UserRegisterResponse response,
+    public void registerUser(@RequestBody @Valid UserRegisterResponse response,
                              BindingResult bindingResult) {
 
         if(bindingResult.hasErrors()) {
             throw new ValidException(bindingResult);
         }
-
-        service.userRegister(response);
     }
 
     @PutMapping("/modify/{user}/{state}")

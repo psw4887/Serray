@@ -59,7 +59,7 @@ public class TagServiceImpl implements TagService {
 
     @Transactional
     @Override
-    public void TaskTagRegister(Integer taskNo, Integer tagNo) {
+    public void taskTagRegister(Integer taskNo, Integer tagNo) {
 
         TaskTag.TaskTagPK pk = new TaskTag.TaskTagPK(taskNo, tagNo);
 
