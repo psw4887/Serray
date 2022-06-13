@@ -1,17 +1,21 @@
-package com.nhnacademy.serraytaskapi.service.impl;
+package com.nhnacademy.serraytaskapi;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.Mockito.atLeastOnce;
+import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
+import com.nhnacademy.serraytaskapi.data.vo.CommentModifyVO;
 import com.nhnacademy.serraytaskapi.data.vo.CommentRegisterVO;
 import com.nhnacademy.serraytaskapi.entity.Comment;
 import com.nhnacademy.serraytaskapi.entity.Project;
 import com.nhnacademy.serraytaskapi.entity.Task;
+import com.nhnacademy.serraytaskapi.exception.CommentNotFoundException;
 import com.nhnacademy.serraytaskapi.repository.CommentRepository;
 import com.nhnacademy.serraytaskapi.repository.TaskRepository;
 import com.nhnacademy.serraytaskapi.service.CommentService;
@@ -57,9 +61,35 @@ class CommentServiceImplTest {
 
     @Test
     void modifyComment() {
+
+        Project project = new Project(1, "op", "제목", "내용", "활성");
+        Task task = new Task(1, project, "op", "제목", "내용");
+        Comment comment = new Comment(new Comment.CommentPK(1, 1), task, "op", "내용");
+
+        when(commentRepository.selectCommentByCommentNo(anyInt())).thenReturn(Optional.of(comment));
+
+        service.modifyComment(new CommentModifyVO(1, "용내"));
+        commentRepository.flush();
+
+        assertThat(comment.getContent()).isEqualTo("용내");
+    }
+
+    @Test
+    void modifyCommentNoComment() {
+
+        when(commentRepository.selectCommentByCommentNo(anyInt())).thenReturn(Optional.empty());
+
+        assertThatThrownBy(()->service.modifyComment(new CommentModifyVO(1, "용내")))
+            .isInstanceOf(CommentNotFoundException.class);
     }
 
     @Test
     void deleteComment() {
+
+        doNothing().when(commentRepository).deleteComment(anyInt());
+
+        service.deleteComment(1);
+
+        verify(commentRepository, atLeastOnce()).deleteComment(anyInt());
     }
 }

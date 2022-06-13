@@ -309,6 +309,7 @@ class TaskServiceImplTest {
         service.registerTask(new TaskRegisterVO(2, "op", "제목", "내용"));
 
         assertThat(taskRepository.findById(2)).isPresent();
+        verify(taskRepository, atLeastOnce()).save(any());
     }
 
     @DisplayName("업무 수정하기")

@@ -62,16 +62,13 @@ class MemberServiceImplTest {
         Project project = new Project(1, "op", "제목", "내용", "활성");
         Member member = new Member(new Member.MemberPK("op" , 2));
 
-        projectRepository.saveAndFlush(project);
-
-        memberRepository.saveAndFlush(member);
-
         when(projectRepository.findById(anyInt())).thenReturn(Optional.of(project));
         when(memberRepository.findById(any())).thenReturn(Optional.of(member));
 
         service.registerMember(1, "op");
 
         assertThat(memberRepository.findById(new Member.MemberPK("op", 2))).isPresent();
+        verify(memberRepository, atLeastOnce()).save(any());
     }
 
     @DisplayName("멤버 삭제하기")

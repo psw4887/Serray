@@ -3,6 +3,7 @@ package com.nhnacademy.serraytaskapi;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.Mockito.atLeastOnce;
 import static org.mockito.Mockito.doNothing;
@@ -65,6 +66,7 @@ class MilestoneServiceImplTest {
         milestoneRepository.flush();
 
         assertThat(milestoneRepository.findById(2)).isEqualTo(Optional.of(milestone));
+        verify(milestoneRepository, atLeastOnce()).save(any());
     }
 
     @DisplayName("프로젝트 마일스톤 수정")
@@ -77,7 +79,6 @@ class MilestoneServiceImplTest {
         when(milestoneRepository.findById(anyInt())).thenReturn(Optional.of(milestone));
 
         service.projectMileModify(new MileModifyVO(1, "용내"));
-
         milestoneRepository.flush();
 
         assertThat(milestoneRepository.findById(2).get().getContent()).isEqualTo("용내");

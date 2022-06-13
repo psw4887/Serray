@@ -8,6 +8,8 @@ import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.ArgumentMatchers.isNull;
 import static org.mockito.BDDMockito.given;
+import static org.mockito.Mockito.atLeastOnce;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 import com.nhnacademy.serraytaskapi.data.dto.OnlyMemberIdDTO;
@@ -169,6 +171,7 @@ class ProjectServiceImplTest {
         when(repository.findById(anyInt())).thenReturn(Optional.of(project));
 
         assertThat(repository.findById(1).get().getAdmin()).isEqualTo("op");
+        verify(repository, atLeastOnce()).save(any());
     }
 
     @DisplayName("프로젝트 내용 가져오기")
