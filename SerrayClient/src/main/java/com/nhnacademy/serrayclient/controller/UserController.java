@@ -39,7 +39,7 @@ public class UserController {
         }
 
         request.setPw(encoder.encode(request.getPw()));
-        service.RegisterUser(request);
+        service.registerUser(request);
 
         return "redirect:/index";
     }

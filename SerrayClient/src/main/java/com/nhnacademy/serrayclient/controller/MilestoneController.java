@@ -53,7 +53,7 @@ public class MilestoneController {
         model.addAttribute("mileNo", mileNo);
         model.addAttribute("content", content);
 
-        return "/milestone/milestoneModify";
+        return "milestone/milestoneModify";
     }
 
     @PostMapping("/modify")

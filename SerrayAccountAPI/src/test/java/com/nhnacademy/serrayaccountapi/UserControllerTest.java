@@ -67,8 +67,6 @@ class UserControllerTest {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON))
             .andExpect(jsonPath("$.id",equalTo("user")));
-
-
     }
 
     @DisplayName("/user/get/git/?email={email} 테스트")

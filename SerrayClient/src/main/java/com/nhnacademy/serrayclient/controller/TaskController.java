@@ -32,14 +32,9 @@ public class TaskController {
         model.addAttribute("taskNo", taskNo);
         model.addAttribute("projectNo", projectNo);
         model.addAttribute("task", taskDataResponse);
-        model.addAttribute("lists", taskDataResponse.getComments());
-        model.addAttribute("projectTags", taskDataResponse.getTags());
-        model.addAttribute("projectMiles",taskDataResponse.getMiles());
-        model.addAttribute("taskTags", taskDataResponse.getTaskTags());
-        model.addAttribute("taskMile", taskDataResponse.getTaskMile());
 
         if(Objects.isNull(taskDataResponse.getTaskMile())) {
-            model.addAttribute("taskMile", 0);
+            model.addAttribute("taskMiles", 0);
         }
 
         return "task/taskDetail";
@@ -95,7 +90,7 @@ public class TaskController {
             throw new ValidException(bindingResult);
         }
 
-        service.modifyTask(taskNo, taskForm.getTitle(), taskForm.getTitle());
+        service.modifyTask(taskNo, taskForm.getTitle(), taskForm.getContent());
         return "redirect:/project/detail/" + projectNo + "?page=0";
     }
 

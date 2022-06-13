@@ -11,7 +11,7 @@ import java.util.List;
 @AllArgsConstructor
 public class TaskDataResponse {
 
-    private String taskNo;
+    private Integer taskNo;
 
     private String admin;
 

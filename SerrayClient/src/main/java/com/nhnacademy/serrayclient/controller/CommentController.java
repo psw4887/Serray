@@ -1,11 +1,15 @@
 package com.nhnacademy.serrayclient.controller;
 
+import com.nhnacademy.serrayclient.data.vo.CommentForm;
+import com.nhnacademy.serrayclient.exception.ValidException;
 import com.nhnacademy.serrayclient.service.CommentService;
+import javax.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.annotation.Validated;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -21,11 +25,16 @@ public class CommentController {
 
     @PostMapping("/register")
     public String commentRegister(@RequestParam("taskNo") Integer taskNo,
-                                  @RequestParam("content") String content,
                                   @RequestParam("projectNo") Integer projectNo,
+                                  @Valid @ModelAttribute CommentForm form,
+                                  BindingResult bindingResult,
                                   Principal principal) {
 
-        service.registerComment(taskNo, principal.getName(), content);
+        if(bindingResult.hasErrors()) {
+            throw new ValidException(bindingResult);
+        }
+
+        service.registerComment(taskNo, principal.getName(), form.getContent());
 
         return "redirect:/task/detail?taskNo=" + taskNo + "&projectNo=" + projectNo;
     }
@@ -54,9 +63,14 @@ public class CommentController {
     public String commentModify(@RequestParam("taskNo") Integer taskNo,
                                 @RequestParam("commentNo") Integer commentNo,
                                 @RequestParam("projectNo") Integer projectNo,
-                                @RequestParam("content") String content) {
+                                @Valid @ModelAttribute CommentForm form,
+                                BindingResult bindingResult) {
 
-        service.modifyComment(commentNo, content);
+        if(bindingResult.hasErrors()) {
+            throw new ValidException(bindingResult);
+        }
+
+        service.modifyComment(commentNo, form.getContent());
         return "redirect:/task/detail?taskNo=" + taskNo + "&projectNo=" + projectNo;
     }
 

@@ -5,7 +5,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.nhnacademy.serrayclient.data.request.UserRegisterRequest;
 import com.nhnacademy.serrayclient.data.response.UserIdResponse;
 import com.nhnacademy.serrayclient.data.response.UserInfoResponse;
-import com.nhnacademy.serrayclient.service.ProjectService;
 import com.nhnacademy.serrayclient.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.core.ParameterizedTypeReference;
@@ -32,8 +31,6 @@ public class UserServiceImpl implements UserService {
                 requestEntity,
                 new ParameterizedTypeReference<>() {
                 });
-
-
 
         return response.getBody();
     }
@@ -67,7 +64,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void RegisterUser(UserRegisterRequest userRegisterRequest) {
+    public void registerUser(UserRegisterRequest userRegisterRequest) {
 
         HttpHeaders httpHeaders = buildHeaders();
         String request = "";

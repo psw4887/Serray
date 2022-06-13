@@ -75,7 +75,6 @@ public class CommentServiceImpl implements CommentService {
                 requestEntity,
                 Void.class);
     }
-
     @Override
     public void deleteComment(Integer commentNo) {
 

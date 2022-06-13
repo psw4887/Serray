@@ -12,7 +12,6 @@ import java.util.List;
 import com.nhnacademy.serrayclient.service.UserService;
 import javax.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import org.hibernate.validator.constraints.Length;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -87,11 +86,7 @@ public class ProjectController {
 
         model.addAttribute("project", project);
         model.addAttribute("projectNo", projectNo);
-        model.addAttribute("lists", project.getTasks());
-        model.addAttribute("members", project.getMembers());
         model.addAttribute("users", userService.getUsersForStateOK());
-        model.addAttribute("tags", project.getTags());
-        model.addAttribute("miles", project.getMiles());
         model.addAttribute("nowUser", principal.getName());
         model.addAttribute("isEnd", 0);
         
