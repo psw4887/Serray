@@ -39,6 +39,7 @@ public class RedisConfig implements BeanClassLoaderAware {
 
     @Bean
     public RedisConnectionFactory redisConnectionFactory() {
+
         RedisStandaloneConfiguration configuration = new RedisStandaloneConfiguration();
         configuration.setHostName(host);
         configuration.setPort(port);
@@ -50,6 +51,7 @@ public class RedisConfig implements BeanClassLoaderAware {
 
     @Bean
     public RedisTemplate<?, ?> redisTemplate() {
+
         RedisTemplate<byte[], byte[]> redisTemplate = new RedisTemplate<>();
         redisTemplate.setConnectionFactory(redisConnectionFactory());
         redisTemplate.setKeySerializer(new StringRedisSerializer());
@@ -61,10 +63,12 @@ public class RedisConfig implements BeanClassLoaderAware {
 
     @Bean
     public RedisSerializer<Object> springSessionDefaultRedisSerializer() {
+
         return new GenericJackson2JsonRedisSerializer(objectMapper());
     }
 
     private ObjectMapper objectMapper() {
+
         ObjectMapper objectMapper = new ObjectMapper();
         objectMapper.registerModules(SecurityJackson2Modules.getModules(classLoader));
 
@@ -73,6 +77,7 @@ public class RedisConfig implements BeanClassLoaderAware {
 
     @Override
     public void setBeanClassLoader(ClassLoader classLoader) {
+
         this.classLoader = classLoader;
     }
 }

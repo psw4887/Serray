@@ -1,6 +1,5 @@
 package com.nhnacademy.serraytaskapi.data.response;
 
-import com.nhnacademy.serraytaskapi.entity.Milestone;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

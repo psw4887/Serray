@@ -84,6 +84,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void modifyUserState(String user, String state) {
+
         HttpHeaders httpHeaders = buildHeaders();
 
         HttpEntity<String> requestEntity = new HttpEntity<>(httpHeaders);

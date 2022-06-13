@@ -20,7 +20,6 @@ import java.security.Principal;
 @RequestMapping("/user")
 public class UserController {
 
-
     private final UserService service;
     private final PasswordEncoder encoder;
 

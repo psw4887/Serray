@@ -2,7 +2,6 @@ package com.nhnacademy.serraytaskapi.repository;
 
 import com.nhnacademy.serraytaskapi.data.dto.OnlyMemberIdDTO;
 import com.nhnacademy.serraytaskapi.entity.Member;
-import com.nhnacademy.serraytaskapi.entity.Project;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 

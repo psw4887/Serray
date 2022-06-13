@@ -6,7 +6,6 @@ import com.nhnacademy.serrayclient.exception.ValidException;
 import com.nhnacademy.serrayclient.service.TaskService;
 import javax.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import org.hibernate.validator.constraints.Length;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;

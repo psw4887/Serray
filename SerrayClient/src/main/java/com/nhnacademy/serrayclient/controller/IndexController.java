@@ -26,7 +26,6 @@ public class IndexController {
             model.addAttribute("user", new UserInfoResponse("Guest", "0", "0", "비회원"));
         } else {
             UserInfoResponse response = service.getUser(principal.getName());
-
             model.addAttribute("user", response);
         }
 

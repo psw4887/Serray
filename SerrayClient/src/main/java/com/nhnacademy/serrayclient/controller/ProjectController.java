@@ -36,7 +36,6 @@ public class ProjectController {
                                   Model model) {
 
         List<ProjectForListResponse> list = projectService.getProjectList(page);
-
         model.addAttribute("isEnd", 0);
 
         if(list.size() < 11) {

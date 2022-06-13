@@ -31,6 +31,7 @@ public class MemberServiceImpl implements MemberService {
 
     @Override
     public boolean isProjectMember(Integer projectNo, String id) {
+
         HttpHeaders httpHeaders = buildHeaders();
 
         HttpEntity<String> requestEntity = new HttpEntity<>(httpHeaders);
@@ -57,6 +58,7 @@ public class MemberServiceImpl implements MemberService {
 
     @Override
     public void deleteMember(Integer projectNo, String id) {
+
         HttpHeaders httpHeaders = buildHeaders();
 
         HttpEntity<String> requestEntity = new HttpEntity<>(httpHeaders);

@@ -14,12 +14,9 @@ public class GitController {
     private final CustomGitLoginService service;
 
     @GetMapping("/oauth2/authorization/github")
-    public void readyGitLogin(HttpServletResponse response) {
-        try {
-            StateCookie stateCookie = service.buildGitRequest();
-            response.sendRedirect(stateCookie.getUrl());
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+    public void readyGitLogin(HttpServletResponse response) throws IOException {
+
+        StateCookie stateCookie = service.buildGitRequest();
+        response.sendRedirect(stateCookie.getUrl());
     }
 }

@@ -7,7 +7,6 @@ import com.nhnacademy.serrayclient.data.git.AuthToken;
 import com.nhnacademy.serrayclient.data.git.CodeGit;
 import com.nhnacademy.serrayclient.data.git.GitProfile;
 import com.nhnacademy.serrayclient.data.git.StateCookie;
-import com.nhnacademy.serrayclient.service.UserService;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;

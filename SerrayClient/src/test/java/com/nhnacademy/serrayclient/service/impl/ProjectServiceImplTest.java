@@ -1,13 +1,11 @@
 package com.nhnacademy.serrayclient.service.impl;
 
-import static org.junit.jupiter.api.Assertions.*;
 import static org.springframework.test.web.client.match.MockRestRequestMatchers.method;
 import static org.springframework.test.web.client.match.MockRestRequestMatchers.requestTo;
 import static org.springframework.test.web.client.response.MockRestResponseCreators.withStatus;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.nhnacademy.serrayclient.data.request.ProjectRegisterRequest;
-import com.nhnacademy.serrayclient.data.request.UserRegisterRequest;
 import com.nhnacademy.serrayclient.service.ProjectService;
 import java.net.URI;
 import java.net.URISyntaxException;
