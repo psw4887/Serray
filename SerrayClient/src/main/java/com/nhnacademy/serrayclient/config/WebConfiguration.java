@@ -26,8 +26,8 @@ public class WebConfiguration extends WebMvcConfigurationSupport {
     public RestTemplate restTemplate(RestTemplateBuilder builder) {
 
         return builder
-                .setReadTimeout(Duration.ofSeconds(5L))
-                .setConnectTimeout(Duration.ofSeconds(3L))
+                .setReadTimeout(Duration.ofSeconds(10L))
+                .setConnectTimeout(Duration.ofSeconds(5L))
                 .build();
     }
 }

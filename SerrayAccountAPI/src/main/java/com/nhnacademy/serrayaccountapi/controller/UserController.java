@@ -46,6 +46,8 @@ public class UserController {
         if(bindingResult.hasErrors()) {
             throw new ValidException(bindingResult);
         }
+
+        service.userRegister(response);
     }
 
     @PutMapping("/modify/{user}/{state}")
