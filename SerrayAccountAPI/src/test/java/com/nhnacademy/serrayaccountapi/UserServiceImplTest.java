@@ -2,6 +2,7 @@ package com.nhnacademy.serrayaccountapi;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.ArgumentMatchers.isNull;
 import static org.mockito.ArgumentMatchers.notNull;
@@ -54,6 +55,8 @@ class UserServiceImplTest {
         service.userRegister(response);
 
         repository.flush();
+
+        when(repository.findById(anyInt())).thenReturn(Optional.of(new User(3, "1", "12", "p@f.com", "가입")));
 
         assertThat(repository.findById(3)).isNotNull();
 

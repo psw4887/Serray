@@ -2,13 +2,13 @@ package com.nhnacademy.serraytaskapi.data.vo;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import javax.validation.constraints.NotNull;
-import lombok.Data;
+import lombok.AllArgsConstructor;
 
 import java.time.LocalDate;
-import lombok.NoArgsConstructor;
+import lombok.Getter;
 
-@Data
-@NoArgsConstructor
+@Getter
+@AllArgsConstructor
 public class TaskMileRegisterVO {
 
     @NotNull(message = "업무번호는 NULL 일 수 없습니다.")

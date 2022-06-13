@@ -19,6 +19,6 @@ public class UserRegisterResponse {
     private String pw;
 
     @NotBlank(message = "EMAIL 은 공백일 수 없습니다.")
-    @Email(message = "EMAIL은 이메일형식에 맞게 작성해주셔야합니다.")
+    @Email(message = "EMAIL 은 이메일형식에 맞게 작성해주셔야합니다.")
     private String email;
 }

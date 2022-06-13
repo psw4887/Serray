@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Task Detail</title>
+</head>
+<body>
+<div style="text-align: center">
+    <h2>[업무 제목] <span th:text=" ${task.title}"></span></h2>
+    <h4>[업무 관리자]<span th:text="${task.admin}"></span></h4>
+    <details><summary>[업무 태그]</summary>
+        <div th:each="taskTag : ${taskTags}">
+            <span th:text="'[' + ${taskTag.content} + ']'"></span>
+        </div>
+    </details>
+    <details><summary>업무 태그 추가하기</summary>
+        <div th:each="projectTag:${projectTags}">
+            <form th:method="post"
+                  th:action="'/tag/task/register?taskNo=' + ${taskNo} + '&tagNo=' + ${projectTag.tagNo} + '&projectNo=' + ${projectNo}">
+                <span th:text="${projectTag.content}"></span>
+                <input type="submit" value="add">
+            </form>
+        </div>
+    </details>
+    <div th:if="${taskMile != 0}">
+    <details><summary>[업무 마일스톤]</summary>
+            <span th:text="'[' + ${taskMile.content} + ']'"></span><br />
+            시작일자 : <span th:text="${taskMile.start}"></span>
+            종료일자 : <span th:text="${taskMile.end}"></span>
+    </details>
+    </div>
+    <div th:if="${taskMile == 0}">
+    <details><summary>업무 마일스톤 추가하기</summary>
+            <div th:each="projectMile:${projectMiles}">
+                <form th:method="post"
+                      th:action="'/mile/task/register?taskNo=' + ${taskNo} + '&mileNo=' + ${projectMile.mileNo} + '&projectNo=' + ${projectNo}">
+                    <span th:text="${projectMile.content}"></span>
+                    <input type="date" name="start">
+                    <input type="date" name="end">
+                    <input type="submit" value="add">
+                </form>
+            </div>
+        </details>
+    </div>
+    <h4>[내용]</h4>
+</div>
+<div style="text-align: center; display: flex; justify-content: center">
+    <div style="border: 1px dashed;  width: 300px; height: 100px; padding: 10px">
+        <span th:text="${task.content}"></span>
+    </div>
+</div>
+<br />
+<h4 style="text-align: center">[코멘트 목록]</h4>
+<div style="text-align: center; display: flex; justify-content: center">
+    <div style="border: 1px solid;  width: 400px; height: 50px; padding: 10px;">
+        <form th:action="'/comment/register?taskNo=' + ${taskNo} + '&projectNo=' + ${projectNo}" method="post">
+            <span>새 코멘트 작성</span>
+            <input type="text" name="content" ><br />
+            <input type="submit" value="register">
+        </form>
+    </div>
+</div>
+<br /><br />
+<div style="text-align: center; display: flex; justify-content: center">
+    <table style="text-align: center; border: 1px solid black">
+        <tr>
+            <th style="text-align: center; border: 1px solid black">작성자</th>
+            <th style="text-align: center; border: 1px solid black">코멘트</th>
+            <th style="text-align: center; border: 1px solid black">수정</th>
+            <th style="text-align: center; border: 1px solid black">삭제</th>
+        </tr>
+        <tr th:each="comment : ${lists}">
+            <td style="text-align: center" th:text="${comment.admin}"></td>
+            <td style="text-align: center" th:text="${comment.content}"></td>
+            <td style="text-align: center">
+                <a th:href="'/comment/modify?commentNo=' + ${comment.commentNo} + '&taskNo=' + ${taskNo} + '&projectNo=' + ${projectNo} + '&content=' + ${comment.content}">수정</a>
+            </td>
+            <td style="text-align: center">
+                <a th:href="'/comment/delete?commentNo=' + ${comment.commentNo} + '&taskNo=' + ${taskNo} + '&projectNo=' + ${projectNo}">삭제</a>
+            </td>
+        </tr>
+    </table>
+</div>
+<div style="text-align: center">
+    <a th:href="'/project/detail/' + ${projectNo} + '?page=0'">프로젝트</a>
+</div>
+</body>
+</html>

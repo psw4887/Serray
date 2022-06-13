@@ -11,5 +11,5 @@ public interface TagService {
 
     void projectTagDelete(Integer tagNo);
 
-    void TaskTagRegister(Integer taskNo, Integer tagNo);
+    void taskTagRegister(Integer taskNo, Integer tagNo);
 }

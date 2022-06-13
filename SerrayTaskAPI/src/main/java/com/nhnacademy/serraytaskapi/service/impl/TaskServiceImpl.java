@@ -6,9 +6,6 @@ import com.nhnacademy.serraytaskapi.data.vo.TaskModifyVo;
 import com.nhnacademy.serraytaskapi.data.vo.TaskRegisterVO;
 import com.nhnacademy.serraytaskapi.entity.Project;
 import com.nhnacademy.serraytaskapi.entity.Task;
-import com.nhnacademy.serraytaskapi.entity.TaskMilestone;
-import com.nhnacademy.serraytaskapi.entity.TaskTag;
-import com.nhnacademy.serraytaskapi.exception.MilestoneNotFoundException;
 import com.nhnacademy.serraytaskapi.exception.ProjectNotFoundException;
 import com.nhnacademy.serraytaskapi.exception.TaskNotFoundException;
 import com.nhnacademy.serraytaskapi.repository.*;
@@ -19,7 +16,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -40,47 +36,54 @@ public class TaskServiceImpl implements TaskService {
 
         TaskModifyDataDTO dto = tRepository.findByProjectNoForModifyData(taskNo);
         List<CommentDataDTO> commentDTOs = cRepository.getCommentListByTaskNo(taskNo);
-        List<ProjectTagDTO> projectTagDTOs = tagRepository.findTagListByProjectNo(task.getProject().getProjectNo());
-        List<ProjectMileDTO> projectMileDTOs = mileRepository.findMileListByProjectNo(task.getProject().getProjectNo());
+        List<ProjectTagDTO> projectTagDTOs =
+            tagRepository.findTagListByProjectNo(task.getProject().getProjectNo());
+        List<ProjectMileDTO> projectMileDTOs =
+            mileRepository.findMileListByProjectNo(task.getProject().getProjectNo());
         List<TaskTagDTO> taskTags = taskTagRepository.findTaskTagList(taskNo);
-
 
         List<CommentDataResponse> commentResponses = new ArrayList<>();
         List<ProjectTagDataResponse> projectTagResponses = new ArrayList<>();
         List<ProjectMilestoneDataResponse> projectMileResponses = new ArrayList<>();
         List<TagDataResponse> tagResponses = new ArrayList<>();
 
-        for(CommentDataDTO commentDTO : commentDTOs) {
-            commentResponses.add(new CommentDataResponse(commentDTO.getCommentNo(), commentDTO.getAdmin(), commentDTO.getContent()));
+        for (CommentDataDTO commentDTO : commentDTOs) {
+            commentResponses.add(
+                new CommentDataResponse(commentDTO.getCommentNo(), commentDTO.getAdmin(),
+                    commentDTO.getContent()));
         }
-        for(ProjectTagDTO tagDTO : projectTagDTOs) {
-            projectTagResponses.add(new ProjectTagDataResponse(tagDTO.getTagNo(), tagDTO.getContent()));
+        for (ProjectTagDTO tagDTO : projectTagDTOs) {
+            projectTagResponses.add(
+                new ProjectTagDataResponse(tagDTO.getTagNo(), tagDTO.getContent()));
         }
-        for(ProjectMileDTO mileDTO : projectMileDTOs) {
-            projectMileResponses.add(new ProjectMilestoneDataResponse(mileDTO.getMileNo(), mileDTO.getContent()));
+        for (ProjectMileDTO mileDTO : projectMileDTOs) {
+            projectMileResponses.add(
+                new ProjectMilestoneDataResponse(mileDTO.getMileNo(), mileDTO.getContent()));
         }
-        for(TaskTagDTO tagDTO : taskTags) {
+        for (TaskTagDTO tagDTO : taskTags) {
             tagResponses.add(new TagDataResponse(tagDTO.getTagNo(), tagDTO.getContent()));
         }
 
         MilestoneDataResponse mileResponse = null;
 
-        if(Boolean.TRUE.equals(taskMilestoneRepository.existsByTask(task))) {
+        if (Boolean.TRUE.equals(taskMilestoneRepository.existsByTask(task))) {
             TaskMileDTO taskMileDTO = taskMilestoneRepository.findTaskMile(taskNo);
             mileResponse = new MilestoneDataResponse(
-                    taskMileDTO.getMileNo(), taskMileDTO.getContent(), taskMileDTO.getStart(), taskMileDTO.getEnd());
+                taskMileDTO.getMileNo(), taskMileDTO.getContent(), taskMileDTO.getStart(),
+                taskMileDTO.getEnd());
         }
 
         return new TaskDataResponse(
-                dto.getTaskNo(), dto.getAdmin(), dto.getTitle(), dto.getContent(), commentResponses,
-                projectTagResponses, projectMileResponses, tagResponses, mileResponse);
+            dto.getTaskNo(), dto.getAdmin(), dto.getTitle(), dto.getContent(), commentResponses,
+            projectTagResponses, projectMileResponses, tagResponses, mileResponse);
     }
 
     @Transactional
     @Override
     public void registerTask(TaskRegisterVO vo) {
 
-        Project project = pRepository.findById(vo.getProjectNo()).orElseThrow(ProjectNotFoundException::new);
+        Project project =
+            pRepository.findById(vo.getProjectNo()).orElseThrow(ProjectNotFoundException::new);
 
         Task task = new Task(project, vo.getId(), vo.getTitle(), vo.getContent());
 
@@ -109,3 +112,4 @@ public class TaskServiceImpl implements TaskService {
         tRepository.deleteById(taskNo);
     }
 }
+

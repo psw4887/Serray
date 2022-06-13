@@ -11,7 +11,7 @@ public class ProjectRegisterVO {
 
     @NotBlank(message = "작성자는 공백일 수 없습니다.")
     @Length(min=1, max=20, message = "작성자는 1~20글자 사이여야합니다.")
-    private String id;
+    private String admin;
 
     @NotBlank(message = "제목은 공백일 수 없습니다.")
     @Length(min=1, max=20, message = "제목은 1~20글자 사이여야합니다.")
