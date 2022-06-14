@@ -38,7 +38,7 @@ class ProjectControllerTest {
     @MockBean
     private ProjectService service;
 
-    @DisplayName("/project/view/{page} 테스트")
+    @DisplayName("프로젝트 페이징목록 불러오기")
     @Test
     void getPageableProjects() throws Exception {
 
@@ -46,13 +46,13 @@ class ProjectControllerTest {
 
         given(service.getPageableProjectList(anyInt())).willReturn(list);
 
-        this.mockMvc.perform(get("/project/view/{page}", 0))
+        this.mockMvc.perform(get("/projects/view/{page}", 0))
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON))
             .andExpect(jsonPath("$[0].title").value("제목"));
     }
 
-    @DisplayName("/project/register 성공 테스트")
+    @DisplayName("프로젝트 등록 성공 테스트")
     @Test
     void projectRegister() throws Exception {
 
@@ -61,13 +61,13 @@ class ProjectControllerTest {
 
         String requestBody = mapper.writeValueAsString(vo);
 
-        this.mockMvc.perform(post("/project/register")
+        this.mockMvc.perform(post("/projects/register")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(requestBody))
             .andExpect(status().isCreated());
     }
 
-    @DisplayName("/project/register 실패 테스트")
+    @DisplayName("프로젝트 등록 실패 테스트")
     @Test
     void projectRegisterFail() throws Exception {
 
@@ -76,13 +76,13 @@ class ProjectControllerTest {
 
         String requestBody = mapper.writeValueAsString(vo);
 
-        this.mockMvc.perform(post("/project/register")
+        this.mockMvc.perform(post("/projects/register")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(requestBody))
             .andExpect(status().isOk());
     }
 
-    @DisplayName("/project/detail/{projectNo}/{page} 테스트")
+    @DisplayName("프로젝트 내용 들고오기")
     @Test
     void getProjectDetail() throws Exception {
 
@@ -92,17 +92,17 @@ class ProjectControllerTest {
 
         given(service.getDetailProject(anyInt(), anyInt())).willReturn(detailResponse);
 
-        this.mockMvc.perform(get("/project/detail/{projectNo}/{page}", 1, 2))
+        this.mockMvc.perform(get("/projects/detail/{projectNo}/{page}", 1, 2))
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON))
             .andExpect(jsonPath("$.title", equalTo("제목")));
     }
 
-    @DisplayName("/project/state/{projectNo} 테스트")
+    @DisplayName("프로젝트 상태 수정 테스트")
     @Test
     void modifyProjectState() throws Exception {
 
-        this.mockMvc.perform(put("/project/state/{projectNo}","1")
+        this.mockMvc.perform(put("/projects/{projectNo}/states","1")
                 .param("state", "종료"))
             .andExpect(status().isOk());
     }

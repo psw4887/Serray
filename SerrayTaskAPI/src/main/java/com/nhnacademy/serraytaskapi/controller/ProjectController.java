@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/project")
+@RequestMapping("/projects")
 public class ProjectController {
 
     private final ProjectService service;
@@ -44,7 +44,7 @@ public class ProjectController {
         return service.getDetailProject(page, projectNo);
     }
 
-    @PutMapping("/state/{projectNo}")
+    @PutMapping("/{projectNo}/states")
     public void modifyProjectState(@PathVariable("projectNo") Integer projectNo,
                                    @RequestParam("state") String state) {
 

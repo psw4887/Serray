@@ -2,9 +2,9 @@
 =============================================
 * 상태 "가입"인 유저들 가져오기
 
-GET http://localhost:5050/users/state-ok
+GET http://localhost:7070/users/state-ok
 -----------------------------------------------------------------------
-http://localhost:5050/users/state-ok
+http://localhost:7070/users/state-ok
 
 HTTP/1.1 200 OK
 Date: Sun, 12 Jun 2022 04:10:33 GMT
@@ -24,9 +24,9 @@ Response code: 200 (OK); Time: 180ms; Content length: 15 bytes
 =============================================
 * 로그인을 위한 유저정보 가져오기
 
-GET http://localhost:5050/users/user
+GET http://localhost:7070/users/user
 -----------------------------------------------------------------------
-http://localhost:5050/users/user
+http://localhost:7070/users/user
 
 HTTP/1.1 200 OK
 Date: Sun, 12 Jun 2022 04:15:01 GMT
@@ -47,9 +47,9 @@ Response code: 200 (OK); Time: 43ms; Content length: 122 bytes
 =============================================
 * Git 로그인을 위한 유저 정보 가져오기 (이메일 비교)
 
-GET http://localhost:5050/users?email=psw4887@naver.com
+GET http://localhost:7070/users?email=psw4887@naver.com
 -----------------------------------------------------------------------
-http://localhost:5050/users?email=psw4887@naver.com
+http://localhost:7070/users?email=psw4887@naver.com
 
 HTTP/1.1 200 OK
 Date: Sun, 12 Jun 2022 04:17:00 GMT
@@ -70,7 +70,7 @@ Response code: 200 (OK); Time: 32ms; Content length: 122 bytes
 =============================================
 * 회원가입을 위한 form 정보 입력
 
-POST http://localhost:5050/users/register
+POST http://localhost:7070/users/register
 Content-Type: application/json; charset="utf-8"
 
 {
@@ -79,7 +79,7 @@ Content-Type: application/json; charset="utf-8"
   "email": "psw4888@naver.com"
 }
 -----------------------------------------------------------------------
-http://localhost:5050/users/register
+http://localhost:7070/users/register
 
 HTTP/1.1 201 Created
 Date: Sun, 12 Jun 2022 04:21:35 GMT
@@ -92,9 +92,9 @@ Response code: 201 (Created); Time: 146ms; Content length: 0 bytes
 =============================================
 * 회원상태 수정 요청
 
-PUT http://localhost:5050/users/admin/modify/states?state=휴면
+PUT http://localhost:7070/users/admin/modify/states?state=휴면
 -----------------------------------------------------------------------
- http://localhost:5050/users/admin/modify/states?state=휴면
+ http://localhost:7070/users/admin/modify/states?state=휴면
 
 HTTP/1.1 200 OK
 Date: Sun, 12 Jun 2022 04:23:07 GMT
@@ -107,9 +107,9 @@ Response code: 200 (OK); Time: 87ms; Content length: 0 bytes
 =============================================
 * 프로젝트 목록 불러오기 (Pageable)
 
-GET http://localhost:9090/project/view/0
+GET http://localhost:7070/projects/view/0
 -----------------------------------------------------------------------
-http://localhost:9090/project/view/0
+http://localhost:7070/projects/view/0
 
 HTTP/1.1 200 OK
 Date: Sun, 12 Jun 2022 04:32:22 GMT
@@ -132,7 +132,7 @@ Response code: 200 (OK); Time: 31ms; Content length: 55 bytes
 =============================================
 * 프로젝트 생성하기
 
-POST http://localhost:9090/project/register
+POST http://localhost:7070/projects/register
 Content-Type: application/json; charset="utf-8"
 
 {
@@ -141,7 +141,7 @@ Content-Type: application/json; charset="utf-8"
   "content": "두레이를 만드는데에 있어서 얼마나 많은 시간과 노력과 열정이 필요한지 알아보는 좋은 시간이 되어보자"
 }
 -----------------------------------------------------------------------
-http://localhost:9090/project/register
+http://localhost:7070/projects/register
 
 HTTP/1.1 201 Created
 Date: Sun, 12 Jun 2022 04:37:01 GMT
@@ -154,9 +154,9 @@ Response code: 201 (Created); Time: 101ms; Content length: 0 bytes
 =============================================
 * 프로젝트 Detail 불러오기 (task > pageable)
 
-GET http://localhost:9090/project/detail/1/0
+GET http://localhost:7070/project/detail/1/0
 -----------------------------------------------------------------------
-http://localhost:9090/project/detail/1/0
+http://localhost:7070/project/detail/1/0
 
 HTTP/1.1 200 OK
 Date: Sun, 12 Jun 2022 04:35:18 GMT
@@ -203,9 +203,9 @@ Response code: 200 (OK); Time: 82ms; Content length: 309 bytes
 =============================================
 * 프로젝트 상태 수정
 
-PUT http://localhost:9090/project/state/1?state=종료
+PUT http://localhost:7070/project/1/states?state=종료
 -----------------------------------------------------------------------
-http://localhost:9090/project/state/1?state=종료
+http://localhost:7070/project/1/states?state=종료
 
 HTTP/1.1 200 OK
 Date: Sun, 12 Jun 2022 04:40:47 GMT
@@ -218,9 +218,9 @@ Response code: 200 (OK); Time: 95ms; Content length: 0 bytes
 =============================================
 * 프로젝트 관리자인지 확인
 
-GET http://localhost:9090/members/admin?projectNo=1&id=user
+GET http://localhost:7070/projects/1/auths/admins?id=user
 -----------------------------------------------------------------------
-http://localhost:9090/members/admin?projectNo=1&id=user
+GET http://localhost:7070/projects/1/auths/admins?id=user
 
 HTTP/1.1 200 OK
 Date: Sun, 12 Jun 2022 04:42:19 GMT
@@ -236,9 +236,9 @@ Response code: 200 (OK); Time: 32ms; Content length: 4 bytes
 =============================================
 * 프로젝트 멤버인지 확인
 
-GET http://localhost:9090/members/member?projectNo=1&id=user
+GET http://localhost:7070/projects/1/auths/members?id=user
 -----------------------------------------------------------------------
-http://localhost:9090/members/member?projectNo=1&id=user
+GET http://localhost:7070/projects/1/auths/members?id=user
 
 HTTP/1.1 200 OK
 Date: Sun, 12 Jun 2022 04:44:57 GMT
@@ -254,9 +254,9 @@ Response code: 200 (OK); Time: 66ms; Content length: 4 bytes
 =============================================
 * 프로젝트 멤버 추가
 
-POST http://localhost:9090/members/register?projectNo=1&id=admin
+POST http://localhost:7070/projects/1/members/register?id=admin
 -----------------------------------------------------------------------
-http://localhost:9090/members/register?projectNo=1&id=admin
+http://localhost:7070/projects/1/members/register?id=admin
 
 HTTP/1.1 201 Created
 Date: Sun, 12 Jun 2022 04:46:56 GMT
@@ -269,9 +269,9 @@ Response code: 201 (Created); Time: 103ms; Content length: 0 bytes
 =============================================
 * 프로젝트 멤버 삭제
 
-DELETE http://localhost:9090/members/delete?projectNo=1&id=admin
+DELETE http://localhost:7070/projects/1/members/delete?id=admin
 -----------------------------------------------------------------------
-http://localhost:9090/members/delete?projectNo=1&id=admin
+http://localhost:7070/projects/1/members/delete?id=admin
 
 HTTP/1.1 200 OK
 Date: Sun, 12 Jun 2022 04:48:05 GMT

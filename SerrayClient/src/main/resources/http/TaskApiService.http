@@ -1,8 +1,8 @@
-GET http://localhost:9090/project/view/{{page}}
+GET http://localhost:7070/projects/view/{{page}}
 
 #####
 
-POST http://localhost:9090/project/register
+POST http://localhost:7070/projects/register
 Content-Type: application/json; charset="utf-8"
 
 {
@@ -13,27 +13,27 @@ Content-Type: application/json; charset="utf-8"
 
 #####
 
-GET http://localhost:9090/project/detail/{{projectNo}}/{{page}}
+GET http://localhost:7070/projects/detail/{{projectNo}}/{{page}}
 
 #####
 
-PUT http://localhost:9090/project/state/{{projectNo}}?state={{state}}
+PUT http://localhost:7070/projects/{{projectNo}}/states?state={{state}}
 
 #####
 
-GET http://localhost:9090/members/admin?projectNo={{projectNo}}&id={{id}}
+GET http://localhost:7070/projects/{{projectNo}}/auths/admin?id={{id}}
 
 #####
 
-GET http://localhost:9090/members/member?projectNo={{projectNo}}&id={{id}}
+GET http://localhost:7070/projects/{{projectNo}}/auths/member?id={{id}}
 
 #####
 
-POST http://localhost:9090/members/register?projectNo={{projectNo}}&id={{id}}
+POST http://localhost:7070/projects/{{projectNo}}/members/register?id=admin
 
 #####
 
-DELETE http://localhost:9090/members/delete?projectNo={{projectNo}}&id={{id}}
+DELETE http://localhost:7070/projects/{{projectNo}}/delete?id={{id}}
 
 #####
 

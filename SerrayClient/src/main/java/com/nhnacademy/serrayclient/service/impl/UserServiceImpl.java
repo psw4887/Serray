@@ -18,15 +18,16 @@ import java.util.List;
 @RequiredArgsConstructor
 public class UserServiceImpl implements UserService {
 
+    private final String gateWayIp;
+    private final HttpHeaders httpHeaders = buildHeaders();
     private final RestTemplate restTemplate;
     private final ObjectMapper mapper;
 
     @Override
     public List<UserIdResponse> getUsersForStateOK() {
-        HttpHeaders httpHeaders = buildHeaders();
 
         HttpEntity<String> requestEntity = new HttpEntity<>(httpHeaders);
-        ResponseEntity<List<UserIdResponse>> response = restTemplate.exchange("http://localhost:5050/users/state-ok",
+        ResponseEntity<List<UserIdResponse>> response = restTemplate.exchange(gateWayIp + "/users/state-ok",
                 HttpMethod.GET,
                 requestEntity,
                 new ParameterizedTypeReference<>() {
@@ -38,10 +39,8 @@ public class UserServiceImpl implements UserService {
     @Override
     public UserInfoResponse getUser(String id) {
 
-        HttpHeaders httpHeaders = buildHeaders();
-
         HttpEntity<String> requestEntity = new HttpEntity<>(httpHeaders);
-        ResponseEntity<UserInfoResponse> response = restTemplate.exchange("http://localhost:5050/users/" + id,
+        ResponseEntity<UserInfoResponse> response = restTemplate.exchange(gateWayIp + "/users/" + id,
                 HttpMethod.GET,
                 requestEntity,
                 UserInfoResponse.class);
@@ -52,10 +51,8 @@ public class UserServiceImpl implements UserService {
     @Override
     public UserInfoResponse findByUserEmail(String email) {
 
-        HttpHeaders httpHeaders = buildHeaders();
-
         HttpEntity<String> requestEntity = new HttpEntity<>(httpHeaders);
-        ResponseEntity<UserInfoResponse> response = restTemplate.exchange("http://localhost:5050/users?email=" + email,
+        ResponseEntity<UserInfoResponse> response = restTemplate.exchange(gateWayIp + "/users?email=" + email,
             HttpMethod.GET,
             requestEntity,
             UserInfoResponse.class);
@@ -66,9 +63,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public void registerUser(UserRegisterRequest userRegisterRequest) {
 
-        HttpHeaders httpHeaders = buildHeaders();
-        String request = "";
-
+        String request;
         try {
             request = mapper.writeValueAsString(userRegisterRequest);
         } catch (JsonProcessingException e) {
@@ -76,7 +71,7 @@ public class UserServiceImpl implements UserService {
         }
 
         HttpEntity<String> requestEntity = new HttpEntity<>(request, httpHeaders);
-        restTemplate.exchange("http://localhost:5050/users/register",
+        restTemplate.exchange(gateWayIp + "/users/register",
                 HttpMethod.POST,
                 requestEntity,
                 Void.class);
@@ -85,10 +80,8 @@ public class UserServiceImpl implements UserService {
     @Override
     public void modifyUserState(String user, String state) {
 
-        HttpHeaders httpHeaders = buildHeaders();
-
         HttpEntity<String> requestEntity = new HttpEntity<>(httpHeaders);
-        restTemplate.exchange("http://localhost:5050/users/" + user + "/modify/states?state=" + state,
+        restTemplate.exchange(gateWayIp + "/users/" + user + "/modify/states?state=" + state,
                 HttpMethod.PUT,
                 requestEntity,
                 Void.class);
@@ -96,10 +89,10 @@ public class UserServiceImpl implements UserService {
 
     private HttpHeaders buildHeaders() {
 
-        HttpHeaders httpHeaders = new HttpHeaders();
-        httpHeaders.setContentType(MediaType.APPLICATION_JSON);
-        httpHeaders.setAccept(List.of(MediaType.APPLICATION_JSON));
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+        headers.setAccept(List.of(MediaType.APPLICATION_JSON));
 
-        return httpHeaders;
+        return headers;
     }
 }

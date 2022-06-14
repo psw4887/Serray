@@ -7,34 +7,34 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/members")
+@RequestMapping("/projects/{projectNo}")
 public class MemberController {
 
     private final MemberService service;
 
-    @GetMapping("/admin")
-    public boolean isProjectAdmin(@RequestParam("projectNo") Integer projectNo,
+    @GetMapping("auths/admins")
+    public boolean isProjectAdmin(@PathVariable("projectNo") Integer projectNo,
                                   @RequestParam("id")  String id) {
 
         return service.isAdmin(projectNo, id);
     }
 
-    @GetMapping("/member")
-    public boolean isProjectMember(@RequestParam("projectNo") Integer projectNo,
+    @GetMapping("auths/members")
+    public boolean isProjectMember(@PathVariable("projectNo") Integer projectNo,
                                    @RequestParam("id") String id) {
 
         return service.isMember(projectNo, id);
     }
 
     @ResponseStatus(HttpStatus.CREATED)
-    @PostMapping("/register")
-    public void memberRegister(@RequestParam("projectNo") Integer projectNo,
+    @PostMapping("/members/register")
+    public void memberRegister(@PathVariable("projectNo") Integer projectNo,
                                @RequestParam("id") String id) {
 
         service.registerMember(projectNo, id);
     }
 
-    @DeleteMapping("/delete")
+    @DeleteMapping("/members/delete")
     public void memberDelete(@RequestParam("projectNo") Integer projectNo,
                              @RequestParam("id") String id) {
 

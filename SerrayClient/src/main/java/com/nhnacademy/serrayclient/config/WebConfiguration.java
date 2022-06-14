@@ -30,4 +30,10 @@ public class WebConfiguration extends WebMvcConfigurationSupport {
                 .setConnectTimeout(Duration.ofSeconds(5L))
                 .build();
     }
+
+    @Bean
+    public String gateWayIp() {
+
+        return "http://localhost:7070";
+    }
 }

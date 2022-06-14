@@ -21,16 +21,17 @@ import org.springframework.web.client.RestTemplate;
 @RequiredArgsConstructor
 public class ProjectServiceImpl implements ProjectService {
 
+    private final String gateWayIp;
+    private final HttpHeaders httpHeaders = buildHeaders();
     private final RestTemplate restTemplate;
     private final ObjectMapper mapper;
 
     @Override
     public List<ProjectForListResponse> getProjectList(Integer page) {
 
-        HttpHeaders httpHeaders = buildHeaders();
         HttpEntity<String> requestEntity = new HttpEntity<>(httpHeaders);
         ResponseEntity<List<ProjectForListResponse>>
-            response = restTemplate.exchange("http://localhost:9090/project/view/" + page,
+            response = restTemplate.exchange(gateWayIp + "/view/" + page,
             HttpMethod.GET,
             requestEntity,
             new ParameterizedTypeReference<>() {
@@ -42,9 +43,7 @@ public class ProjectServiceImpl implements ProjectService {
     @Override
     public void registerProject(ProjectRegisterRequest projectRegisterRequest) {
 
-        HttpHeaders httpHeaders = buildHeaders();
-        String request = "";
-
+        String request;
         try {
             request = mapper.writeValueAsString(projectRegisterRequest);
         } catch (JsonProcessingException e) {
@@ -52,7 +51,7 @@ public class ProjectServiceImpl implements ProjectService {
         }
 
         HttpEntity<String> requestEntity = new HttpEntity<>(request, httpHeaders);
-        restTemplate.exchange("http://localhost:9090/project/register",
+        restTemplate.exchange(gateWayIp + "/register",
             HttpMethod.POST,
             requestEntity,
             Void.class);
@@ -61,10 +60,9 @@ public class ProjectServiceImpl implements ProjectService {
     @Override
     public ProjectForDetailResponse detailProject(Integer projectNo, Integer page) {
 
-        HttpHeaders httpHeaders = buildHeaders();
         HttpEntity<String> requestEntity = new HttpEntity<>(httpHeaders);
         ResponseEntity<ProjectForDetailResponse> response = restTemplate.exchange(
-            "http://localhost:9090/project/detail/" + projectNo + "/" + page,
+            gateWayIp + "/detail/" + projectNo + "/" + page,
             HttpMethod.GET,
             requestEntity,
             ProjectForDetailResponse.class);
@@ -75,10 +73,9 @@ public class ProjectServiceImpl implements ProjectService {
     @Override
     public void projectModifyState(Integer projectNo, String state) {
 
-        HttpHeaders httpHeaders = buildHeaders();
         HttpEntity<String> requestEntity = new HttpEntity<>(httpHeaders);
         restTemplate.exchange(
-                "http://localhost:9090/project/state/" + projectNo + "?state=" + state,
+                gateWayIp + "/" + projectNo + "/states?state=" + state,
                 HttpMethod.PUT,
                 requestEntity,
                 Void.class);
@@ -86,10 +83,10 @@ public class ProjectServiceImpl implements ProjectService {
 
     private HttpHeaders buildHeaders() {
 
-        HttpHeaders httpHeaders = new HttpHeaders();
-        httpHeaders.setContentType(MediaType.APPLICATION_JSON);
-        httpHeaders.setAccept(List.of(MediaType.APPLICATION_JSON));
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+        headers.setAccept(List.of(MediaType.APPLICATION_JSON));
 
-        return httpHeaders;
+        return headers;
     }
 }
