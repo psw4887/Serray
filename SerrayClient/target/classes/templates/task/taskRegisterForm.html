@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Task RegisterForm</title>
+</head>
+<body>
+<h3 style="text-align: center"> 업무 생성 </h3>
+<div style="text-align: center; display: flex; justify-content: center">
+    <form th:method="post" th:action="'/task/register?projectNo=' + ${projectNo}">
+        <span>업무 제목 : </span><input type="text" name="title"><br /><br />
+        <span>[업무 내용]</span><br />
+        <textarea cols = "50" rows = "10" name="content"></textarea><br/>
+        <input type="submit" value="Register">
+    </form>
+</div>
+</body>
+</html>

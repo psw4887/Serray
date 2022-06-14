@@ -1,16 +1,16 @@
-GET http://localhost:5050/user
+GET http://localhost:5050/users/state-ok
 
 #####
 
-GET http://localhost:5050/user/get/{{id}}
+GET http://localhost:5050/users/{{id}}
 
 #####
 
-GET http://localhost:5050/user/get/git?email={{email}}
+GET http://localhost:5050/users?email={{email}}
 
 #####
 
-POST http://localhost:5050/user/register
+POST http://localhost:5050/users/register
 Content-Type: application/json; charset="utf-8"
 
 {
@@ -21,5 +21,5 @@ Content-Type: application/json; charset="utf-8"
 
 #####
 
-PUT http://localhost:5050/user/modify/{{id}}/{{state}}
+PUT http://localhost:5050/users/{{id}}}/modify/states?state={{state}}
 

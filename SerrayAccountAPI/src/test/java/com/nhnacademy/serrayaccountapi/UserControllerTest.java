@@ -39,7 +39,7 @@ class UserControllerTest {
     @MockBean
     private UserService service;
 
-    @DisplayName("/user 테스트")
+    @DisplayName("상태가 가입인 유저 리스트 가져오기")
     @Test
     void getStateOKUsers() throws Exception {
 
@@ -47,13 +47,13 @@ class UserControllerTest {
 
         given(service.getUserListStateOK()).willReturn(list);
 
-        this.mockMvc.perform(get("/user"))
+        this.mockMvc.perform(get("/users/state-ok"))
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON))
             .andExpect(jsonPath("$[0].id").value("user"));
     }
 
-    @DisplayName("/user/get/{id} 테스트")
+    @DisplayName("아이디로 유저 가져오기")
     @Test
     void getUserById() throws Exception {
 
@@ -61,13 +61,13 @@ class UserControllerTest {
 
         given(service.findUserById(anyString())).willReturn(vo);
 
-        this.mockMvc.perform(get("/user/get/{id}", "user"))
+        this.mockMvc.perform(get("/users/{id}", "user"))
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON))
             .andExpect(jsonPath("$.id",equalTo("user")));
     }
 
-    @DisplayName("/user/get/git/?email={email} 테스트")
+    @DisplayName("이메일로 유저 받아오기")
     @Test
     void getUserByEmail() throws Exception {
 
@@ -75,7 +75,7 @@ class UserControllerTest {
 
         given(service.findUserByEmail(anyString())).willReturn(vo);
 
-        this.mockMvc.perform(get("/user/get/git")
+        this.mockMvc.perform(get("/users")
                 .contentType(MediaType.APPLICATION_JSON)
                 .param("email", "psw4887@naver.com"))
             .andExpect(status().isOk())
@@ -83,7 +83,7 @@ class UserControllerTest {
             .andExpect(jsonPath("$.id", equalTo("user")));
     }
 
-    @DisplayName("/user/register 성공 테스트")
+    @DisplayName("회원가입 성공 테스트")
     @Test
     void registerUser() throws Exception {
 
@@ -93,13 +93,13 @@ class UserControllerTest {
 
         String requestBody = mapper.writeValueAsString(response);
 
-        this.mockMvc.perform(post("/user/register")
+        this.mockMvc.perform(post("/users/register")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(requestBody))
             .andExpect(status().isCreated());
     }
 
-    @DisplayName("/user/register 실패 테스트")
+    @DisplayName("회원가입 실패 테스트")
     @Test
     void registerUserFail() throws Exception {
 
@@ -109,17 +109,18 @@ class UserControllerTest {
 
         String requestBody = mapper.writeValueAsString(response);
 
-        this.mockMvc.perform(post("/user/register")
+        this.mockMvc.perform(post("/users/register")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(requestBody))
             .andExpect(status().isOk());
     }
 
-    @DisplayName("/user/modify/{user}/{state} 테스트")
+    @DisplayName("유저 상태 수정 테스트")
     @Test
     void modifyUserState() throws Exception {
 
-        this.mockMvc.perform(put("/user/modify/{user}/{state}","user", "가입"))
+        this.mockMvc.perform(put("/users/{user}/modify/states","user")
+                .param("state", "휴면"))
             .andExpect(status().isOk());
     }
 }

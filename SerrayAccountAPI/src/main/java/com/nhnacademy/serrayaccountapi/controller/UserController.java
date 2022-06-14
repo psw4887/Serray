@@ -15,27 +15,27 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/user")
+@RequestMapping("/users")
 public class UserController {
 
     private final UserService service;
 
-    @GetMapping
+    @GetMapping("/state-ok")
     public List<OnlyUserIdResponse> getStateOKUsers() {
 
         return service.getUserListStateOK();
     }
 
-    @GetMapping("/get/{id}")
-    public ForLoginUserVO getUserById(@PathVariable("id") String id) {
-
-        return service.findUserById(id);
-    }
-
-    @GetMapping("/get/git")
+    @GetMapping
     public ForLoginUserVO getUserByEmail(@RequestParam("email") String email) {
 
         return service.findUserByEmail(email);
+    }
+
+    @GetMapping("/{id}")
+    public ForLoginUserVO getUserById(@PathVariable("id") String id) {
+
+        return service.findUserById(id);
     }
 
     @ResponseStatus(HttpStatus.CREATED)
@@ -50,9 +50,9 @@ public class UserController {
         service.userRegister(response);
     }
 
-    @PutMapping("/modify/{user}/{state}")
+    @PutMapping("/{user}/modify/states")
     public void modifyUserState(@PathVariable("user") String user,
-                                @PathVariable("state") String state) {
+                                @RequestParam("state") String state) {
 
         service.userStateModify(user, state);
     }

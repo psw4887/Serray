@@ -26,7 +26,7 @@ public class UserServiceImpl implements UserService {
         HttpHeaders httpHeaders = buildHeaders();
 
         HttpEntity<String> requestEntity = new HttpEntity<>(httpHeaders);
-        ResponseEntity<List<UserIdResponse>> response = restTemplate.exchange("http://localhost:5050/user",
+        ResponseEntity<List<UserIdResponse>> response = restTemplate.exchange("http://localhost:5050/users/state-ok",
                 HttpMethod.GET,
                 requestEntity,
                 new ParameterizedTypeReference<>() {
@@ -41,7 +41,7 @@ public class UserServiceImpl implements UserService {
         HttpHeaders httpHeaders = buildHeaders();
 
         HttpEntity<String> requestEntity = new HttpEntity<>(httpHeaders);
-        ResponseEntity<UserInfoResponse> response = restTemplate.exchange("http://localhost:5050/user/get/" + id,
+        ResponseEntity<UserInfoResponse> response = restTemplate.exchange("http://localhost:5050/users/" + id,
                 HttpMethod.GET,
                 requestEntity,
                 UserInfoResponse.class);
@@ -55,7 +55,7 @@ public class UserServiceImpl implements UserService {
         HttpHeaders httpHeaders = buildHeaders();
 
         HttpEntity<String> requestEntity = new HttpEntity<>(httpHeaders);
-        ResponseEntity<UserInfoResponse> response = restTemplate.exchange("http://localhost:5050/user/get/git?email=" + email,
+        ResponseEntity<UserInfoResponse> response = restTemplate.exchange("http://localhost:5050/users?email=" + email,
             HttpMethod.GET,
             requestEntity,
             UserInfoResponse.class);
@@ -76,7 +76,7 @@ public class UserServiceImpl implements UserService {
         }
 
         HttpEntity<String> requestEntity = new HttpEntity<>(request, httpHeaders);
-        restTemplate.exchange("http://localhost:5050/user/register",
+        restTemplate.exchange("http://localhost:5050/users/register",
                 HttpMethod.POST,
                 requestEntity,
                 Void.class);
@@ -88,7 +88,7 @@ public class UserServiceImpl implements UserService {
         HttpHeaders httpHeaders = buildHeaders();
 
         HttpEntity<String> requestEntity = new HttpEntity<>(httpHeaders);
-        restTemplate.exchange("http://localhost:5050/user/modify/" + user + "/" + state,
+        restTemplate.exchange("http://localhost:5050/users/" + user + "/modify/states?state=" + state,
                 HttpMethod.PUT,
                 requestEntity,
                 Void.class);

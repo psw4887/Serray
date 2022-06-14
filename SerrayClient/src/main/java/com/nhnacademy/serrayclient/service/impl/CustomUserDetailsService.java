@@ -29,7 +29,7 @@ public class CustomUserDetailsService implements UserDetailsService {
         HttpHeaders httpHeaders = buildHeaders();
 
         HttpEntity<String> requestEntity = new HttpEntity<>(httpHeaders);
-        ResponseEntity<UserInfoResponse> response = restTemplate.exchange("http://localhost:5050/user/get/" + username,
+        ResponseEntity<UserInfoResponse> response = restTemplate.exchange("http://localhost:5050/users/" + username,
                 HttpMethod.GET,
                 requestEntity,
                 UserInfoResponse.class);

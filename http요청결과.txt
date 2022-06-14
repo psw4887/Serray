@@ -2,9 +2,9 @@
 =============================================
 * 상태 "가입"인 유저들 가져오기
 
-GET http://localhost:5050/user
+GET http://localhost:5050/users/state-ok
 -----------------------------------------------------------------------
-http://localhost:5050/user
+http://localhost:5050/users/state-ok
 
 HTTP/1.1 200 OK
 Date: Sun, 12 Jun 2022 04:10:33 GMT
@@ -24,9 +24,9 @@ Response code: 200 (OK); Time: 180ms; Content length: 15 bytes
 =============================================
 * 로그인을 위한 유저정보 가져오기
 
-GET http://localhost:5050/user/get/user
+GET http://localhost:5050/users/user
 -----------------------------------------------------------------------
-http://localhost:5050/user/get/user
+http://localhost:5050/users/user
 
 HTTP/1.1 200 OK
 Date: Sun, 12 Jun 2022 04:15:01 GMT
@@ -47,9 +47,9 @@ Response code: 200 (OK); Time: 43ms; Content length: 122 bytes
 =============================================
 * Git 로그인을 위한 유저 정보 가져오기 (이메일 비교)
 
-GET http://localhost:5050/user/get/git?email=psw4887@naver.com
+GET http://localhost:5050/users?email=psw4887@naver.com
 -----------------------------------------------------------------------
-http://localhost:5050/user/get/git?email=psw4887@naver.com
+http://localhost:5050/users?email=psw4887@naver.com
 
 HTTP/1.1 200 OK
 Date: Sun, 12 Jun 2022 04:17:00 GMT
@@ -70,7 +70,7 @@ Response code: 200 (OK); Time: 32ms; Content length: 122 bytes
 =============================================
 * 회원가입을 위한 form 정보 입력
 
-POST http://localhost:5050/user/register
+POST http://localhost:5050/users/register
 Content-Type: application/json; charset="utf-8"
 
 {
@@ -79,7 +79,7 @@ Content-Type: application/json; charset="utf-8"
   "email": "psw4888@naver.com"
 }
 -----------------------------------------------------------------------
-http://localhost:5050/user/register
+http://localhost:5050/users/register
 
 HTTP/1.1 201 Created
 Date: Sun, 12 Jun 2022 04:21:35 GMT
@@ -92,9 +92,9 @@ Response code: 201 (Created); Time: 146ms; Content length: 0 bytes
 =============================================
 * 회원상태 수정 요청
 
-PUT http://localhost:5050/user/modify/admin/휴면
+PUT http://localhost:5050/users/admin/modify/states?state=휴면
 -----------------------------------------------------------------------
-http://localhost:5050/user/modify/admin/휴면
+ http://localhost:5050/users/admin/modify/states?state=휴면
 
 HTTP/1.1 200 OK
 Date: Sun, 12 Jun 2022 04:23:07 GMT
