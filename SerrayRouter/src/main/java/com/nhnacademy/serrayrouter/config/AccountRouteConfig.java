@@ -14,9 +14,7 @@ public class AccountRouteConfig {
         return routeLocatorBuilder.routes()
             .route(p->p.path("/users/**")
                 .uri("http://localhost:5050"))
-            .route(p->p.path("/project/**")
-                .uri("http://localhost:9090"))
-            .route(p->p.path("/task/**")
+            .route(p->p.path("/projects/**")
                 .uri("http://localhost:9090"))
             .build();
     }

@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/mile")
+@RequestMapping("/projects/miles")
 public class MilestoneController {
 
     private final MilestoneService service;
@@ -41,14 +41,14 @@ public class MilestoneController {
         service.projectMileModify(vo);
     }
 
-    @DeleteMapping("/delete")
-    public void deleteProjectMile(@RequestParam("mileNo") Integer mileNo) {
+    @DeleteMapping("/{mileNo}/delete")
+    public void deleteProjectMile(@PathVariable("mileNo") Integer mileNo) {
 
         service.projectMileDelete(mileNo);
     }
 
     @ResponseStatus(HttpStatus.CREATED)
-    @PostMapping("/task/register")
+    @PostMapping("/tasks/register")
     public void addTaskMile(@RequestBody @Valid TaskMileRegisterVO vo,
                             BindingResult bindingResult) {
 

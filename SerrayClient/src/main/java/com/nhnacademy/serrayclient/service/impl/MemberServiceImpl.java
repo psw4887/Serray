@@ -7,21 +7,25 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
+import org.springframework.web.util.UriBuilder;
+import org.springframework.web.util.UriBuilderFactory;
+import org.springframework.web.util.UriComponentsBuilder;
 
 @Service
 @RequiredArgsConstructor
 public class MemberServiceImpl implements MemberService {
+
+    private final HttpHeaders httpHeaders = buildHeaders();
+    private final String gateWayIp;
 
     private final RestTemplate template;
 
     @Override
     public boolean isProjectAdmin(Integer projectNo, String id) {
 
-        HttpHeaders httpHeaders = buildHeaders();
-
         HttpEntity<String> requestEntity = new HttpEntity<>(httpHeaders);
         ResponseEntity<Boolean> response =
-                template.exchange("http://localhost:9090/members/admin?projectNo=" + projectNo + "&id=" + id,
+                template.exchange(gateWayIp + "/projects/" + projectNo + "/auths/admins?id=" + id,
                         HttpMethod.GET,
                         requestEntity,
                         Boolean.class);
@@ -32,11 +36,9 @@ public class MemberServiceImpl implements MemberService {
     @Override
     public boolean isProjectMember(Integer projectNo, String id) {
 
-        HttpHeaders httpHeaders = buildHeaders();
-
         HttpEntity<String> requestEntity = new HttpEntity<>(httpHeaders);
         ResponseEntity<Boolean> response =
-                template.exchange("http://localhost:9090/members/member?projectNo=" + projectNo + "&id=" + id,
+                template.exchange(gateWayIp + "/projects/" + projectNo + "/auths/members?id=" + id,
                         HttpMethod.GET,
                         requestEntity,
                         Boolean.class);
@@ -47,10 +49,8 @@ public class MemberServiceImpl implements MemberService {
     @Override
     public void registerMember(Integer projectNo, String id) {
 
-        HttpHeaders httpHeaders = buildHeaders();
-
         HttpEntity<String> requestEntity = new HttpEntity<>(httpHeaders);
-        template.exchange("http://localhost:9090/members/register?projectNo=" + projectNo + "&id=" + id,
+        template.exchange(gateWayIp + "/projects/" + projectNo + "/members/register?id=" + id,
                 HttpMethod.POST,
                 requestEntity,
                 Void.class);
@@ -59,10 +59,8 @@ public class MemberServiceImpl implements MemberService {
     @Override
     public void deleteMember(Integer projectNo, String id) {
 
-        HttpHeaders httpHeaders = buildHeaders();
-
         HttpEntity<String> requestEntity = new HttpEntity<>(httpHeaders);
-        template.exchange("http://localhost:9090/members/delete?projectNo=" + projectNo + "&id=" + id,
+        template.exchange(gateWayIp + "/projects/" + projectNo + "/members/delete?id=" + id,
                 HttpMethod.DELETE,
                 requestEntity,
                 Void.class);
@@ -70,10 +68,10 @@ public class MemberServiceImpl implements MemberService {
 
     private HttpHeaders buildHeaders() {
 
-        HttpHeaders httpHeaders = new HttpHeaders();
-        httpHeaders.setContentType(MediaType.APPLICATION_JSON);
-        httpHeaders.setAccept(List.of(MediaType.APPLICATION_JSON));
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+        headers.setAccept(List.of(MediaType.APPLICATION_JSON));
 
-        return httpHeaders;
+        return headers;
     }
 }

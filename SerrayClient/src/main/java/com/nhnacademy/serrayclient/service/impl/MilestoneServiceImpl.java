@@ -21,15 +21,15 @@ import java.util.List;
 @RequiredArgsConstructor
 public class MilestoneServiceImpl implements MilestoneService {
 
+    private final String gateWayIp;
+    private String request = "";
+    private final HttpHeaders httpHeaders = buildHeaders();
     private final RestTemplate template;
     private final ObjectMapper mapper;
     @Override
     public void registerMilestone(Integer projectNo, String content, String admin) {
 
         MileRegisterRequest registerRequest = new MileRegisterRequest(projectNo, content, admin);
-
-        HttpHeaders httpHeaders = buildHeaders();
-        String request = "";
 
         try {
             request = mapper.writeValueAsString(registerRequest);
@@ -39,7 +39,7 @@ public class MilestoneServiceImpl implements MilestoneService {
 
         HttpEntity<String> requestEntity = new HttpEntity<>(request, httpHeaders);
         template.exchange(
-                "http://localhost:9090/mile/register",
+                gateWayIp + "/projects/miles/register",
                 HttpMethod.POST,
                 requestEntity,
                 Void.class);
@@ -50,9 +50,6 @@ public class MilestoneServiceImpl implements MilestoneService {
 
         MileModifyRequest modifyRequest = new MileModifyRequest(mileNo, content);
 
-        HttpHeaders httpHeaders = buildHeaders();
-        String request = "";
-
         try {
             request = mapper.writeValueAsString(modifyRequest);
         } catch (JsonProcessingException e) {
@@ -61,7 +58,7 @@ public class MilestoneServiceImpl implements MilestoneService {
 
         HttpEntity<String> requestEntity = new HttpEntity<>(request, httpHeaders);
         template.exchange(
-                "http://localhost:9090/mile/modify",
+                gateWayIp + "/projects/miles/modify",
                 HttpMethod.PUT,
                 requestEntity,
                 Void.class);
@@ -70,10 +67,9 @@ public class MilestoneServiceImpl implements MilestoneService {
     @Override
     public void deleteMilestone(Integer mileNo) {
 
-        HttpHeaders httpHeaders = buildHeaders();
         HttpEntity<String> requestEntity = new HttpEntity<>(httpHeaders);
         template.exchange(
-                "http://localhost:9090/mile/delete?mileNo=" + mileNo,
+                gateWayIp + "/projects/miles/" + mileNo + "/delete",
                 HttpMethod.DELETE,
                 requestEntity,
                 Void.class);
@@ -85,7 +81,6 @@ public class MilestoneServiceImpl implements MilestoneService {
         TaskMileRegisterRequest registerRequest = new TaskMileRegisterRequest(
                 taskNo, mileNo, start, end
         );
-        String request = "";
 
         try {
             request = mapper.writeValueAsString(registerRequest);
@@ -93,10 +88,9 @@ public class MilestoneServiceImpl implements MilestoneService {
             throw new RuntimeException(e);
         }
 
-        HttpHeaders httpHeaders = buildHeaders();
         HttpEntity<String> requestEntity = new HttpEntity<>(request, httpHeaders);
         template.exchange(
-                "http://localhost:9090/mile/task/register",
+                gateWayIp + "/projects/miles/tasks/register",
                 HttpMethod.POST,
                 requestEntity,
                 Void.class);
@@ -104,10 +98,10 @@ public class MilestoneServiceImpl implements MilestoneService {
 
     private HttpHeaders buildHeaders() {
 
-        HttpHeaders httpHeaders = new HttpHeaders();
-        httpHeaders.setContentType(MediaType.APPLICATION_JSON);
-        httpHeaders.setAccept(List.of(MediaType.APPLICATION_JSON));
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+        headers.setAccept(List.of(MediaType.APPLICATION_JSON));
 
-        return httpHeaders;
+        return headers;
     }
 }

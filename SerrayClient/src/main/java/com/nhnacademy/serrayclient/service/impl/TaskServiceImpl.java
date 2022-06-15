@@ -17,17 +17,18 @@ import java.util.List;
 @RequiredArgsConstructor
 public class TaskServiceImpl implements TaskService {
 
+    private final String gateWayIp;
+    private final HttpHeaders httpHeaders = buildHeaders();
     private final RestTemplate template;
     private final ObjectMapper mapper;
+    private String request = "";
 
     @Override
     public TaskDataResponse getTaskData(Integer taskNo) {
 
-        HttpHeaders httpHeaders = buildHeaders();
-
         HttpEntity<String> requestEntity = new HttpEntity<>(httpHeaders);
         ResponseEntity<TaskDataResponse> response =
-                        template.exchange("http://localhost:9090/task?taskNo=" + taskNo,
+                        template.exchange(gateWayIp + "/projects/tasks/" + taskNo,
                         HttpMethod.GET,
                         requestEntity,
                         TaskDataResponse.class);
@@ -40,9 +41,6 @@ public class TaskServiceImpl implements TaskService {
 
         TaskRegisterRequest taskRegisterRequest = new TaskRegisterRequest(projectNo, id, title, content);
 
-        HttpHeaders httpHeaders = buildHeaders();
-        String request = "";
-
         try {
             request = mapper.writeValueAsString(taskRegisterRequest);
         } catch (JsonProcessingException e) {
@@ -50,7 +48,7 @@ public class TaskServiceImpl implements TaskService {
         }
 
         HttpEntity<String> requestEntity = new HttpEntity<>(request, httpHeaders);
-        template.exchange("http://localhost:9090/task/register",
+        template.exchange(gateWayIp + "/projects/tasks/register",
                 HttpMethod.POST,
                 requestEntity,
                 Void.class);
@@ -61,9 +59,6 @@ public class TaskServiceImpl implements TaskService {
 
         TaskModifyRequest taskModifyRequest = new TaskModifyRequest(taskNo, title, content);
 
-        HttpHeaders httpHeaders = buildHeaders();
-        String request = "";
-
         try {
             request = mapper.writeValueAsString(taskModifyRequest);
         } catch (JsonProcessingException e) {
@@ -71,7 +66,7 @@ public class TaskServiceImpl implements TaskService {
         }
 
         HttpEntity<String> requestEntity = new HttpEntity<>(request, httpHeaders);
-        template.exchange("http://localhost:9090/task/modify",
+        template.exchange(gateWayIp + "/projects/tasks/modify",
                 HttpMethod.PUT,
                 requestEntity,
                 Void.class);
@@ -80,10 +75,9 @@ public class TaskServiceImpl implements TaskService {
     @Override
     public void deleteTask(Integer taskNo) {
 
-        HttpHeaders httpHeaders = buildHeaders();
 
         HttpEntity<String> requestEntity = new HttpEntity<>(httpHeaders);
-        template.exchange("http://localhost:9090/task/delete/" + taskNo,
+        template.exchange(gateWayIp + "/projects/tasks/" + taskNo + "/delete",
                 HttpMethod.DELETE,
                 requestEntity,
                 Void.class);
@@ -91,10 +85,10 @@ public class TaskServiceImpl implements TaskService {
 
     private HttpHeaders buildHeaders() {
 
-        HttpHeaders httpHeaders = new HttpHeaders();
-        httpHeaders.setContentType(MediaType.APPLICATION_JSON);
-        httpHeaders.setAccept(List.of(MediaType.APPLICATION_JSON));
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+        headers.setAccept(List.of(MediaType.APPLICATION_JSON));
 
-        return httpHeaders;
+        return headers;
     }
 }

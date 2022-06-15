@@ -35,7 +35,7 @@ class TagControllerTest {
     @MockBean
     private TagService service;
 
-    @DisplayName("/tag/register 성공 테스트")
+    @DisplayName("태그 등록 성공")
     @Test
     void registerProjectTag() throws Exception {
 
@@ -44,13 +44,13 @@ class TagControllerTest {
 
         String requestBody = mapper.writeValueAsString(vo);
 
-        this.mockMvc.perform(post("/tag/register")
+        this.mockMvc.perform(post("/projects/tags/register")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(requestBody))
             .andExpect(status().isCreated());
     }
 
-    @DisplayName("/tag/register 실패 테스트")
+    @DisplayName("태그 등록 실패")
     @Test
     void registerProjectTagFail() throws Exception {
 
@@ -59,13 +59,13 @@ class TagControllerTest {
 
         String requestBody = mapper.writeValueAsString(vo);
 
-        this.mockMvc.perform(post("/tag/register")
+        this.mockMvc.perform(post("/projects/tags/register")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(requestBody))
             .andExpect(status().isOk());
     }
 
-    @DisplayName("/tag/modify 성공 테스트")
+    @DisplayName("태그 수정 성공")
     @Test
     void modifyProjectTag() throws Exception {
 
@@ -74,13 +74,13 @@ class TagControllerTest {
 
         String requestBody = mapper.writeValueAsString(vo);
 
-        this.mockMvc.perform(put("/tag/modify")
+        this.mockMvc.perform(put("/projects/tags/modify")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(requestBody))
             .andExpect(status().isOk());
     }
 
-    @DisplayName("/tag/modify 실패 테스트")
+    @DisplayName("태그 수정 실패")
     @Test
     void modifyProjectTagFail() throws Exception {
 
@@ -89,32 +89,30 @@ class TagControllerTest {
 
         String requestBody = mapper.writeValueAsString(vo);
 
-        this.mockMvc.perform(put("/tag/modify")
+        this.mockMvc.perform(put("/projects/tags/modify")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(requestBody))
             .andExpect(status().isOk());
     }
 
-    @DisplayName("/tag/delete?tagNo={tagNo} 테스트")
+    @DisplayName("태그 삭제")
     @Test
     void deleteProjectTag() throws Exception {
 
         doNothing().when(service).projectTagDelete(anyInt());
 
-        this.mockMvc.perform(delete("/tag/delete")
+        this.mockMvc.perform(delete("/projects/tags/{tagNo}/delete", 10)
                 .param("tagNo", "10"))
             .andExpect(status().isOk());
 
         verify(service, atLeastOnce()).projectTagDelete(10);
     }
 
-    @DisplayName("/tag/task/register?taskNo={taskNo}&tagNo={tagNo} 테스트")
+    @DisplayName("해당 업무에 태그 등록")
     @Test
     void addTaskTag() throws Exception {
 
-        this.mockMvc.perform(post("/tag/task/register")
-                .param("taskNo", "1")
-                .param("tagNo", "1"))
+        this.mockMvc.perform(post("/projects/tags/{tagNo}/tasks/{taskNo}/register", 1, 1))
             .andExpect(status().isCreated());
     }
 }

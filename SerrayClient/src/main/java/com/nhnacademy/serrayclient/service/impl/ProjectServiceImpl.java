@@ -31,7 +31,7 @@ public class ProjectServiceImpl implements ProjectService {
 
         HttpEntity<String> requestEntity = new HttpEntity<>(httpHeaders);
         ResponseEntity<List<ProjectForListResponse>>
-            response = restTemplate.exchange(gateWayIp + "/view/" + page,
+            response = restTemplate.exchange(gateWayIp + "/projects/view/" + page,
             HttpMethod.GET,
             requestEntity,
             new ParameterizedTypeReference<>() {
@@ -51,7 +51,7 @@ public class ProjectServiceImpl implements ProjectService {
         }
 
         HttpEntity<String> requestEntity = new HttpEntity<>(request, httpHeaders);
-        restTemplate.exchange(gateWayIp + "/register",
+        restTemplate.exchange(gateWayIp + "/projects/register",
             HttpMethod.POST,
             requestEntity,
             Void.class);
@@ -62,7 +62,7 @@ public class ProjectServiceImpl implements ProjectService {
 
         HttpEntity<String> requestEntity = new HttpEntity<>(httpHeaders);
         ResponseEntity<ProjectForDetailResponse> response = restTemplate.exchange(
-            gateWayIp + "/detail/" + projectNo + "/" + page,
+            gateWayIp + "/projects/detail/" + projectNo + "/" + page,
             HttpMethod.GET,
             requestEntity,
             ProjectForDetailResponse.class);
@@ -75,7 +75,7 @@ public class ProjectServiceImpl implements ProjectService {
 
         HttpEntity<String> requestEntity = new HttpEntity<>(httpHeaders);
         restTemplate.exchange(
-                gateWayIp + "/" + projectNo + "/states?state=" + state,
+                gateWayIp + "/projects/" + projectNo + "/states?state=" + state,
                 HttpMethod.PUT,
                 requestEntity,
                 Void.class);

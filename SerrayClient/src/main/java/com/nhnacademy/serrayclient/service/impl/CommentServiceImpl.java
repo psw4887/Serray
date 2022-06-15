@@ -16,17 +16,18 @@ import java.util.List;
 @RequiredArgsConstructor
 public class CommentServiceImpl implements CommentService {
 
+    private final HttpHeaders httpHeaders = buildHeaders();
+    private final String gateWayIp;
     private final RestTemplate template;
     private final ObjectMapper mapper;
+    private String request = "";
 
     @Override
     public String getCommenter(Integer commentNo) {
 
-        HttpHeaders httpHeaders = buildHeaders();
-
         HttpEntity<String> requestEntity = new HttpEntity<>(httpHeaders);
         ResponseEntity<String> response = template.exchange(
-                "http://localhost:9090/comment/get?commentNo=" + commentNo,
+                gateWayIp + "/projects/comments/" + commentNo,
                 HttpMethod.GET,
                 requestEntity,
                 String.class);
@@ -39,9 +40,6 @@ public class CommentServiceImpl implements CommentService {
 
         CommentRegisterRequest registerRequest = new CommentRegisterRequest(taskNo, admin, content);
 
-        HttpHeaders httpHeaders = buildHeaders();
-        String request = "";
-
         try {
             request = mapper.writeValueAsString(registerRequest);
         } catch (JsonProcessingException e) {
@@ -49,7 +47,7 @@ public class CommentServiceImpl implements CommentService {
         }
 
         HttpEntity<String> requestEntity = new HttpEntity<>(request, httpHeaders);
-        template.exchange("http://localhost:9090/comment/register",
+        template.exchange(gateWayIp + "/projects/comments/register",
                 HttpMethod.POST,
                 requestEntity,
                 Void.class);
@@ -60,9 +58,6 @@ public class CommentServiceImpl implements CommentService {
 
         CommentModifyRequest modifyRequest = new CommentModifyRequest(commentNo, content);
 
-        HttpHeaders httpHeaders = buildHeaders();
-        String request = "";
-
         try {
             request = mapper.writeValueAsString(modifyRequest);
         } catch (JsonProcessingException e) {
@@ -70,7 +65,7 @@ public class CommentServiceImpl implements CommentService {
         }
 
         HttpEntity<String> requestEntity = new HttpEntity<>(request, httpHeaders);
-        template.exchange("http://localhost:9090/comment/modify",
+        template.exchange(gateWayIp + "/projects/comments/modify",
                 HttpMethod.PUT,
                 requestEntity,
                 Void.class);
@@ -78,10 +73,8 @@ public class CommentServiceImpl implements CommentService {
     @Override
     public void deleteComment(Integer commentNo) {
 
-        HttpHeaders httpHeaders = buildHeaders();
-
         HttpEntity<String> requestEntity = new HttpEntity<>(httpHeaders);
-        template.exchange("http://localhost:9090/comment/delete?commentNo=" + commentNo,
+        template.exchange(gateWayIp + "/projects/comments/" + commentNo + "/delete",
                 HttpMethod.DELETE,
                 requestEntity,
                 Void.class);
@@ -89,10 +82,10 @@ public class CommentServiceImpl implements CommentService {
 
     private HttpHeaders buildHeaders() {
 
-        HttpHeaders httpHeaders = new HttpHeaders();
-        httpHeaders.setContentType(MediaType.APPLICATION_JSON);
-        httpHeaders.setAccept(List.of(MediaType.APPLICATION_JSON));
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+        headers.setAccept(List.of(MediaType.APPLICATION_JSON));
 
-        return httpHeaders;
+        return headers;
     }
 }

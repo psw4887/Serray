@@ -284,9 +284,9 @@ Response code: 200 (OK); Time: 98ms; Content length: 0 bytes
 =============================================
 * 프로젝트 업무 내용 가져오기
 
-GET http://localhost:9090/task?taskNo=1
+GET http://localhost:7070/projects/tasks/1
 -----------------------------------------------------------------------
-http://localhost:9090/task?taskNo=1
+http://localhost:7070/projects/tasks/1
 
 HTTP/1.1 200 OK
 Date: Sun, 12 Jun 2022 04:53:32 GMT
@@ -338,7 +338,7 @@ Response code: 200 (OK); Time: 220ms; Content length: 380 bytes
 =============================================
 * 프로젝트 업무 추가
 
-POST http://localhost:9090/task/register
+POST http://localhost:7070/projects/tasks/register
 Content-Type: application/json; charset="utf-8"
 
 {
@@ -348,7 +348,7 @@ Content-Type: application/json; charset="utf-8"
   "content": "두레이 클라이언트를 만드는데에 있어서 얼마나 많은 시간과 노력과 열정이 필요한지 알아보는 좋은 시간이 되어보자"
 }
 -----------------------------------------------------------------------
-http://localhost:9090/task/register
+http://localhost:7070/projects/tasks/register
 
 HTTP/1.1 201 Created
 Date: Sun, 12 Jun 2022 04:55:21 GMT
@@ -361,7 +361,7 @@ Response code: 201 (Created); Time: 96ms; Content length: 0 bytes
 =============================================
 * 프로젝트 업무 수정
 
-PUT http://localhost:9090/task/modify
+PUT http://localhost:7070/projects/tasks/modify
 Content-Type: application/json; charset="utf-8"
 
 {
@@ -370,7 +370,7 @@ Content-Type: application/json; charset="utf-8"
   "content": "두레이 클라이언트를 만드는데에 있어서 얼마나 많은 시간과 노력과 열정이 필요한지 알아보는 좋은 시간이 되어보자"
 }
 -----------------------------------------------------------------------
-http://localhost:9090/task/modify
+http://localhost:7070/projects/tasks/modify
 
 HTTP/1.1 200 OK
 Date: Sun, 12 Jun 2022 04:57:08 GMT
@@ -383,9 +383,9 @@ Response code: 200 (OK); Time: 97ms; Content length: 0 bytes
 =============================================
 * 프로젝트 업무 삭제
 
-DELETE http://localhost:9090/task/delete/2
+DELETE http://localhost:7070/projects/tasks/2/delete
 -----------------------------------------------------------------------
-http://localhost:9090/task/delete/2
+http://localhost:7070/projects/tasks/2/delete
 
 HTTP/1.1 200 OK
 Date: Sun, 12 Jun 2022 04:58:16 GMT
@@ -398,9 +398,9 @@ Response code: 200 (OK); Time: 113ms; Content length: 0 bytes
 =============================================
 * 프로젝트 업무 코멘트 작성자 찾기
 
-GET http://localhost:9090/comment/get?commentNo=1
+GET http://localhost:7070/projects/comments/1
 -----------------------------------------------------------------------
-http://localhost:9090/comment/get?commentNo=1
+http://localhost:7070/projects/comments/1
 
 HTTP/1.1 200 OK
 Date: Sun, 12 Jun 2022 04:59:55 GMT
@@ -414,7 +414,7 @@ Response code: 200 (OK); Time: 32ms; Content length: 4 bytes
 =============================================
 * 프로젝트 업무 코멘트 작성
 
-POST http://localhost:9090/comment/register
+POST http://localhost:7070/projects/comments/register
 Content-Type: application/json; charset="utf-8"
 
 {
@@ -423,7 +423,7 @@ Content-Type: application/json; charset="utf-8"
   "content": "배고파"
 }
 -----------------------------------------------------------------------
-http://localhost:9090/comment/register
+http://localhost:7070/projects/comments/register
 
 HTTP/1.1 201 Created
 Date: Sun, 12 Jun 2022 05:02:14 GMT
@@ -436,7 +436,7 @@ Response code: 201 (Created); Time: 94ms; Content length: 0 bytes
 =============================================
 * 프로젝트 업무 코멘트 수정
 
-PUT http://localhost:9090/comment/modify
+PUT http://localhost:7070/projects/comments/modify
 Content-Type: application/json; charset="utf-8"
 
 {
@@ -444,7 +444,7 @@ Content-Type: application/json; charset="utf-8"
   "content": "배고프다고"
 }
 -----------------------------------------------------------------------
-http://localhost:9090/comment/modify
+http://localhost:7070/projects/comments/modify
 
 HTTP/1.1 200 OK
 Date: Sun, 12 Jun 2022 05:03:55 GMT
@@ -457,9 +457,9 @@ Response code: 200 (OK); Time: 98ms; Content length: 0 bytes
 =============================================
 * 프로젝트 업무 코멘트 삭제
 
-DELETE http://localhost:9090/comment/delete?commentNo=2
+DELETE http://localhost:7070/projects/comments/2/delete
 -----------------------------------------------------------------------
-http://localhost:9090/comment/delete?commentNo=2
+http://localhost:7070/projects/comments/2/delete
 
 HTTP/1.1 200 OK
 Date: Sun, 12 Jun 2022 05:04:28 GMT
@@ -472,7 +472,7 @@ Response code: 200 (OK); Time: 89ms; Content length: 0 bytes
 =============================================
 * 프로젝트 태그 등록
 
-POST http://localhost:9090/tag/register
+POST http://localhost:7070/projects/tags/register
 Content-Type: application/json; charset="utf-8"
 
 {
@@ -481,7 +481,7 @@ Content-Type: application/json; charset="utf-8"
   "admin" : "user"
 }
 -----------------------------------------------------------------------
-http://localhost:9090/tag/register
+http://localhost:7070/projects/tags/register
 
 HTTP/1.1 201 Created
 Date: Sun, 12 Jun 2022 05:07:48 GMT
@@ -494,7 +494,7 @@ Response code: 201 (Created); Time: 81ms; Content length: 0 bytes
 =============================================
 * 프로젝트 태그 수정
 
-PUT http://localhost:9090/tag/modify
+PUT http://localhost:7070/projects/tags/modify
 Content-Type: application/json; charset="utf-8"
 
 {
@@ -502,7 +502,7 @@ Content-Type: application/json; charset="utf-8"
   "content" : "반갑다고"
 }
 -----------------------------------------------------------------------
-http://localhost:9090/tag/modify
+http://localhost:7070/projects/tags/modify
 
 HTTP/1.1 200 OK
 Date: Sun, 12 Jun 2022 05:08:59 GMT
@@ -515,9 +515,9 @@ Response code: 200 (OK); Time: 72ms; Content length: 0 bytes
 =============================================
 * 프로젝트 태그 삭제
 
-DELETE http://localhost:9090/tag/delete?tagNo=2
+DELETE http://localhost:7070/projects/tags/2/delete
 -----------------------------------------------------------------------
-http://localhost:9090/tag/delete?tagNo=2
+http://localhost:7070/projects/tags/2/delete
 
 HTTP/1.1 200 OK
 Date: Sun, 12 Jun 2022 05:10:27 GMT
@@ -530,9 +530,9 @@ Response code: 200 (OK); Time: 79ms; Content length: 0 bytes
 =============================================
 * 프로젝트 업무 태그 추가
 
-POST http://localhost:9090/tag/task/register?taskNo=1&tagNo=1
+POST http://localhost:7070/projects/tags/1/tasks/1/register
 -----------------------------------------------------------------------
-http://localhost:9090/tag/task/register?taskNo=1&tagNo=4
+http://localhost:7070/projects/tags/1/tasks/1/register
 
 HTTP/1.1 200 OK
 Date: Sun, 12 Jun 2022 05:13:16 GMT
@@ -545,7 +545,7 @@ Response code: 200 (OK); Time: 126ms; Content length: 0 bytes
 =============================================
 * 프로젝트 마일스톤 등록
 
-POST http://localhost:9090/mile/register
+POST http://localhost:7070/projects/miles/register
 Content-Type: application/json; charset="utf-8"
 
 {
@@ -554,7 +554,7 @@ Content-Type: application/json; charset="utf-8"
   "admin" : "user"
 }
 -----------------------------------------------------------------------
-http://localhost:9090/mile/register
+http://localhost:7070/projects/miles/register
 
 HTTP/1.1 201 Created
 Date: Sun, 12 Jun 2022 05:16:05 GMT
@@ -567,10 +567,10 @@ Response code: 201 (Created); Time: 86ms; Content length: 0 bytes
 =============================================
 * 프로젝트 마일스톤 수정
 
-PUT http://localhost:9090/mile/modify
+PUT http://localhost:7070/projects/miles/modify
 Content-Type: application/json; charset="utf-8"
 -----------------------------------------------------------------------
-http://localhost:9090/mile/modify
+http://localhost:7070/projects/miles/modify
 
 HTTP/1.1 200 OK
 Date: Sun, 12 Jun 2022 05:17:23 GMT
@@ -583,9 +583,9 @@ Response code: 200 (OK); Time: 82ms; Content length: 0 bytes
 =============================================
 * 프로젝트 마일스톤 삭제
 
-DELETE http://localhost:9090/mile/delete?mileNo=2
+DELETE http://localhost:7070/projects/miles/2/delete
 -----------------------------------------------------------------------
-http://localhost:9090/mile/delete?mileNo=2
+http://localhost:7070/projects/miles/2/delete
 
 HTTP/1.1 200 OK
 Date: Sun, 12 Jun 2022 05:18:20 GMT
@@ -598,7 +598,7 @@ Response code: 200 (OK); Time: 90ms; Content length: 0 bytes
 =============================================
 * 프로젝트 업무 마일스톤 추가
 
-POST http://localhost:9090/mile/task/register
+POST http://localhost:7070/projects/miles/tasks/register
 Content-Type: application/json; charset="utf-8"
 
 {
@@ -608,7 +608,7 @@ Content-Type: application/json; charset="utf-8"
   "end" : "2022-06-07"
 }
 -----------------------------------------------------------------------
-http://localhost:9090/mile/task/register
+http://localhost:7070/projects/miles/tasks/register
 
 HTTP/1.1 200 OK
 Date: Sun, 12 Jun 2022 05:20:32 GMT

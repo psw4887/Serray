@@ -42,7 +42,7 @@ class MilestoneControllerTest {
     @MockBean
     private MilestoneService service;
 
-    @DisplayName("/mile/register 성공 테스트")
+    @DisplayName("마일스톤 등록 성공")
     @Test
     void registerProjectMile() throws Exception {
 
@@ -51,13 +51,13 @@ class MilestoneControllerTest {
 
         String requestBody = mapper.writeValueAsString(vo);
 
-        this.mockMvc.perform(post("/mile/register")
+        this.mockMvc.perform(post("/projects/miles/register")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(requestBody))
             .andExpect(status().isCreated());
     }
 
-    @DisplayName("/mile/register 실패 테스트")
+    @DisplayName("마일스톤 등록 실패")
     @Test
     void registerProjectMileFail() throws Exception {
 
@@ -66,13 +66,13 @@ class MilestoneControllerTest {
 
         String requestBody = mapper.writeValueAsString(vo);
 
-        this.mockMvc.perform(post("/mile/register")
+        this.mockMvc.perform(post("/projects/miles/register")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(requestBody))
             .andExpect(status().isOk());
     }
 
-    @DisplayName("/mile/modify 성공 테스트")
+    @DisplayName("마일스톤 수정 성공")
     @Test
     void modifyProjectMile() throws Exception {
 
@@ -80,13 +80,13 @@ class MilestoneControllerTest {
         MileModifyVO vo = new MileModifyVO(1 , "content");
         String requestBody = mapper.writeValueAsString(vo);
 
-        this.mockMvc.perform(put("/mile/modify")
+        this.mockMvc.perform(put("/projects/miles/modify")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(requestBody))
             .andExpect(status().isOk());
     }
 
-    @DisplayName("/mile/modify 실패 테스트")
+    @DisplayName("마일스톤 수정 실패")
     @Test
     void modifyProjectMileFail() throws Exception {
 
@@ -94,26 +94,25 @@ class MilestoneControllerTest {
         MileModifyVO vo = new MileModifyVO(null , null);
         String requestBody = mapper.writeValueAsString(vo);
 
-        this.mockMvc.perform(put("/mile/modify")
+        this.mockMvc.perform(put("/projects/miles/modify")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(requestBody))
             .andExpect(status().isOk());
     }
 
-    @DisplayName("/mile/delete?mileNo={mileNo} 테스트")
+    @DisplayName("마일스톤 삭제")
     @Test
     void deleteProjectMile() throws Exception {
 
         doNothing().when(service).projectMileDelete(anyInt());
 
-        this.mockMvc.perform(delete("/mile/delete")
-                .param("mileNo", "10"))
+        this.mockMvc.perform(delete("/projects/miles/10/delete"))
             .andExpect(status().isOk());
 
         verify(service, atLeastOnce()).projectMileDelete(10);
     }
 
-    @DisplayName("/mile/task/register 성공 테스트")
+    @DisplayName("업무 마일스톤 등록 성공")
     @Test
     void addTaskMile() throws Exception {
 
@@ -122,13 +121,13 @@ class MilestoneControllerTest {
 
         String requestBody = mapper.registerModule(new JavaTimeModule()).writeValueAsString(vo);
 
-        this.mockMvc.perform(post("/mile/task/register")
+        this.mockMvc.perform(post("/projects/miles/tasks/register")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(requestBody))
             .andExpect(status().isCreated());
     }
 
-    @DisplayName("/mile/task/register 실패 테스트")
+    @DisplayName("업무 마일스톤 등록 실패")
     @Test
     void addTaskMileFail() throws Exception {
 
@@ -137,7 +136,7 @@ class MilestoneControllerTest {
 
         String requestBody = mapper.writeValueAsString(vo);
 
-        this.mockMvc.perform(post("/mile/task/register")
+        this.mockMvc.perform(post("/projects/miles/tasks/register")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(requestBody))
             .andExpect(status().isOk());

@@ -13,13 +13,13 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/task")
+@RequestMapping("/projects/tasks")
 public class TaskController {
 
     private final TaskService service;
 
-    @GetMapping
-    public TaskDataResponse getDataByTask(@RequestParam("taskNo") Integer taskNo) {
+    @GetMapping("/{taskNo}")
+    public TaskDataResponse getDataByTask(@PathVariable("taskNo") Integer taskNo) {
 
         return service.getTaskData(taskNo);
     }
@@ -47,7 +47,7 @@ public class TaskController {
         service.modifyTask(vo);
     }
 
-    @DeleteMapping("/delete/{taskNo}")
+    @DeleteMapping("/{taskNo}/delete")
     public void taskDelete(@PathVariable("taskNo") Integer taskNo) {
 
         service.deleteTask(taskNo);

@@ -80,7 +80,7 @@ public class TaskController {
     }
 
     @PostMapping("/modify")
-    public String TaskModify(@RequestParam("projectNo") Integer projectNo,
+    public String taskModify(@RequestParam("projectNo") Integer projectNo,
                              @RequestParam("taskNo") Integer taskNo,
                              @ModelAttribute @Valid TaskForm taskForm,
                              BindingResult bindingResult) {

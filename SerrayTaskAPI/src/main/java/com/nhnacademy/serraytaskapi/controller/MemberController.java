@@ -12,14 +12,14 @@ public class MemberController {
 
     private final MemberService service;
 
-    @GetMapping("auths/admins")
+    @GetMapping("/auths/admins")
     public boolean isProjectAdmin(@PathVariable("projectNo") Integer projectNo,
                                   @RequestParam("id")  String id) {
 
         return service.isAdmin(projectNo, id);
     }
 
-    @GetMapping("auths/members")
+    @GetMapping("/auths/members")
     public boolean isProjectMember(@PathVariable("projectNo") Integer projectNo,
                                    @RequestParam("id") String id) {
 
@@ -35,7 +35,7 @@ public class MemberController {
     }
 
     @DeleteMapping("/members/delete")
-    public void memberDelete(@RequestParam("projectNo") Integer projectNo,
+    public void memberDelete(@PathVariable("projectNo") Integer projectNo,
                              @RequestParam("id") String id) {
 
         service.deleteMember(projectNo, id);

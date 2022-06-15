@@ -37,11 +37,11 @@ DELETE http://localhost:7070/projects/{{projectNo}}/delete?id={{id}}
 
 #####
 
-GET http://localhost:9090/task?taskNo={{taskNo}}
+GET http://localhost:7070/projects/tasks/{{taskNo}}
 
 #####
 
-POST http://localhost:9090/task/register
+POST http://localhost:7070/projects/tasks/register
 Content-Type: application/json; charset="utf-8"
 
 {
@@ -53,7 +53,7 @@ Content-Type: application/json; charset="utf-8"
 
 #####
 
-PUT http://localhost:9090/task/modify
+PUT http://localhost:7070/projects/tasks/modify
 Content-Type: application/json; charset="utf-8"
 
 {
@@ -64,15 +64,15 @@ Content-Type: application/json; charset="utf-8"
 
 #####
 
-DELETE http://localhost:9090/task/delete/{{taskNo}}
+DELETE http://localhost:7070/projects/tasks/{{taskNo}}/delete
 
 #####
 
-GET http://localhost:9090/comment/get?commentNo={{commentNo}}
+GET http://localhost:7070/projects/comments/{{commentNo}}
 
 #####
 
-POST http://localhost:9090/comment/register
+POST http://localhost:7070/projects/comments/register
 Content-Type: application/json; charset="utf-8"
 
 {
@@ -83,7 +83,7 @@ Content-Type: application/json; charset="utf-8"
 
 #####
 
-PUT http://localhost:9090/comment/modify
+PUT http://localhost:7070/projects/comments/modify
 Content-Type: application/json; charset="utf-8"
 
 {
@@ -93,11 +93,11 @@ Content-Type: application/json; charset="utf-8"
 
 #####
 
-DELETE http://localhost:9090/comment/delete?commentNo={{commentNo}}
+DELETE http://localhost:7070/projects/comments/{{commentNo}}/delete
 
 #####
 
-POST http://localhost:9090/tag/register
+POST http://localhost:7070/projects/tags/register
 Content-Type: application/json; charset="utf-8"
 
 {
@@ -108,7 +108,7 @@ Content-Type: application/json; charset="utf-8"
 
 #####
 
-PUT http://localhost:9090/tag/modify
+PUT http://localhost:7070/projects/tags/modify
 Content-Type: application/json; charset="utf-8"
 
 {
@@ -118,15 +118,15 @@ Content-Type: application/json; charset="utf-8"
 
 #####
 
-DELETE http://localhost:9090/tag/delete?tagNo={{tagNo}}
+DELETE http://localhost:7070/projects/tags/{{tagNo}}/delete
 
 #####
 
-POST http://localhost:9090/tag/task/register?taskNo={{taskNo}}&tagNo={{tagNo}}
+POST http://localhost:7070/projects/tags/{{tagNo}}/tasks/{{taskNo}}/register
 
 #####
 
-POST http://localhost:9090/mile/register
+POST http://localhost:7070/projects/miles/register
 Content-Type: application/json; charset="utf-8"
 
 {
@@ -137,7 +137,7 @@ Content-Type: application/json; charset="utf-8"
 
 #####
 
-PUT http://localhost:9090/mile/modify
+PUT http://localhost:7070/projects/miles/modify
 Content-Type: application/json; charset="utf-8"
 
 {
@@ -147,11 +147,11 @@ Content-Type: application/json; charset="utf-8"
 
 #####
 
-DELETE http://localhost:9090/mile/delete?mileNo={{mileNo}}
+DELETE http://localhost:7070/projects/miles/{{mileNo}}/delete
 
 #####
 
-POST http://localhost:9090/mile/task/register
+POST http://localhost:7070/projects/miles/tasks/register
 Content-Type: application/json; charset="utf-8"
 
 {

@@ -19,6 +19,9 @@ import java.util.List;
 @RequiredArgsConstructor
 public class TagServiceImpl implements TagService {
 
+    private final HttpHeaders httpHeaders = buildHeaders();
+    private final String gateWayIp;
+    private String request = "";
     private final RestTemplate template;
     private final ObjectMapper mapper;
 
@@ -26,9 +29,6 @@ public class TagServiceImpl implements TagService {
     public void registerTag(Integer projectNo, String content, String admin) {
 
         TagRegisterRequest registerRequest = new TagRegisterRequest(projectNo, content, admin);
-
-        HttpHeaders httpHeaders = buildHeaders();
-        String request = "";
 
         try {
             request = mapper.writeValueAsString(registerRequest);
@@ -38,7 +38,7 @@ public class TagServiceImpl implements TagService {
 
         HttpEntity<String> requestEntity = new HttpEntity<>(request, httpHeaders);
         template.exchange(
-                "http://localhost:9090/tag/register",
+                gateWayIp + "/projects/tags/register",
                 HttpMethod.POST,
                 requestEntity,
                 Void.class);
@@ -49,9 +49,6 @@ public class TagServiceImpl implements TagService {
 
         TagModifyRequest modifyRequest = new TagModifyRequest(tagNo, content);
 
-        HttpHeaders httpHeaders = buildHeaders();
-        String request = "";
-
         try {
             request = mapper.writeValueAsString(modifyRequest);
         } catch (JsonProcessingException e) {
@@ -60,7 +57,7 @@ public class TagServiceImpl implements TagService {
 
         HttpEntity<String> requestEntity = new HttpEntity<>(request, httpHeaders);
         template.exchange(
-                "http://localhost:9090/tag/modify",
+                gateWayIp  + "/projects/tags/modify",
                 HttpMethod.PUT,
                 requestEntity,
                 Void.class);
@@ -71,10 +68,9 @@ public class TagServiceImpl implements TagService {
     @Override
     public void deleteTag(Integer tagNo) {
 
-        HttpHeaders httpHeaders = buildHeaders();
         HttpEntity<String> requestEntity = new HttpEntity<>(httpHeaders);
         template.exchange(
-                "http://localhost:9090/tag/delete?tagNo=" + tagNo,
+                gateWayIp + "/projects/tags/" + tagNo + "/delete",
                 HttpMethod.DELETE,
                 requestEntity,
                 Void.class);
@@ -83,10 +79,9 @@ public class TagServiceImpl implements TagService {
     @Override
     public void addTaskTag(Integer taskNo, Integer tagNo) {
 
-        HttpHeaders httpHeaders = buildHeaders();
         HttpEntity<String> requestEntity = new HttpEntity<>(httpHeaders);
         template.exchange(
-                "http://localhost:9090/tag/task/register?taskNo=" + taskNo + "&tagNo=" + tagNo,
+                gateWayIp + "/projects/tags/" + tagNo +"/tasks/" + taskNo + "/register",
                 HttpMethod.POST,
                 requestEntity,
                 Void.class);
@@ -94,10 +89,10 @@ public class TagServiceImpl implements TagService {
 
     private HttpHeaders buildHeaders() {
 
-        HttpHeaders httpHeaders = new HttpHeaders();
-        httpHeaders.setContentType(MediaType.APPLICATION_JSON);
-        httpHeaders.setAccept(List.of(MediaType.APPLICATION_JSON));
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+        headers.setAccept(List.of(MediaType.APPLICATION_JSON));
 
-        return httpHeaders;
+        return headers;
     }
 }

@@ -12,13 +12,13 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/comment")
+@RequestMapping("/projects/comments")
 public class CommentController {
 
     private final CommentService service;
 
-    @GetMapping("/get")
-    String commenterGet(@RequestParam("commentNo") Integer commentNo) {
+    @GetMapping("/{commentNo}")
+    String commenterGet(@PathVariable("commentNo") Integer commentNo) {
 
         return service.getCommenter(commentNo);
     }
@@ -46,8 +46,8 @@ public class CommentController {
         service.modifyComment(vo);
     }
 
-    @DeleteMapping("/delete")
-    void commentDelete(@RequestParam("commentNo") Integer commentNo) {
+    @DeleteMapping("/{commentNo}/delete")
+    void commentDelete(@PathVariable("commentNo") Integer commentNo) {
 
         service.deleteComment(commentNo);
     }

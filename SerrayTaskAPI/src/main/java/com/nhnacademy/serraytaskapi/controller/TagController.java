@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/tag")
+@RequestMapping("/projects/tags")
 public class TagController {
 
     private final TagService service;
@@ -40,16 +40,16 @@ public class TagController {
         service.projectTagModify(vo);
     }
 
-    @DeleteMapping("/delete")
-    public void deleteProjectTag(@RequestParam("tagNo") Integer tagNo) {
+    @DeleteMapping("/{tagNo}/delete")
+    public void deleteProjectTag(@PathVariable("tagNo") Integer tagNo) {
 
         service.projectTagDelete(tagNo);
     }
 
     @ResponseStatus(HttpStatus.CREATED)
-    @PostMapping("/task/register")
-    public void addTaskTag(@RequestParam("taskNo") Integer taskNo,
-                        @RequestParam("tagNo") Integer tagNo) {
+    @PostMapping("/{tagNo}/tasks/{taskNo}/register")
+    public void addTaskTag(@PathVariable("taskNo") Integer taskNo,
+                        @PathVariable("tagNo") Integer tagNo) {
 
         service.taskTagRegister(taskNo, tagNo);
     }

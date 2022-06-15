@@ -38,7 +38,7 @@ class TaskControllerTest {
     @MockBean
     private TaskService service;
 
-    @DisplayName("/task 테스트")
+    @DisplayName("업무 내용 들고오기")
     @Test
     void getDataByTask() throws Exception {
 
@@ -49,14 +49,13 @@ class TaskControllerTest {
 
         given(service.getTaskData(anyInt())).willReturn(list);
 
-        this.mockMvc.perform(get("/task")
-                .param("taskNo", "1"))
+        this.mockMvc.perform(get("/projects/tasks/{taskNo}", 1))
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON))
             .andExpect(jsonPath("$.title").value("제목"));
     }
 
-    @DisplayName("/task/register 성공 테스트")
+    @DisplayName("업무 등록 성공 테스트")
     @Test
     void taskRegister() throws Exception {
 
@@ -65,13 +64,13 @@ class TaskControllerTest {
 
         String requestBody = mapper.writeValueAsString(vo);
 
-        this.mockMvc.perform(post("/task/register")
+        this.mockMvc.perform(post("/projects/tasks/register")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(requestBody))
             .andExpect(status().isCreated());
     }
 
-    @DisplayName("/task/register 실패 테스트")
+    @DisplayName("업무 등록 실패 테스트")
     @Test
     void taskRegisterFail() throws Exception {
 
@@ -80,13 +79,13 @@ class TaskControllerTest {
 
         String requestBody = mapper.writeValueAsString(vo);
 
-        this.mockMvc.perform(post("/task/register")
+        this.mockMvc.perform(post("/projects/tasks/register")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(requestBody))
             .andExpect(status().isOk());
     }
 
-    @DisplayName("/task/modify 성공 테스트")
+    @DisplayName("업무 수정 성공 테스트")
     @Test
     void taskModify() throws Exception {
 
@@ -95,13 +94,13 @@ class TaskControllerTest {
 
         String requestBody = mapper.writeValueAsString(vo);
 
-        this.mockMvc.perform(put("/task/modify")
+        this.mockMvc.perform(put("/projects/tasks/modify")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(requestBody))
             .andExpect(status().isOk());
     }
 
-    @DisplayName("/task/modify 실패 테스트")
+    @DisplayName("업무 수정 실패 테스트")
     @Test
     void taskModifyFail() throws Exception {
 
@@ -110,19 +109,19 @@ class TaskControllerTest {
 
         String requestBody = mapper.writeValueAsString(vo);
 
-        this.mockMvc.perform(put("/task/modify")
+        this.mockMvc.perform(put("/projects/tasks/modify")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(requestBody))
             .andExpect(status().isOk());
     }
 
-    @DisplayName("/task/delete 테스트")
+    @DisplayName("업무 삭제")
     @Test
     void taskDelete() throws Exception {
 
         doNothing().when(service).deleteTask(anyInt());
 
-        this.mockMvc.perform(delete("/task/delete/{taskNo}", 10))
+        this.mockMvc.perform(delete("/projects/tasks/{tasksNo}}/delete", 10))
             .andExpect(status().isOk());
 
         verify(service, atLeastOnce()).deleteTask(10);

@@ -21,6 +21,7 @@ import java.util.Objects;
 @RequiredArgsConstructor
 public class CustomUserDetailsService implements UserDetailsService {
 
+    private final String gateWayIp;
     private final RestTemplate restTemplate;
 
     @Override
@@ -29,7 +30,7 @@ public class CustomUserDetailsService implements UserDetailsService {
         HttpHeaders httpHeaders = buildHeaders();
 
         HttpEntity<String> requestEntity = new HttpEntity<>(httpHeaders);
-        ResponseEntity<UserInfoResponse> response = restTemplate.exchange("http://localhost:7070/users/" + username,
+        ResponseEntity<UserInfoResponse> response = restTemplate.exchange(gateWayIp + "/users/" + username,
                 HttpMethod.GET,
                 requestEntity,
                 UserInfoResponse.class);

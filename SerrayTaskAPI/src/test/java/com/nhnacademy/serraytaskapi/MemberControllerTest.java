@@ -36,52 +36,48 @@ class MemberControllerTest {
     @MockBean
     private MemberService service;
 
-    @DisplayName("/members/admin?projectNo={projectNo}&id={id} 테스트")
+    @DisplayName("해당 프로젝트의 관리자 멤버인지 확인")
     @Test
     void isProjectAdmin() throws Exception {
 
         given(service.isAdmin(anyInt(), anyString())).willReturn(true);
 
-        this.mockMvc.perform(get("/members/admin")
-                .param("projectNo", "1")
+        this.mockMvc.perform(get("/projects/{projectNo}/auths/admins", 1)
                 .param("id", "op"))
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON))
             .andExpect(jsonPath("$").value("true"));
     }
 
-    @DisplayName("/members/member?projectNo={projectNo}&id={id} 테스트")
+    @DisplayName("해당 프로젝트의 구성원 멤버인지 확인")
     @Test
     void isProjectMember() throws Exception {
 
         given(service.isMember(anyInt(), anyString())).willReturn(true);
 
-        this.mockMvc.perform(get("/members/member")
-                .param("projectNo", "1")
+        this.mockMvc.perform(get("/projects/{projectNo}/auths/members", 1)
                 .param("id", "op"))
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON))
             .andExpect(jsonPath("$").value("true"));
     }
 
-    @DisplayName("/members/register?projectNo={projectNo}&id={id} 테스트")
+    @DisplayName("해당 프로젝트에 멤버 추가")
     @Test
     void memberRegister() throws Exception {
 
-        this.mockMvc.perform(post("/members/register")
-                .param("projectNo", "1")
+        this.mockMvc.perform(post("/projects/{projectNo}/members/register", 1)
                 .param("id", "op"))
             .andExpect(status().isCreated());
     }
 
-    @DisplayName("/members/delete?projectNo={projectNo}&id={id} 테스트")
+    @DisplayName("해당 프로젝트에 멤버 삭제")
     @Test
     void memberDelete() throws Exception {
 
         doNothing().when(service).deleteMember(anyInt(), anyString());
 
-        this.mockMvc.perform(delete("/members/delete")
-                .param("projectNo", "1")
+        this.mockMvc.perform(delete("/projects/{projectNo}/members/delete", 1)
                 .param("id", "op"))
             .andExpect(status().isOk());
 
